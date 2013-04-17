@@ -8,9 +8,9 @@ import com.sencha.gxt.data.shared.ModelKeyProvider;
 import com.sencha.gxt.data.shared.TreeStore;
 import com.sencha.gxt.widget.core.client.ContentPanel;
 import com.sencha.gxt.widget.core.client.container.BorderLayoutContainer;
+import com.sencha.gxt.widget.core.client.container.BorderLayoutContainer.BorderLayoutData;
 import com.sencha.gxt.widget.core.client.container.MarginData;
 import com.sencha.gxt.widget.core.client.container.Viewport;
-import com.sencha.gxt.widget.core.client.container.BorderLayoutContainer.BorderLayoutData;
 import com.sencha.gxt.widget.core.client.tree.Tree;
 
 
@@ -18,7 +18,6 @@ import com.sencha.gxt.widget.core.client.tree.Tree;
 public class LeanSpoolerViewport extends Viewport {
 	
 	
-	//TODO change name to something more clear
 	private static final int INITIAL_WEST_SIZE = 200;
 	
 	
@@ -31,7 +30,6 @@ public class LeanSpoolerViewport extends Viewport {
 	}
 	
 	
-	//TODO change name to something more clear
 	private void buildCenterWidget(BorderLayoutContainer borderLayoutContainer) {
 		ContentPanel centerWidget = new ContentPanel();
 		MarginData centerWidgetLayoutData = new MarginData(1);
@@ -40,7 +38,6 @@ public class LeanSpoolerViewport extends Viewport {
 	}
 	
 	
-	//TODO change name to something more clear
 	private void buildWestWidget(BorderLayoutContainer borderLayoutContainer) {
 		BorderLayoutData westWidgetLayoutData =
 			new BorderLayoutData(INITIAL_WEST_SIZE);
@@ -50,7 +47,7 @@ public class LeanSpoolerViewport extends Viewport {
 		Margins westMargins = new Margins(1);
 		westWidgetLayoutData.setMargins(westMargins);
 		//
-		//ContentPanel westWidget = new ContentPanel();
+		ContentPanel westWidget = new ContentPanel();
 		//
 		ModelKeyProvider<String> keyProvider = new ModelKeyProvider<String>() {
 			@Override
@@ -79,8 +76,10 @@ public class LeanSpoolerViewport extends Viewport {
 				return null;
 			}
 		};
-		Tree<String, String> westWidget =
+		Tree<String, String> tree =
 			new Tree<String, String>(treeStore, treeValueProvider);
+		//
+		westWidget.add(tree);
 		//
 		borderLayoutContainer.setWestWidget(westWidget, westWidgetLayoutData);
 	}
