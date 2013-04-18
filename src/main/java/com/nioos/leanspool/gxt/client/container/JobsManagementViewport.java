@@ -2,7 +2,7 @@ package com.nioos.leanspool.gxt.client.container;
 
 
 
-import com.nioos.leanspool.gxt.client.tree.LeanSpoolerTree;
+import com.nioos.leanspool.gxt.client.tree.JobsManagementTree;
 import com.sencha.gxt.core.client.util.Margins;
 import com.sencha.gxt.widget.core.client.ContentPanel;
 import com.sencha.gxt.widget.core.client.container.BorderLayoutContainer;
@@ -12,13 +12,13 @@ import com.sencha.gxt.widget.core.client.container.Viewport;
 
 
 
-public class LeanSpoolerViewport extends Viewport {
+public class JobsManagementViewport extends Viewport {
 	
 	
 	private static final int INITIAL_WEST_SIZE = 200;
 	
 	
-	public LeanSpoolerViewport() {
+	public JobsManagementViewport() {
 		BorderLayoutContainer borderLayoutContainer =
 			new BorderLayoutContainer();
 		buildWestWidget(borderLayoutContainer);
@@ -45,7 +45,7 @@ public class LeanSpoolerViewport extends Viewport {
 		westWidgetLayoutData.setMargins(westMargins);
 		//
 		ContentPanel westWidget = new ContentPanel();
-		westWidget.add(new LeanSpoolerTree());
+		westWidget.add(new JobsManagementTree());
 		//
 		borderLayoutContainer.setWestWidget(westWidget, westWidgetLayoutData);
 	}

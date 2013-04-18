@@ -6,10 +6,10 @@ import com.sencha.gxt.data.shared.TreeStore;
 
 
 
-public class LeanSpoolerTreeStore extends TreeStore<PrinterModel> {
+public class JobsManagementTreeStore extends TreeStore<PrinterModel> {
 	
 	
-	public LeanSpoolerTreeStore() {
+	public JobsManagementTreeStore() {
 		super(new LeanSpoolerPrinterModelKeyProvider());
 		//
 		PrinterModel root = new PrinterModel("root");
