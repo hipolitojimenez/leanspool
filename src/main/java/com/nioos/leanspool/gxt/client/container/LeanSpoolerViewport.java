@@ -2,16 +2,13 @@ package com.nioos.leanspool.gxt.client.container;
 
 
 
-import com.sencha.gxt.core.client.ValueProvider;
+import com.nioos.leanspool.gxt.client.tree.LeanSpoolerTree;
 import com.sencha.gxt.core.client.util.Margins;
-import com.sencha.gxt.data.shared.ModelKeyProvider;
-import com.sencha.gxt.data.shared.TreeStore;
 import com.sencha.gxt.widget.core.client.ContentPanel;
 import com.sencha.gxt.widget.core.client.container.BorderLayoutContainer;
 import com.sencha.gxt.widget.core.client.container.BorderLayoutContainer.BorderLayoutData;
 import com.sencha.gxt.widget.core.client.container.MarginData;
 import com.sencha.gxt.widget.core.client.container.Viewport;
-import com.sencha.gxt.widget.core.client.tree.Tree;
 
 
 
@@ -48,38 +45,7 @@ public class LeanSpoolerViewport extends Viewport {
 		westWidgetLayoutData.setMargins(westMargins);
 		//
 		ContentPanel westWidget = new ContentPanel();
-		//
-		ModelKeyProvider<String> keyProvider = new ModelKeyProvider<String>() {
-			@Override
-			public String getKey(String item) {
-				return item;
-			}
-		};
-		TreeStore<String> treeStore = new TreeStore<String>(keyProvider);
-		treeStore.add("root");
-		treeStore.add("root", "child01");
-		treeStore.add("root", "child02");
-		treeStore.add("root", "child03");
-		treeStore.add("root", "child04");
-		//
-		ValueProvider<String, String> treeValueProvider = new ValueProvider<String, String>() {
-			@Override
-			public String getValue(String object) {
-				return object;
-			}
-			@Override
-			public void setValue(String object, String value) {
-				object = value;
-			}
-			@Override
-			public String getPath() {
-				return null;
-			}
-		};
-		Tree<String, String> tree =
-			new Tree<String, String>(treeStore, treeValueProvider);
-		//
-		westWidget.add(tree);
+		westWidget.add(new LeanSpoolerTree());
 		//
 		borderLayoutContainer.setWestWidget(westWidget, westWidgetLayoutData);
 	}
