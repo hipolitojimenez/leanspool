@@ -7,12 +7,12 @@ import com.sencha.gxt.data.shared.ModelKeyProvider;
 
 
 public class LeanSpoolerPrinterModelKeyProvider
-		implements ModelKeyProvider<String> {
+		implements ModelKeyProvider<PrinterModel> {
 	
 	
 	@Override
-	public String getKey(String item) {
-		return item;
+	public String getKey(PrinterModel item) {
+		return item.getKey();
 	}
 	
 	

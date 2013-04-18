@@ -6,7 +6,7 @@ import com.sencha.gxt.widget.core.client.tree.Tree;
 
 
 
-public class LeanSpoolerTree extends Tree<String, String> {
+public class LeanSpoolerTree extends Tree<PrinterModel, String> {
 	
 	
 	public LeanSpoolerTree() {

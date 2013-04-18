@@ -7,18 +7,18 @@ import com.sencha.gxt.core.client.ValueProvider;
 
 
 public class LeanSpoolerTreeValueProvider implements
-		ValueProvider<String, String> {
+		ValueProvider<PrinterModel, String> {
 	
 	
 	@Override
-	public String getValue(String object) {
-		return object;
+	public String getValue(PrinterModel object) {
+		return object.getKey();
 	}
 	
 	
 	@Override
-	public void setValue(String object, String value) {
-		object = value;
+	public void setValue(PrinterModel object, String value) {
+		object.setKey(value);
 	}
 	
 	

@@ -6,20 +6,28 @@ import com.sencha.gxt.data.shared.TreeStore;
 
 
 
-public class LeanSpoolerTreeStore extends TreeStore<String> {
+public class LeanSpoolerTreeStore extends TreeStore<PrinterModel> {
 	
 	
 	public LeanSpoolerTreeStore() {
 		super(new LeanSpoolerPrinterModelKeyProvider());
 		//
-		add("root");
-		add("root", "child01");
-		add("root", "child02");
-		add("root", "child03");
-		add("root", "child04");
-		add("Printers");
-		add("Jobs");
-		add("Errors");
+		PrinterModel root = new PrinterModel("root");
+		add(root);
+		PrinterModel child01 = new PrinterModel("child01");
+		add(root, child01);
+		PrinterModel child02 = new PrinterModel("child02");
+		add(root, child02);
+		PrinterModel child03 = new PrinterModel("child03");
+		add(root, child03);
+		PrinterModel child04 = new PrinterModel("child04");
+		add(root, child04);
+		PrinterModel printers = new PrinterModel("Printers");
+		add(printers);
+		PrinterModel jobs = new PrinterModel("Jobs");
+		add(jobs);
+		PrinterModel errors = new PrinterModel("Errors");
+		add(errors);
 	}
 	
 	
