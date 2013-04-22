@@ -18,4 +18,8 @@ public interface TreeImages extends ClientBundle {
 	ImageResource printer();
 	
 	
+	@Source("job.png")
+	ImageResource job();
+	
+	
 }

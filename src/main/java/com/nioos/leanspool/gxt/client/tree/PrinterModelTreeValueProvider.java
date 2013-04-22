@@ -6,7 +6,7 @@ import com.sencha.gxt.core.client.ValueProvider;
 
 
 
-public class LeanSpoolerTreeValueProvider implements
+public class PrinterModelTreeValueProvider implements
 		ValueProvider<PrinterModel, String> {
 	
 	

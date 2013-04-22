@@ -10,7 +10,7 @@ public class JobsByPrinterTreeStore extends TreeStore<PrinterModel> {
 	
 	
 	public JobsByPrinterTreeStore() {
-		super(new LeanSpoolerPrinterModelKeyProvider());
+		super(new PrinterModelKeyProvider());
 		//
 		PrinterModel root = new PrinterModel("Jobs By Printer");
 		add(root);

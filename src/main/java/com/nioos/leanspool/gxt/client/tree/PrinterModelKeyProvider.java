@@ -6,7 +6,7 @@ import com.sencha.gxt.data.shared.ModelKeyProvider;
 
 
 
-public class LeanSpoolerPrinterModelKeyProvider
+public class PrinterModelKeyProvider
 		implements ModelKeyProvider<PrinterModel> {
 	
 	
