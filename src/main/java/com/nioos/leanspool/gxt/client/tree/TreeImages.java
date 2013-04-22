@@ -22,4 +22,8 @@ public interface TreeImages extends ClientBundle {
 	ImageResource job();
 	
 	
+	@Source("status.png")
+	ImageResource status();
+	
+	
 }

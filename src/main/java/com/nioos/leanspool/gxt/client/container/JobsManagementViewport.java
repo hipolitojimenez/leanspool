@@ -5,6 +5,7 @@ package com.nioos.leanspool.gxt.client.container;
 import com.google.gwt.core.client.GWT;
 import com.nioos.leanspool.gxt.client.tree.AllJobsTree;
 import com.nioos.leanspool.gxt.client.tree.JobsByPrinterTree;
+import com.nioos.leanspool.gxt.client.tree.JobsByStatusTree;
 import com.sencha.gxt.core.client.util.Margins;
 import com.sencha.gxt.widget.core.client.ContentPanel;
 import com.sencha.gxt.widget.core.client.container.AccordionLayoutContainer;
@@ -63,6 +64,11 @@ public class JobsManagementViewport extends Viewport {
 		jobsByPrinterPanel.setHeadingText("View Jobs By Printer");
 		jobsByPrinterPanel.add(new JobsByPrinterTree());
 		accordion.add(jobsByPrinterPanel);
+		//
+		ContentPanel jobsByStatusPanel = new ContentPanel(appearance);
+		jobsByStatusPanel.setHeadingText("View Jobs By Status");
+		jobsByStatusPanel.add(new JobsByStatusTree());
+		accordion.add(jobsByStatusPanel);
 		//
 		westWidget.add(accordion);
 		borderLayoutContainer.setWestWidget(westWidget, westWidgetLayoutData);
