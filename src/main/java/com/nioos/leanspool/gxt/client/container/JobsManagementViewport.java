@@ -3,7 +3,7 @@ package com.nioos.leanspool.gxt.client.container;
 
 
 import com.google.gwt.core.client.GWT;
-import com.nioos.leanspool.gxt.client.tree.JobsManagementTree;
+import com.nioos.leanspool.gxt.client.tree.JobsByPrinterTree;
 import com.sencha.gxt.core.client.util.Margins;
 import com.sencha.gxt.widget.core.client.ContentPanel;
 import com.sencha.gxt.widget.core.client.container.AccordionLayoutContainer;
@@ -51,15 +51,17 @@ public class JobsManagementViewport extends Viewport {
 		westWidget.setHeaderVisible(false);
 		AccordionLayoutContainer accordion = new AccordionLayoutContainer();
 		AccordionLayoutAppearance appearance = GWT.<AccordionLayoutAppearance> create(AccordionLayoutAppearance.class);
-		ContentPanel jobsManagementPanel = new ContentPanel(appearance);
-		jobsManagementPanel.setHeadingText("View All Jobs");
-		jobsManagementPanel.add(new JobsManagementTree());
-		accordion.add(jobsManagementPanel);
-		accordion.setActiveWidget(jobsManagementPanel);
 		//
-		ContentPanel contentPanel02 = new ContentPanel(appearance);
-		contentPanel02.setHeadingText("View By Printer");
-		accordion.add(contentPanel02);
+		ContentPanel allJobsPanel = new ContentPanel(appearance);
+		allJobsPanel.setHeadingText("View All Jobs");
+		//allJobsPanel.add(new AllJobsTree());
+		accordion.add(allJobsPanel);
+		accordion.setActiveWidget(allJobsPanel);
+		//
+		ContentPanel jobsByPrinterPanel = new ContentPanel(appearance);
+		jobsByPrinterPanel.setHeadingText("View Jobs By Printer");
+		jobsByPrinterPanel.add(new JobsByPrinterTree());
+		accordion.add(jobsByPrinterPanel);
 		//
 		westWidget.add(accordion);
 		borderLayoutContainer.setWestWidget(westWidget, westWidgetLayoutData);
