@@ -3,9 +3,12 @@ package com.nioos.leanspool.gxt.client.container;
 
 
 import com.google.gwt.core.client.GWT;
+import com.nioos.leanspool.gxt.client.JobsManagement;
 import com.nioos.leanspool.gxt.client.tree.AllJobsTree;
 import com.nioos.leanspool.gxt.client.tree.JobsByPrinterTree;
 import com.nioos.leanspool.gxt.client.tree.JobsByStatusTree;
+import com.nioos.leanspool.gxt.client.tree.TreeChangeEvent;
+import com.nioos.leanspool.gxt.client.tree.TreeChangeHandler;
 import com.sencha.gxt.core.client.util.Margins;
 import com.sencha.gxt.widget.core.client.ContentPanel;
 import com.sencha.gxt.widget.core.client.container.AccordionLayoutContainer;
@@ -37,6 +40,13 @@ public class JobsManagementViewport extends Viewport {
 		MarginData centerWidgetLayoutData = new MarginData(1);
 		borderLayoutContainer.setCenterWidget(centerWidget,
 			centerWidgetLayoutData);
+		//TODO
+		JobsManagement.EVENTBUS.addHandler(TreeChangeEvent.TYPE, new TreeChangeHandler() {
+			@Override
+			public void onTreeChange(TreeChangeEvent event) {
+				System.out.println("ev : " + event.getCurrentNodeName());
+			}
+		});
 	}
 	
 	
