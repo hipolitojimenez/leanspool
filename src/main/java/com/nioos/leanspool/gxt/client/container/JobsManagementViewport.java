@@ -3,7 +3,6 @@ package com.nioos.leanspool.gxt.client.container;
 
 
 import com.google.gwt.core.client.GWT;
-import com.nioos.leanspool.gxt.client.JobsManagement;
 import com.nioos.leanspool.gxt.client.tree.AllJobsTree;
 import com.nioos.leanspool.gxt.client.tree.JobsByPrinterTree;
 import com.nioos.leanspool.gxt.client.tree.JobsByStatusTree;
@@ -41,7 +40,7 @@ public class JobsManagementViewport extends Viewport {
 		borderLayoutContainer.setCenterWidget(centerWidget,
 			centerWidgetLayoutData);
 		//TODO
-		JobsManagement.EVENTBUS.addHandler(TreeChangeEvent.TYPE, new TreeChangeHandler() {
+		TreeChangeEvent.registerHandler(new TreeChangeHandler() {
 			@Override
 			public void onTreeChange(TreeChangeEvent event) {
 				System.out.println("ev : " + event.getCurrentNodeName());

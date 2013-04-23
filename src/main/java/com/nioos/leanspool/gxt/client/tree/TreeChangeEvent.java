@@ -1,15 +1,13 @@
 package com.nioos.leanspool.gxt.client.tree;
 
-
-
-import com.google.gwt.event.shared.GwtEvent;
+import com.nioos.leanspool.gxt.client.AbstractBaseEvent;
 
 
 
-public class TreeChangeEvent extends GwtEvent<TreeChangeHandler> {
+public class TreeChangeEvent extends AbstractBaseEvent<TreeChangeHandler> {
 	
 	
-	public static final Type<TreeChangeHandler> TYPE =
+	private static final Type<TreeChangeHandler> TYPE =
 		new Type<TreeChangeHandler>();
 	
 	
@@ -35,6 +33,11 @@ public class TreeChangeEvent extends GwtEvent<TreeChangeHandler> {
 	
 	public String getCurrentNodeName() {
 		return nodeName;
+	}
+	
+	
+	public static void registerHandler(TreeChangeHandler handler) {
+		EVENTBUS.addHandler(TYPE, handler);
 	}
 	
 	

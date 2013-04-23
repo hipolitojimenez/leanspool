@@ -4,7 +4,6 @@ package com.nioos.leanspool.gxt.client.tree;
 
 import java.util.List;
 
-import com.nioos.leanspool.gxt.client.JobsManagement;
 import com.sencha.gxt.widget.core.client.selection.SelectionChangedEvent;
 import com.sencha.gxt.widget.core.client.selection.SelectionChangedEvent.SelectionChangedHandler;
 import com.sencha.gxt.widget.core.client.tree.Tree;
@@ -26,7 +25,7 @@ public class AllJobsTree extends Tree<String, String> {
 					String selection = selectionList.get(0);
 					treeChangeEvent.setCurrentNodeName(selection);
 				}
-				JobsManagement.EVENTBUS.fireEventFromSource(treeChangeEvent, this);
+				treeChangeEvent.fireFromSource(this);
 			}
 		});
 		// TODO Auto-generated constructor stub
