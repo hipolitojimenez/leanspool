@@ -16,6 +16,8 @@ import com.sencha.gxt.widget.core.client.container.BorderLayoutContainer;
 import com.sencha.gxt.widget.core.client.container.BorderLayoutContainer.BorderLayoutData;
 import com.sencha.gxt.widget.core.client.container.MarginData;
 import com.sencha.gxt.widget.core.client.container.Viewport;
+import com.sencha.gxt.widget.core.client.event.ExpandEvent;
+import com.sencha.gxt.widget.core.client.event.ExpandEvent.ExpandHandler;
 
 
 
@@ -63,7 +65,16 @@ public class JobsManagementViewport extends Viewport {
 		AccordionLayoutContainer accordion = new AccordionLayoutContainer();
 		AccordionLayoutAppearance appearance = GWT.<AccordionLayoutAppearance> create(AccordionLayoutAppearance.class);
 		//
-		ContentPanel allJobsPanel = new ContentPanel(appearance);
+		final ContentPanel allJobsPanel = new ContentPanel(appearance);
+		allJobsPanel.addExpandHandler(new ExpandHandler() {
+			@Override
+			public void onExpand(ExpandEvent event) {
+				// TODO Auto-generated method stub
+				TreeChangeEvent treeChangeEvent = new TreeChangeEvent();
+				treeChangeEvent.setCurrentNodeName("JOBS PANEL");
+				treeChangeEvent.fireFromSource(allJobsPanel);
+			}
+		});
 		allJobsPanel.setHeadingText("View All Jobs");
 		allJobsPanel.add(new AllJobsTree());
 		accordion.add(allJobsPanel);
