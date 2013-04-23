@@ -2,7 +2,6 @@ package com.nioos.leanspool.gxt.client.container;
 
 
 
-import com.google.gwt.core.client.GWT;
 import com.nioos.leanspool.gxt.client.tree.AllJobsTree;
 import com.nioos.leanspool.gxt.client.tree.JobsByPrinterTree;
 import com.nioos.leanspool.gxt.client.tree.JobsByStatusTree;
@@ -11,13 +10,10 @@ import com.nioos.leanspool.gxt.client.tree.TreeChangeHandler;
 import com.sencha.gxt.core.client.util.Margins;
 import com.sencha.gxt.widget.core.client.ContentPanel;
 import com.sencha.gxt.widget.core.client.container.AccordionLayoutContainer;
-import com.sencha.gxt.widget.core.client.container.AccordionLayoutContainer.AccordionLayoutAppearance;
 import com.sencha.gxt.widget.core.client.container.BorderLayoutContainer;
 import com.sencha.gxt.widget.core.client.container.BorderLayoutContainer.BorderLayoutData;
 import com.sencha.gxt.widget.core.client.container.MarginData;
 import com.sencha.gxt.widget.core.client.container.Viewport;
-import com.sencha.gxt.widget.core.client.event.ExpandEvent;
-import com.sencha.gxt.widget.core.client.event.ExpandEvent.ExpandHandler;
 
 
 
@@ -63,31 +59,21 @@ public class JobsManagementViewport extends Viewport {
 		ContentPanel westWidget = new ContentPanel();
 		westWidget.setHeaderVisible(false);
 		AccordionLayoutContainer accordion = new AccordionLayoutContainer();
-		AccordionLayoutAppearance appearance = GWT.<AccordionLayoutAppearance> create(AccordionLayoutAppearance.class);
 		//
-		final ContentPanel allJobsPanel = new ContentPanel(appearance);
-		allJobsPanel.addExpandHandler(new ExpandHandler() {
-			@Override
-			public void onExpand(ExpandEvent event) {
-				// TODO Auto-generated method stub
-				TreeChangeEvent treeChangeEvent = new TreeChangeEvent();
-				treeChangeEvent.setCurrentNodeName("JOBS PANEL");
-				treeChangeEvent.fireFromSource(allJobsPanel);
-			}
-		});
+		TreeContentPanel allJobsPanel =
+			new TreeContentPanel(new AllJobsTree());
 		allJobsPanel.setHeadingText("View All Jobs");
-		allJobsPanel.add(new AllJobsTree());
 		accordion.add(allJobsPanel);
 		accordion.setActiveWidget(allJobsPanel);
 		//
-		ContentPanel jobsByPrinterPanel = new ContentPanel(appearance);
+		TreeContentPanel jobsByPrinterPanel =
+			new TreeContentPanel(new JobsByPrinterTree());
 		jobsByPrinterPanel.setHeadingText("View Jobs By Printer");
-		jobsByPrinterPanel.add(new JobsByPrinterTree());
 		accordion.add(jobsByPrinterPanel);
 		//
-		ContentPanel jobsByStatusPanel = new ContentPanel(appearance);
+		TreeContentPanel jobsByStatusPanel =
+			new TreeContentPanel(new JobsByStatusTree());
 		jobsByStatusPanel.setHeadingText("View Jobs By Status");
-		jobsByStatusPanel.add(new JobsByStatusTree());
 		accordion.add(jobsByStatusPanel);
 		//
 		westWidget.add(accordion);
