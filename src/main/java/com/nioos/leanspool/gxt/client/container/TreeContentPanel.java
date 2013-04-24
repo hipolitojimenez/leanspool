@@ -3,12 +3,12 @@ package com.nioos.leanspool.gxt.client.container;
 
 
 import com.google.gwt.core.client.GWT;
+import com.nioos.leanspool.gxt.client.tree.AbstractBaseTree;
 import com.nioos.leanspool.gxt.client.tree.TreeChangeEvent;
 import com.sencha.gxt.widget.core.client.ContentPanel;
 import com.sencha.gxt.widget.core.client.container.AccordionLayoutContainer.AccordionLayoutAppearance;
 import com.sencha.gxt.widget.core.client.event.ExpandEvent;
 import com.sencha.gxt.widget.core.client.event.ExpandEvent.ExpandHandler;
-import com.sencha.gxt.widget.core.client.tree.Tree;
 
 
 
@@ -19,15 +19,14 @@ public class TreeContentPanel extends ContentPanel {
 		GWT.<AccordionLayoutAppearance> create(AccordionLayoutAppearance.class);
 	
 	
-	public <M, C> TreeContentPanel(Tree<M, C> tree) {
+	public <M, C> TreeContentPanel(final AbstractBaseTree<M, C> tree) {
 		super(APPEARANCE);
 		add(tree);
 		addExpandHandler(new ExpandHandler() {
 			@Override
 			public void onExpand(ExpandEvent event) {
-				// TODO Auto-generated method stub
 				TreeChangeEvent treeChangeEvent = new TreeChangeEvent();
-				treeChangeEvent.setCurrentNodeName("TreeContentPanel");
+				treeChangeEvent.setCurrentNodeName(tree.getSelectedNodeName());
 				treeChangeEvent.fireFromSource(this);
 			}
 		});
