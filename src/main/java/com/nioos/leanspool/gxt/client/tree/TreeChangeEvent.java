@@ -26,8 +26,14 @@ public class TreeChangeEvent extends AbstractBaseEvent<TreeChangeHandler> {
 	}
 	
 	
-	public void setCurrentNodeName(String currentNodeName) {
-		nodeName = currentNodeName;
+	public <M> String setCurrentNodeName(M currentNodeName) {
+		if (currentNodeName instanceof String) {
+			nodeName = (String) currentNodeName;
+		}
+		if (currentNodeName instanceof PrinterModel) {
+			nodeName = ((PrinterModel) currentNodeName).getKey();
+		}
+		return nodeName;
 	}
 	
 	

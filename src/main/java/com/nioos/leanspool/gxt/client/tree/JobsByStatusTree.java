@@ -2,11 +2,7 @@ package com.nioos.leanspool.gxt.client.tree;
 
 
 
-import com.sencha.gxt.widget.core.client.tree.Tree;
-
-
-
-public class JobsByStatusTree extends Tree<String, String> {
+public class JobsByStatusTree extends AbstractBaseTree<String, String> {
 	
 	
 	public JobsByStatusTree() {

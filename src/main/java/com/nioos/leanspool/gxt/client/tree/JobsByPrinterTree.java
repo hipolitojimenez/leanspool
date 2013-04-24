@@ -2,11 +2,7 @@ package com.nioos.leanspool.gxt.client.tree;
 
 
 
-import com.sencha.gxt.widget.core.client.tree.Tree;
-
-
-
-public class JobsByPrinterTree extends Tree<PrinterModel, String> {
+public class JobsByPrinterTree extends AbstractBaseTree<PrinterModel, String> {
 	
 	
 	public JobsByPrinterTree() {
