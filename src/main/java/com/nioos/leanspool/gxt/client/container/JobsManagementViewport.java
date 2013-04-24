@@ -33,7 +33,7 @@ public class JobsManagementViewport extends Viewport {
 	
 	
 	private void buildCenterWidget(BorderLayoutContainer borderLayoutContainer) {
-		ContentPanel centerWidget = new ContentPanel();
+		final ContentPanel centerWidget = new ContentPanel();
 		MarginData centerWidgetLayoutData = new MarginData(1);
 		borderLayoutContainer.setCenterWidget(centerWidget,
 			centerWidgetLayoutData);
@@ -41,7 +41,7 @@ public class JobsManagementViewport extends Viewport {
 		TreeChangeEvent.registerHandler(new TreeChangeHandler() {
 			@Override
 			public void onTreeChange(TreeChangeEvent event) {
-				System.out.println("ev : " + event.getCurrentNodeName());
+				centerWidget.setHeadingText(event.getCurrentNodeName());
 			}
 		});
 	}
