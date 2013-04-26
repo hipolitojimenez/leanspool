@@ -33,6 +33,8 @@ public abstract class AbstractBaseTree<M, C> extends Tree<M, C> implements HasRe
 				TreeChangeEvent treeChangeEvent = new TreeChangeEvent();
 				if (selectionList != null && !selectionList.isEmpty()) {
 					M selection = selectionList.get(0);
+					isCurrentNodeLeaf = AbstractBaseTree.this.isLeaf(selection);
+					treeChangeEvent.setLeaf(isCurrentNodeLeaf);
 					selectedNodeName = treeChangeEvent.setCurrentNodeName(selection);
 				}
 				treeChangeEvent.fireFromSource(AbstractBaseTree.this);
@@ -41,11 +43,19 @@ public abstract class AbstractBaseTree<M, C> extends Tree<M, C> implements HasRe
 	}
 	
 	
-	protected String selectedNodeName;
+	private String selectedNodeName;
+	
+	
+	private boolean isCurrentNodeLeaf;
 	
 	
 	public String getSelectedNodeName() {
 		return selectedNodeName;
+	}
+	
+	
+	public boolean isCurrentNodeLeaf() {
+		return isCurrentNodeLeaf;
 	}
 	
 	

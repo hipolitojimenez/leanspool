@@ -46,7 +46,7 @@ public class JobsManagementViewport extends Viewport {
 				centerWidget.clear();
 				String currentNodeName = event.getCurrentNodeName();
 				centerWidget.setHeadingText(currentNodeName);
-				if (currentNodeName != null) {
+				if (currentNodeName != null && event.isLeaf()) {
 					HasRelatedGrid hasRelatedGrid =
 						(HasRelatedGrid) event.getSource();
 					Grid<?> grid = hasRelatedGrid.getRelatedGrid();

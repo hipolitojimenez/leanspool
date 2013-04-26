@@ -34,6 +34,7 @@ public class TreeContentPanel extends ContentPanel implements HasRelatedGrid {
 			@Override
 			public void onCollapse(CollapseEvent event) {
 				TreeChangeEvent treeChangeEvent = new TreeChangeEvent();
+				treeChangeEvent.setLeaf(false);
 				treeChangeEvent.fireFromSource(TreeContentPanel.this);
 			}
 		});
@@ -42,6 +43,7 @@ public class TreeContentPanel extends ContentPanel implements HasRelatedGrid {
 			public void onExpand(ExpandEvent event) {
 				TreeChangeEvent treeChangeEvent = new TreeChangeEvent();
 				treeChangeEvent.setCurrentNodeName(tree.getSelectedNodeName());
+				treeChangeEvent.setLeaf(tree.isCurrentNodeLeaf());
 				treeChangeEvent.fireFromSource(TreeContentPanel.this);
 			}
 		});

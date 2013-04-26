@@ -16,6 +16,9 @@ public class TreeChangeEvent extends AbstractBaseEvent<TreeChangeHandler> {
 	private String nodeName;
 	
 	
+	private boolean isLeaf = false;
+	
+	
 	@Override
 	public Type<TreeChangeHandler> getAssociatedType() {
 		return TYPE;
@@ -46,6 +49,16 @@ public class TreeChangeEvent extends AbstractBaseEvent<TreeChangeHandler> {
 	
 	public static void registerHandler(TreeChangeHandler handler) {
 		EVENTBUS.addHandler(TYPE, handler);
+	}
+	
+	
+	public void setLeaf(boolean leaf) {
+		isLeaf = leaf;
+	}
+	
+	
+	public boolean isLeaf() {
+		return isLeaf;
 	}
 	
 	
