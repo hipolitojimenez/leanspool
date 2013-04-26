@@ -4,6 +4,7 @@ package com.nioos.leanspool.gxt.client.container;
 
 import com.google.gwt.core.client.GWT;
 import com.nioos.leanspool.gxt.client.HasRelatedGrid;
+import com.nioos.leanspool.gxt.client.grid.PrintJobsGrid;
 import com.nioos.leanspool.gxt.client.tree.AbstractBaseTree;
 import com.nioos.leanspool.gxt.client.tree.TreeChangeEvent;
 import com.sencha.gxt.widget.core.client.ContentPanel;
@@ -12,7 +13,6 @@ import com.sencha.gxt.widget.core.client.event.CollapseEvent;
 import com.sencha.gxt.widget.core.client.event.CollapseEvent.CollapseHandler;
 import com.sencha.gxt.widget.core.client.event.ExpandEvent;
 import com.sencha.gxt.widget.core.client.event.ExpandEvent.ExpandHandler;
-import com.sencha.gxt.widget.core.client.grid.Grid;
 
 
 
@@ -51,7 +51,7 @@ public class TreeContentPanel extends ContentPanel implements HasRelatedGrid {
 	
 	
 	@Override
-	public Grid<?> getRelatedGrid() {
+	public PrintJobsGrid getRelatedGrid() {
 		return internalTree.getRelatedGrid();
 	}
 	

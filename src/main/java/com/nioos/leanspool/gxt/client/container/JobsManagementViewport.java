@@ -3,6 +3,8 @@ package com.nioos.leanspool.gxt.client.container;
 
 
 import com.nioos.leanspool.gxt.client.HasRelatedGrid;
+import com.nioos.leanspool.gxt.client.grid.PrintJobModel;
+import com.nioos.leanspool.gxt.client.grid.PrintJobsGrid;
 import com.nioos.leanspool.gxt.client.tree.AllJobsTree;
 import com.nioos.leanspool.gxt.client.tree.JobsByPrinterTree;
 import com.nioos.leanspool.gxt.client.tree.JobsByStatusTree;
@@ -15,7 +17,6 @@ import com.sencha.gxt.widget.core.client.container.BorderLayoutContainer;
 import com.sencha.gxt.widget.core.client.container.BorderLayoutContainer.BorderLayoutData;
 import com.sencha.gxt.widget.core.client.container.MarginData;
 import com.sencha.gxt.widget.core.client.container.Viewport;
-import com.sencha.gxt.widget.core.client.grid.Grid;
 
 
 
@@ -49,11 +50,14 @@ public class JobsManagementViewport extends Viewport {
 				if (currentNodeName != null && event.isLeaf()) {
 					HasRelatedGrid hasRelatedGrid =
 						(HasRelatedGrid) event.getSource();
-					Grid<?> grid = hasRelatedGrid.getRelatedGrid();
+					PrintJobsGrid grid = hasRelatedGrid.getRelatedGrid();
 					if (grid != null) {
-						//TODO grid store remove
+						grid.getStore().clear();
 						centerWidget.add(grid);
 						//TODO grid loader load
+						PrintJobModel item = new PrintJobModel();
+						item.setJobId("zzzzz");
+						grid.getStore().add(item);
 					}
 				}
 			}

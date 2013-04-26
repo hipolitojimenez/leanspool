@@ -2,12 +2,12 @@ package com.nioos.leanspool.gxt.client;
 
 
 
-import com.sencha.gxt.widget.core.client.grid.Grid;
+import com.nioos.leanspool.gxt.client.grid.PrintJobsGrid;
 
 
 
 public interface HasRelatedGrid {
 
-	Grid<?> getRelatedGrid();
+	PrintJobsGrid getRelatedGrid();
 
 }
