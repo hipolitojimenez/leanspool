@@ -2,6 +2,7 @@ package com.nioos.leanspool.gxt.client.container;
 
 
 
+import com.nioos.leanspool.gxt.client.tree.AbstractBaseTree;
 import com.nioos.leanspool.gxt.client.tree.AllJobsTree;
 import com.nioos.leanspool.gxt.client.tree.JobsByPrinterTree;
 import com.nioos.leanspool.gxt.client.tree.JobsByStatusTree;
@@ -14,6 +15,7 @@ import com.sencha.gxt.widget.core.client.container.BorderLayoutContainer;
 import com.sencha.gxt.widget.core.client.container.BorderLayoutContainer.BorderLayoutData;
 import com.sencha.gxt.widget.core.client.container.MarginData;
 import com.sencha.gxt.widget.core.client.container.Viewport;
+import com.sencha.gxt.widget.core.client.grid.Grid;
 
 
 
@@ -37,11 +39,23 @@ public class JobsManagementViewport extends Viewport {
 		MarginData centerWidgetLayoutData = new MarginData(1);
 		borderLayoutContainer.setCenterWidget(centerWidget,
 			centerWidgetLayoutData);
-		//TODO
+		//
 		TreeChangeEvent.registerHandler(new TreeChangeHandler() {
 			@Override
 			public void onTreeChange(TreeChangeEvent event) {
 				centerWidget.setHeadingText(event.getCurrentNodeName());
+				centerWidget.clear();
+				Object source = event.getSource();
+				if (source instanceof AbstractBaseTree<?, ?>) {
+					AbstractBaseTree<?, ?> tree =
+							(AbstractBaseTree<?, ?>) source;
+					Grid<?> grid = tree.getRelatedGrid();
+					if (grid != null) {
+						//TODO grid store remove
+						centerWidget.add(grid);
+						//TODO grid loader load
+					}
+				}
 			}
 		});
 	}
