@@ -2,7 +2,7 @@ package com.nioos.leanspool.gxt.client.container;
 
 
 
-import com.nioos.leanspool.gxt.client.tree.AbstractBaseTree;
+import com.nioos.leanspool.gxt.client.HasRelatedGrid;
 import com.nioos.leanspool.gxt.client.tree.AllJobsTree;
 import com.nioos.leanspool.gxt.client.tree.JobsByPrinterTree;
 import com.nioos.leanspool.gxt.client.tree.JobsByStatusTree;
@@ -43,13 +43,13 @@ public class JobsManagementViewport extends Viewport {
 		TreeChangeEvent.registerHandler(new TreeChangeHandler() {
 			@Override
 			public void onTreeChange(TreeChangeEvent event) {
-				centerWidget.setHeadingText(event.getCurrentNodeName());
 				centerWidget.clear();
-				Object source = event.getSource();
-				if (source instanceof AbstractBaseTree<?, ?>) {
-					AbstractBaseTree<?, ?> tree =
-							(AbstractBaseTree<?, ?>) source;
-					Grid<?> grid = tree.getRelatedGrid();
+				String currentNodeName = event.getCurrentNodeName();
+				centerWidget.setHeadingText(currentNodeName);
+				if (currentNodeName != null) {
+					HasRelatedGrid hasRelatedGrid =
+						(HasRelatedGrid) event.getSource();
+					Grid<?> grid = hasRelatedGrid.getRelatedGrid();
 					if (grid != null) {
 						//TODO grid store remove
 						centerWidget.add(grid);

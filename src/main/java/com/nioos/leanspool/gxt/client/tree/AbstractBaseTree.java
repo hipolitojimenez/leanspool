@@ -5,6 +5,7 @@ package com.nioos.leanspool.gxt.client.tree;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.nioos.leanspool.gxt.client.HasRelatedGrid;
 import com.sencha.gxt.core.client.ValueProvider;
 import com.sencha.gxt.data.shared.ListStore;
 import com.sencha.gxt.data.shared.ModelKeyProvider;
@@ -18,7 +19,7 @@ import com.sencha.gxt.widget.core.client.tree.Tree;
 
 
 
-public abstract class AbstractBaseTree<M, C> extends Tree<M, C> {
+public abstract class AbstractBaseTree<M, C> extends Tree<M, C> implements HasRelatedGrid {
 	
 	
 	public AbstractBaseTree(TreeStore<M> store,
@@ -48,12 +49,30 @@ public abstract class AbstractBaseTree<M, C> extends Tree<M, C> {
 	}
 	
 	
+	@Override
 	public Grid<?> getRelatedGrid() {
 		ModelKeyProvider<? super PrintJobModel> gridKeyProvider = null;//TODO
 		ListStore<PrintJobModel> gridStore =
 			new ListStore<PrintJobModel>(gridKeyProvider);
 		List<ColumnConfig<PrintJobModel, ?>> columnConfigList =
 			new ArrayList<ColumnConfig<PrintJobModel,?>>();
+		ValueProvider<PrintJobModel, Object> columnConfig01ValueProvider = new ValueProvider<PrintJobModel, Object>() {
+			@Override
+			public Object getValue(PrintJobModel object) {
+				return null;
+			}
+			@Override
+			public void setValue(PrintJobModel object, Object value) {
+				//
+			}
+			@Override
+			public String getPath() {
+				return null;
+			}
+		};
+		ColumnConfig<PrintJobModel, ?> columnConfig01 =
+			new ColumnConfig<PrintJobModel, Object>(columnConfig01ValueProvider, 100, "Column01");
+		columnConfigList.add(columnConfig01);
 		ColumnModel<PrintJobModel> columnModel =
 			new ColumnModel<PrintJobModel>(columnConfigList);
 		Grid<PrintJobModel> grid =
