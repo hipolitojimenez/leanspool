@@ -3,7 +3,6 @@ package com.nioos.leanspool.gxt.client.container;
 
 
 import com.nioos.leanspool.gxt.client.HasRelatedGrid;
-import com.nioos.leanspool.gxt.client.grid.PrintJobModel;
 import com.nioos.leanspool.gxt.client.grid.PrintJobsGrid;
 import com.nioos.leanspool.gxt.client.tree.AllJobsTree;
 import com.nioos.leanspool.gxt.client.tree.JobsByPrinterTree;
@@ -54,10 +53,7 @@ public class JobsManagementViewport extends Viewport {
 					if (grid != null) {
 						grid.getStore().clear();
 						centerWidget.add(grid);
-						//TODO grid loader load
-						PrintJobModel item = new PrintJobModel();
-						item.setJobId("zzzzz");
-						grid.getStore().add(item);
+						grid.getLoader().load();
 					}
 				}
 			}

@@ -14,7 +14,6 @@ public class PrintJobsColumnModel extends ColumnModel<PrintJobModel> {
 	
 	public PrintJobsColumnModel(List<ColumnConfig<PrintJobModel, ?>> columnConfigList) {
 		super(columnConfigList);
-		// TODO Auto-generated constructor stub
 	}
 	
 	
