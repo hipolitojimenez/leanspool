@@ -2,29 +2,10 @@ package com.nioos.leanspool.gxt.client.tree;
 
 
 
-public class PrinterModel {
+public interface PrinterModel {
 	
+	String getKey();
 	
-	private String key;
-	
-	
-	//private String printerName;
-	
-	
-	public PrinterModel(String thepPrinterName) {
-		//printerName = thepPrinterName;
-		key = thepPrinterName;
-	}
-	
-	
-	public String getKey() {
-		return key;
-	}
-	
-	
-	public void setKey(String value) {
-		key = value;
-	}
-	
+	void setKey(String value);
 	
 }
