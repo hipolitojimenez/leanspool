@@ -24,7 +24,7 @@ public class JobIdValueProvider implements
 	
 	@Override
 	public String getPath() {
-		return null;
+		return "Job ID";
 	}
 	
 	

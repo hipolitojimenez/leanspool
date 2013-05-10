@@ -2,20 +2,24 @@ package com.nioos.leanspool.gxt.client.grid;
 
 
 
-public class PrintJobModel {
+public interface PrintJobModel {
+	
+	String getJobId();
+	
+	void setJobId(String value);
 	
 	
-	private String jobId;
+	//private String jobId;
 	
 	
-	public String getJobId() {
-		return jobId;
-	}
+	//public String getJobId() {
+	//	return jobId;
+	//}
 	
 	
-	public void setJobId(String value) {
-		jobId = value;
-	}
+	//public void setJobId(String value) {
+	//	jobId = value;
+	//}
 	
 	
 }
