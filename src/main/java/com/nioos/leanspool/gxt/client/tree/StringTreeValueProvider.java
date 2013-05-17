@@ -18,7 +18,7 @@ public class StringTreeValueProvider implements
 	
 	@Override
 	public void setValue(String object, String value) {
-		object = value;
+		//object = value;
 	}
 	
 	

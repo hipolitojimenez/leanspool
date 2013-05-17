@@ -22,6 +22,35 @@ import com.sencha.gxt.widget.core.client.container.Viewport;
 public class JobsManagementViewport extends Viewport {
 	
 	
+	private static final class InternalTreeChangeHandler implements
+			TreeChangeHandler {
+		
+		private final ContentPanel contentPanel;
+		
+		private InternalTreeChangeHandler(ContentPanel theContentPanel) {
+			contentPanel = theContentPanel;
+		}
+		
+		@Override
+		public void onTreeChange(TreeChangeEvent event) {
+			contentPanel.clear();
+			String currentNodeName = event.getCurrentNodeName();
+			contentPanel.setHeadingText(currentNodeName);
+			if (currentNodeName != null && event.isLeaf()) {
+				HasRelatedGrid hasRelatedGrid =
+					(HasRelatedGrid) event.getSource();
+				PrintJobsGrid grid = hasRelatedGrid.getRelatedGrid();
+				if (grid != null) {
+					grid.getStore().clear();
+					contentPanel.add(grid);
+					grid.getLoader().load();
+				}
+			}
+		}
+		
+	}
+	
+	
 	private static final int INITIAL_WEST_SIZE = 200;
 	
 	
@@ -40,24 +69,7 @@ public class JobsManagementViewport extends Viewport {
 		borderLayoutContainer.setCenterWidget(centerWidget,
 			centerWidgetLayoutData);
 		//
-		TreeChangeEvent.registerHandler(new TreeChangeHandler() {
-			@Override
-			public void onTreeChange(TreeChangeEvent event) {
-				centerWidget.clear();
-				String currentNodeName = event.getCurrentNodeName();
-				centerWidget.setHeadingText(currentNodeName);
-				if (currentNodeName != null && event.isLeaf()) {
-					HasRelatedGrid hasRelatedGrid =
-						(HasRelatedGrid) event.getSource();
-					PrintJobsGrid grid = hasRelatedGrid.getRelatedGrid();
-					if (grid != null) {
-						grid.getStore().clear();
-						centerWidget.add(grid);
-						grid.getLoader().load();
-					}
-				}
-			}
-		});
+		TreeChangeEvent.registerHandler(new InternalTreeChangeHandler(centerWidget));
 	}
 	
 	
