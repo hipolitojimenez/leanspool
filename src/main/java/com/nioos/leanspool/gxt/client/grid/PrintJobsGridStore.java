@@ -6,9 +6,18 @@ import com.sencha.gxt.data.shared.ListStore;
 
 
 
+/**
+ * Print jobs grid store.
+ * 
+ * @author Hipolito Jimenez.
+ *
+ */
 public class PrintJobsGridStore extends ListStore<PrintJobModel> {
 	
 	
+	/**
+	 * Constructor.
+	 */
 	public PrintJobsGridStore() {
 		super(new PrintJobsModelKeyProvider());
 	}

@@ -9,12 +9,30 @@ import com.sencha.gxt.data.shared.loader.ListLoadConfig;
 
 
 
+/**
+ * Print jobs AutoBean factory.
+ * 
+ * @author Hipolito Jimenez.
+ *
+ */
 public interface PrintJobsAutoBeanFactory extends AutoBeanFactory {
 	
-	PrintJobsAutoBeanFactory INSTANCE = GWT.create(PrintJobsAutoBeanFactory.class);
+	/**
+	 * Print jobs AutoBean factory instance.
+	 */
+	PrintJobsAutoBeanFactory INSTANCE =
+		GWT.create(PrintJobsAutoBeanFactory.class);
 	
+	/**
+	 * Gets the print jobs.
+	 * @return the print jobs.
+	 */
 	AutoBean<PrintJobsJsonRoot> printJobsJsonRoot();
 	
+	/**
+	 * Gets the load config.
+	 * @return the load config.
+	 */
 	AutoBean<ListLoadConfig> listLoadConfig();
 	
 }

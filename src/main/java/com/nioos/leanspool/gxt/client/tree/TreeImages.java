@@ -8,20 +8,40 @@ import com.google.gwt.resources.client.ImageResource;
 
 
 
+/**
+ * Images used in the tree widget.
+ * @author Hipolito Jimenez.
+ *
+ */
 public interface TreeImages extends ClientBundle {
 	
 	
-	public static final TreeImages INSTANCE = GWT.create(TreeImages.class);
+	/**
+	 * The instance.
+	 */
+	TreeImages INSTANCE = GWT.create(TreeImages.class);
 	
 	
+	/**
+	 * The printer image.
+	 * @return the printer image.
+	 */
 	@Source("printer.png")
 	ImageResource printer();
 	
 	
+	/**
+	 * The job image.
+	 * @return the job image.
+	 */
 	@Source("job.png")
 	ImageResource job();
 	
 	
+	/**
+	 * The status image.
+	 * @return the status image.
+	 */
 	@Source("status.png")
 	ImageResource status();
 	

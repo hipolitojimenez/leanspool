@@ -8,10 +8,20 @@ import com.sencha.gxt.data.shared.loader.TreeLoader;
 
 
 
+/**
+ * Printers tree loader.
+ * 
+ * @author Hipolito Jimenez.
+ *
+ */
 public class PrintersTreeLoader extends TreeLoader<PrinterModel> {
 	
 	
-	public PrintersTreeLoader(TreeStore<PrinterModel> treeStore) {
+	/**
+	 * Constructor.
+	 * @param treeStore the tree store.
+	 */
+	public PrintersTreeLoader(final TreeStore<PrinterModel> treeStore) {
 		super(new PrintersHttpProxy(), new PrintersJsonReader());
 		//
 		ChildTreeStoreBinding<PrinterModel> handler =
@@ -21,7 +31,7 @@ public class PrintersTreeLoader extends TreeLoader<PrinterModel> {
 	
 	
 	@Override
-	public boolean hasChildren(PrinterModel parent) {
+	public final boolean hasChildren(final PrinterModel parent) {
 		return "Jobs By Printer".equals(parent.getKey());
 	}
 	

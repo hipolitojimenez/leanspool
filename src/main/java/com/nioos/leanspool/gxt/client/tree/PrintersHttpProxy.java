@@ -8,16 +8,30 @@ import com.sencha.gxt.data.client.writer.UrlEncodingWriter;
 
 
 
+/**
+ * Printers HTTP proxy.
+ * 
+ * @author Hipolito Jimenez.
+ *
+ */
 public class PrintersHttpProxy extends HttpProxy<PrinterModel> {
 	
 	
+	/**
+	 * Printers HTTP URL.
+	 */
 	private static final String PRINTERS_URL = "getPrinters.json";
 	
 	
+	/**
+	 * Constructor.
+	 */
 	public PrintersHttpProxy() {
 		super(new RequestBuilder(RequestBuilder.GET, PRINTERS_URL));
 		//
-		UrlEncodingWriter<PrinterModel> urlEncodingWriter = new UrlEncodingWriter<PrinterModel>(PrintersAutoBeanFactory.INSTANCE, PrinterModel.class);
+		UrlEncodingWriter<PrinterModel> urlEncodingWriter =
+			new UrlEncodingWriter<PrinterModel>(
+				PrintersAutoBeanFactory.INSTANCE, PrinterModel.class);
 		setWriter(urlEncodingWriter);
 	}
 	

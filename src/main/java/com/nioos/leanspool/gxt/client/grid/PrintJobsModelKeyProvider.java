@@ -6,12 +6,18 @@ import com.sencha.gxt.data.shared.ModelKeyProvider;
 
 
 
+/**
+ * Print jobs model key provider.
+ * 
+ * @author Hipolito Jimenez.
+ *
+ */
 public class PrintJobsModelKeyProvider implements
 		ModelKeyProvider<PrintJobModel> {
 	
 	
 	@Override
-	public String getKey(PrintJobModel item) {
+	public final String getKey(final PrintJobModel item) {
 		return item.getJobId();
 	}
 	

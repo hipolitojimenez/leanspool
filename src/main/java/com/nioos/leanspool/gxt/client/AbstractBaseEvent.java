@@ -9,13 +9,28 @@ import com.google.web.bindery.event.shared.SimpleEventBus;
 
 
 
-public abstract class AbstractBaseEvent<H extends EventHandler> extends GwtEvent<H> {
+/**
+ * Base abstract event class.
+ * 
+ * @author Hipolito Jimenez.
+ *
+ * @param <H> the base event handler class
+ */
+public abstract class AbstractBaseEvent<H extends EventHandler>
+		extends GwtEvent<H> {
 	
 	
+	/**
+	 * The event bus for the events.
+	 */
 	protected static final EventBus EVENTBUS = new SimpleEventBus();
 	
 	
-	public void fireFromSource(Object source) {
+	/**
+	 * Fire a new event from the given source.
+	 * @param source the source of the event.
+	 */
+	public final void fireFromSource(final Object source) {
 		EVENTBUS.fireEventFromSource(this, source);
 	}
 	

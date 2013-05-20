@@ -19,30 +19,47 @@ import com.sencha.gxt.widget.core.client.container.Viewport;
 
 
 
+/**
+ * Jobs management viewport.
+ * 
+ * @author Hipolito Jimenez.
+ *
+ */
 public class JobsManagementViewport extends Viewport {
 	
 	
+	/**
+	 * Tree change handler.
+	 * @author Hipolito Jimenez.
+	 */
 	private static final class InternalTreeChangeHandler implements
 			TreeChangeHandler {
 		
-		private final ContentPanel contentPanel;
+		/**
+		 * The target content panel.
+		 */
+		private final ContentPanel targetContentPanel;
 		
-		private InternalTreeChangeHandler(ContentPanel theContentPanel) {
-			contentPanel = theContentPanel;
+		/**
+		 * Constructor.
+		 * @param contentPanel the target content panel.
+		 */
+		private InternalTreeChangeHandler(final ContentPanel contentPanel) {
+			targetContentPanel = contentPanel;
 		}
 		
 		@Override
-		public void onTreeChange(TreeChangeEvent event) {
-			contentPanel.clear();
+		public void onTreeChange(final TreeChangeEvent event) {
+			targetContentPanel.clear();
 			String currentNodeName = event.getCurrentNodeName();
-			contentPanel.setHeadingText(currentNodeName);
+			targetContentPanel.setHeadingText(currentNodeName);
 			if (currentNodeName != null && event.isLeaf()) {
 				HasRelatedGrid hasRelatedGrid =
 					(HasRelatedGrid) event.getSource();
 				PrintJobsGrid grid = hasRelatedGrid.getRelatedGrid();
 				if (grid != null) {
 					grid.getStore().clear();
-					contentPanel.add(grid);
+					targetContentPanel.add(grid);
 					grid.getLoader().load();
 				}
 			}
@@ -51,9 +68,15 @@ public class JobsManagementViewport extends Viewport {
 	}
 	
 	
+	/**
+	 * Initial west panel size.
+	 */
 	private static final int INITIAL_WEST_SIZE = 200;
 	
 	
+	/**
+	 * Constructor.
+	 */
 	public JobsManagementViewport() {
 		BorderLayoutContainer borderLayoutContainer =
 			new BorderLayoutContainer();
@@ -63,17 +86,28 @@ public class JobsManagementViewport extends Viewport {
 	}
 	
 	
-	private void buildCenterWidget(BorderLayoutContainer borderLayoutContainer) {
+	/**
+	 * Builds the center widget.
+	 * @param borderLayoutContainer the border layout container.
+	 */
+	private void buildCenterWidget(
+			final BorderLayoutContainer borderLayoutContainer) {
 		final ContentPanel centerWidget = new ContentPanel();
 		MarginData centerWidgetLayoutData = new MarginData(1);
 		borderLayoutContainer.setCenterWidget(centerWidget,
 			centerWidgetLayoutData);
 		//
-		TreeChangeEvent.registerHandler(new InternalTreeChangeHandler(centerWidget));
+		TreeChangeEvent.registerHandler(
+			new InternalTreeChangeHandler(centerWidget));
 	}
 	
 	
-	private void buildWestWidget(BorderLayoutContainer borderLayoutContainer) {
+	/**
+	 * Builds the west widget.
+	 * @param borderLayoutContainer the border layout container.
+	 */
+	private void buildWestWidget(
+			final BorderLayoutContainer borderLayoutContainer) {
 		BorderLayoutData westWidgetLayoutData =
 			new BorderLayoutData(INITIAL_WEST_SIZE);
 		westWidgetLayoutData.setCollapsible(true);

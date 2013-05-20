@@ -6,12 +6,18 @@ import com.sencha.gxt.data.shared.ModelKeyProvider;
 
 
 
+/**
+ * Printer model key provider.
+ * 
+ * @author Hipolito Jimenez.
+ *
+ */
 public class PrinterModelKeyProvider
 		implements ModelKeyProvider<PrinterModel> {
 	
 	
 	@Override
-	public String getKey(PrinterModel item) {
+	public final String getKey(final PrinterModel item) {
 		return item.getKey();
 	}
 	

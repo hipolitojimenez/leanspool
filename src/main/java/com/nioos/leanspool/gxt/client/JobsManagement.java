@@ -8,11 +8,17 @@ import com.nioos.leanspool.gxt.client.container.JobsManagementViewport;
 
 
 
+/**
+ * Jobs management GWT UI entry point.
+ * 
+ * @author Hipolito Jimenez.
+ *
+ */
 public class JobsManagement implements EntryPoint {
 	
 	
 	@Override
-	public void onModuleLoad() {
+	public final void onModuleLoad() {
 		RootPanel.get().add(new JobsManagementViewport());
 	}
 	

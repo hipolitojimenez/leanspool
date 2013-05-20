@@ -6,24 +6,30 @@ import com.sencha.gxt.core.client.ValueProvider;
 
 
 
+/**
+ * Printer model tree value provider.
+ * 
+ * @author Hipolito Jimenez.
+ *
+ */
 public class PrinterModelTreeValueProvider implements
 		ValueProvider<PrinterModel, String> {
 	
 	
 	@Override
-	public String getValue(PrinterModel object) {
+	public final String getValue(final PrinterModel object) {
 		return object.getKey();
 	}
 	
 	
 	@Override
-	public void setValue(PrinterModel object, String value) {
+	public final void setValue(final PrinterModel object, final String value) {
 		object.setKey(value);
 	}
 	
 	
 	@Override
-	public String getPath() {
+	public final String getPath() {
 		return null;
 	}
 	

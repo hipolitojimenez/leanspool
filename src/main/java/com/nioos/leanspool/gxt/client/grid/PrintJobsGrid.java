@@ -10,10 +10,21 @@ import com.sencha.gxt.widget.core.client.grid.Grid;
 
 
 
+/**
+ * Print jobs grid.
+ * 
+ * @author Hipolito Jimenez.
+ *
+ */
 public class PrintJobsGrid extends Grid<PrintJobModel> {
 	
 	
-	public PrintJobsGrid(List<ColumnConfig<PrintJobModel, ?>> columnConfigList) {
+	/**
+	 * Constructor.
+	 * @param columnConfigList the column config list.
+	 */
+	public PrintJobsGrid(
+			final List<ColumnConfig<PrintJobModel, ?>> columnConfigList) {
 		super(new PrintJobsGridStore(),
 			new ColumnModel<PrintJobModel>(columnConfigList));
 		setLoader(new PrintJobsListLoader(getStore()));

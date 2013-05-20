@@ -6,58 +6,94 @@ import com.nioos.leanspool.gxt.client.AbstractBaseEvent;
 
 
 
+/**
+ * Tree change event.
+ * @author Hipolito Jimenez.
+ *
+ */
 public class TreeChangeEvent extends AbstractBaseEvent<TreeChangeHandler> {
 	
 	
+	/**
+	 * The event type.
+	 */
 	private static final Type<TreeChangeHandler> TYPE =
 		new Type<TreeChangeHandler>();
 	
 	
+	/**
+	 * The node name as a string.
+	 */
 	private String nodeName;
 	
 	
+	/**
+	 * Is the current node a lead node?
+	 */
 	private boolean isLeaf = false;
 	
 	
 	@Override
-	public Type<TreeChangeHandler> getAssociatedType() {
+	public final Type<TreeChangeHandler> getAssociatedType() {
 		return TYPE;
 	}
 	
 	
 	@Override
-	protected void dispatch(TreeChangeHandler handler) {
+	protected final void dispatch(final TreeChangeHandler handler) {
 		handler.onTreeChange(this);
 	}
 	
 	
-	public <M> String setCurrentNodeName(M currentNodeName) {
-		if (currentNodeName instanceof String) {
-			nodeName = (String) currentNodeName;
+	/**
+	 * Sets the current node name.
+	 * @param currentNode the current node.
+	 * @param <M> the node class.
+	 * @return the string with the current node name.
+	 */
+	public final <M> String setCurrentNodeName(final M currentNode) {
+		if (currentNode instanceof String) {
+			nodeName = (String) currentNode;
 		}
-		if (currentNodeName instanceof PrinterModel) {
-			nodeName = ((PrinterModel) currentNodeName).getKey();
+		if (currentNode instanceof PrinterModel) {
+			nodeName = ((PrinterModel) currentNode).getKey();
 		}
 		return nodeName;
 	}
 	
 	
-	public String getCurrentNodeName() {
+	/**
+	 * Gets the current node name.
+	 * @return the current node name.
+	 */
+	public final String getCurrentNodeName() {
 		return nodeName;
 	}
 	
 	
-	public static void registerHandler(TreeChangeHandler handler) {
+	/**
+	 * Register a new event handler.
+	 * @param handler the new event handler.
+	 */
+	public static void registerHandler(final TreeChangeHandler handler) {
 		EVENTBUS.addHandler(TYPE, handler);
 	}
 	
 	
-	public void setLeaf(boolean leaf) {
+	/**
+	 * Sets if the current node is a leaf node.
+	 * @param leaf if the current node is a leaf node or not.
+	 */
+	public final void setLeaf(final boolean leaf) {
 		isLeaf = leaf;
 	}
 	
 	
-	public boolean isLeaf() {
+	/**
+	 * Gets if the current node is a leaf node.
+	 * @return if the current node is a leaf node or not.
+	 */
+	public final boolean isLeaf() {
 		return isLeaf;
 	}
 	
