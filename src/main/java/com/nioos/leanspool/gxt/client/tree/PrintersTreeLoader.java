@@ -24,7 +24,7 @@ public class PrintersTreeLoader extends TreeLoader<PrinterModel> {
 	public PrintersTreeLoader(final TreeStore<PrinterModel> treeStore) {
 		super(new PrintersHttpProxy(), new PrintersJsonReader());
 		//
-		ChildTreeStoreBinding<PrinterModel> handler =
+		final ChildTreeStoreBinding<PrinterModel> handler =
 			new ChildTreeStoreBinding<PrinterModel>(treeStore);
 		addLoadHandler(handler);
 	}

@@ -30,7 +30,7 @@ public class PrintJobsHttpProxy extends HttpProxy<ListLoadConfig> {
 	public PrintJobsHttpProxy() {
 		super(new RequestBuilder(RequestBuilder.GET, PRINTJOBS_URL));
 		//
-		UrlEncodingWriter<ListLoadConfig> urlEncodingWriter =
+		final UrlEncodingWriter<ListLoadConfig> urlEncodingWriter =
 			new UrlEncodingWriter<ListLoadConfig>(
 				PrintJobsAutoBeanFactory.INSTANCE, ListLoadConfig.class);
 		setWriter(urlEncodingWriter);

@@ -34,7 +34,7 @@ public class TreeContentPanel extends ContentPanel implements HasRelatedGrid {
 	/**
 	 * Tree widget on this content panel.
 	 */
-	private AbstractBaseTree<?, ?> internalTree;
+	private final transient AbstractBaseTree<?, ?> internalTree;
 	
 	
 	/**
@@ -50,7 +50,7 @@ public class TreeContentPanel extends ContentPanel implements HasRelatedGrid {
 		addCollapseHandler(new CollapseHandler() {
 			@Override
 			public void onCollapse(final CollapseEvent event) {
-				TreeChangeEvent treeChangeEvent = new TreeChangeEvent();
+				final TreeChangeEvent treeChangeEvent = new TreeChangeEvent();
 				treeChangeEvent.setLeaf(false);
 				treeChangeEvent.fireFromSource(TreeContentPanel.this);
 			}
@@ -58,7 +58,7 @@ public class TreeContentPanel extends ContentPanel implements HasRelatedGrid {
 		addExpandHandler(new ExpandHandler() {
 			@Override
 			public void onExpand(final ExpandEvent event) {
-				TreeChangeEvent treeChangeEvent = new TreeChangeEvent();
+				final TreeChangeEvent treeChangeEvent = new TreeChangeEvent();
 				treeChangeEvent.setCurrentNodeName(tree.getSelectedNodeName());
 				treeChangeEvent.setLeaf(tree.isCurrentNodeLeaf());
 				treeChangeEvent.fireFromSource(TreeContentPanel.this);

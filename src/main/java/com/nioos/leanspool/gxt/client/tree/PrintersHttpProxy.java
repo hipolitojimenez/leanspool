@@ -29,7 +29,7 @@ public class PrintersHttpProxy extends HttpProxy<PrinterModel> {
 	public PrintersHttpProxy() {
 		super(new RequestBuilder(RequestBuilder.GET, PRINTERS_URL));
 		//
-		UrlEncodingWriter<PrinterModel> urlEncodingWriter =
+		final UrlEncodingWriter<PrinterModel> urlEncodingWriter =
 			new UrlEncodingWriter<PrinterModel>(
 				PrintersAutoBeanFactory.INSTANCE, PrinterModel.class);
 		setWriter(urlEncodingWriter);

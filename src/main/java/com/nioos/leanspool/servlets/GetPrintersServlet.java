@@ -29,7 +29,7 @@ public class GetPrintersServlet extends HttpServlet {
 				final HttpServletResponse response) throws ServletException,
 			IOException {
 		// TODO Auto-generated method stub
-		String result = "{\"printers\": [{\"key\": \"Key 01\"},	{\"key\": \"Key 02\"}, {\"key\": \"Key 03\"}]}";
+		final String result = "{\"printers\": [{\"key\": \"Key 01\"},	{\"key\": \"Key 02\"}, {\"key\": \"Key 03\"}]}"; // NOPMD
 		response.getWriter().print(result);
 	}
 	

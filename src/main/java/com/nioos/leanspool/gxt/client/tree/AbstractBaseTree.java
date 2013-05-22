@@ -44,12 +44,13 @@ public abstract class AbstractBaseTree<M, C> extends Tree<M, C>
 			@Override
 			public void onSelectionChanged(
 					final SelectionChangedEvent<M> event) {
-				List<M> selectionList = event.getSelection();
-				TreeChangeEvent treeChangeEvent = new TreeChangeEvent();
+				final List<M> selectionList = event.getSelection();
+				final TreeChangeEvent treeChangeEvent = new TreeChangeEvent();
 				if (selectionList != null && !selectionList.isEmpty()) {
-					M selection = selectionList.get(0);
-					isCurrentNodeLeaf = AbstractBaseTree.this.isLeaf(selection);
-					treeChangeEvent.setLeaf(isCurrentNodeLeaf);
+					final M selection = selectionList.get(0);
+					isTheCurrentNodeLeaf =
+						AbstractBaseTree.this.isLeaf(selection);
+					treeChangeEvent.setLeaf(isTheCurrentNodeLeaf);
 					selectedNodeName =
 						treeChangeEvent.setCurrentNodeName(selection);
 				}
@@ -57,9 +58,9 @@ public abstract class AbstractBaseTree<M, C> extends Tree<M, C>
 			}
 		});
 		//
-		List<ColumnConfig<PrintJobModel, ?>> columnConfigList =
+		final List<ColumnConfig<PrintJobModel, ?>> columnConfigList =
 			new ArrayList<ColumnConfig<PrintJobModel, ?>>();
-		JobIdColumnConfig jobIdColumnConfig = new JobIdColumnConfig();
+		final JobIdColumnConfig jobIdColumnConfig = new JobIdColumnConfig();
 		columnConfigList.add(jobIdColumnConfig);
 		printJobsGrid = new PrintJobsGrid(columnConfigList);
 	}
@@ -68,19 +69,19 @@ public abstract class AbstractBaseTree<M, C> extends Tree<M, C>
 	/**
 	 * The selected tree node name.
 	 */
-	private String selectedNodeName;
+	private transient String selectedNodeName;
 	
 	
 	/**
 	 * Is the current node a lead node?
 	 */
-	private boolean isCurrentNodeLeaf;
+	private transient boolean isTheCurrentNodeLeaf;
 	
 	
 	/**
 	 * The associated print jobs grid.
 	 */
-	private PrintJobsGrid printJobsGrid;
+	private final transient PrintJobsGrid printJobsGrid;
 	
 	
 	/**
@@ -97,7 +98,7 @@ public abstract class AbstractBaseTree<M, C> extends Tree<M, C>
 	 * @return true if the current node is a lead node.
 	 */
 	public final boolean isCurrentNodeLeaf() {
-		return isCurrentNodeLeaf;
+		return isTheCurrentNodeLeaf;
 	}
 	
 	

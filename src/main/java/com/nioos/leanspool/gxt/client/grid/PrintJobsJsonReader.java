@@ -32,7 +32,7 @@ public class PrintJobsJsonReader extends
 	protected final ListLoadResult<PrintJobModel> createReturnData(
 			final Object loadConfig,
 			final PrintJobsJsonRoot records) {
-		List<PrintJobModel> jobList = records.getJobs();
+		final List<PrintJobModel> jobList = records.getJobs();
 		return new ListLoadResultBean<PrintJobModel>(jobList);
 	}
 	

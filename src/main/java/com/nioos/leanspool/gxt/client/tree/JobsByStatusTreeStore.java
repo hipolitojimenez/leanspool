@@ -16,19 +16,24 @@ public class JobsByStatusTreeStore extends TreeStore<String> {
 	
 	
 	/**
+	 * Root node name.
+	 */
+	private static final String ROOT = "Jobs By Status";
+	
+	
+	/**
 	 * Constructor.
 	 */
 	public JobsByStatusTreeStore() {
 		super(new StringKeyProvider());
 		//
-		String root = "Jobs By Status";
-		add(root);
-		String pending = "Pending";
-		add(root, pending);
-		String completed = "Completed";
-		add(root, completed);
-		String failed = "Failed";
-		add(root, failed);
+		add(ROOT);
+		//final String pending = "Pending";
+		add(ROOT, "Pending");
+		//final String completed = "Completed";
+		add(ROOT, "Completed");
+		//final String failed = "Failed";
+		add(ROOT, "Failed");
 	}
 	
 	

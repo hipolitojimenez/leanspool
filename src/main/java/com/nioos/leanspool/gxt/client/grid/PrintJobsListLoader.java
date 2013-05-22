@@ -28,7 +28,7 @@ public class PrintJobsListLoader extends
 	public PrintJobsListLoader(final ListStore<PrintJobModel> listStore) {
 		super(new PrintJobsHttpProxy(), new PrintJobsJsonReader());
 		//
-		LoadHandler<ListLoadConfig, ListLoadResult<PrintJobModel>> handler = new LoadResultListStoreBinding<ListLoadConfig, PrintJobModel, ListLoadResult<PrintJobModel>>(listStore);
+		final LoadHandler<ListLoadConfig, ListLoadResult<PrintJobModel>> handler = new LoadResultListStoreBinding<ListLoadConfig, PrintJobModel, ListLoadResult<PrintJobModel>>(listStore);
 		addLoadHandler(handler);
 		setRemoteSort(true);
 	}

@@ -20,8 +20,7 @@ public class AllJobsTreeStore extends TreeStore<String> {
 	public AllJobsTreeStore() {
 		super(new StringKeyProvider());
 		//
-		String root = "All Jobs";
-		add(root);
+		add("All Jobs");
 	}
 	
 	

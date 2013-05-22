@@ -24,13 +24,13 @@ public class TreeChangeEvent extends AbstractBaseEvent<TreeChangeHandler> {
 	/**
 	 * The node name as a string.
 	 */
-	private String nodeName;
+	private transient String nodeName;
 	
 	
 	/**
 	 * Is the current node a lead node?
 	 */
-	private boolean isLeaf = false;
+	private transient boolean isTheNodeLeaf = false;
 	
 	
 	@Override
@@ -85,7 +85,7 @@ public class TreeChangeEvent extends AbstractBaseEvent<TreeChangeHandler> {
 	 * @param leaf if the current node is a leaf node or not.
 	 */
 	public final void setLeaf(final boolean leaf) {
-		isLeaf = leaf;
+		isTheNodeLeaf = leaf;
 	}
 	
 	
@@ -94,7 +94,7 @@ public class TreeChangeEvent extends AbstractBaseEvent<TreeChangeHandler> {
 	 * @return if the current node is a leaf node or not.
 	 */
 	public final boolean isLeaf() {
-		return isLeaf;
+		return isTheNodeLeaf;
 	}
 	
 	

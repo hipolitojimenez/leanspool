@@ -38,25 +38,25 @@ public class JobsManagementViewport extends Viewport {
 		/**
 		 * The target content panel.
 		 */
-		private final ContentPanel targetContentPanel;
+		private final transient ContentPanel targetContentPanel;
 		
 		/**
 		 * Constructor.
 		 * @param contentPanel the target content panel.
 		 */
-		private InternalTreeChangeHandler(final ContentPanel contentPanel) {
+		InternalTreeChangeHandler(final ContentPanel contentPanel) {
 			targetContentPanel = contentPanel;
 		}
 		
 		@Override
 		public void onTreeChange(final TreeChangeEvent event) {
 			targetContentPanel.clear();
-			String currentNodeName = event.getCurrentNodeName();
+			final String currentNodeName = event.getCurrentNodeName();
 			targetContentPanel.setHeadingText(currentNodeName);
 			if (currentNodeName != null && event.isLeaf()) {
-				HasRelatedGrid hasRelatedGrid =
+				final HasRelatedGrid hasRelatedGrid =
 					(HasRelatedGrid) event.getSource();
-				PrintJobsGrid grid = hasRelatedGrid.getRelatedGrid();
+				final PrintJobsGrid grid = hasRelatedGrid.getRelatedGrid();
 				if (grid != null) {
 					grid.getStore().clear();
 					targetContentPanel.add(grid);
@@ -78,7 +78,8 @@ public class JobsManagementViewport extends Viewport {
 	 * Constructor.
 	 */
 	public JobsManagementViewport() {
-		BorderLayoutContainer borderLayoutContainer =
+		super();
+		final BorderLayoutContainer borderLayoutContainer =
 			new BorderLayoutContainer();
 		buildWestWidget(borderLayoutContainer);
 		buildCenterWidget(borderLayoutContainer);
@@ -93,7 +94,7 @@ public class JobsManagementViewport extends Viewport {
 	private void buildCenterWidget(
 			final BorderLayoutContainer borderLayoutContainer) {
 		final ContentPanel centerWidget = new ContentPanel();
-		MarginData centerWidgetLayoutData = new MarginData(1);
+		final MarginData centerWidgetLayoutData = new MarginData(1);
 		borderLayoutContainer.setCenterWidget(centerWidget,
 			centerWidgetLayoutData);
 		//
@@ -108,30 +109,31 @@ public class JobsManagementViewport extends Viewport {
 	 */
 	private void buildWestWidget(
 			final BorderLayoutContainer borderLayoutContainer) {
-		BorderLayoutData westWidgetLayoutData =
+		final BorderLayoutData westWidgetLayoutData =
 			new BorderLayoutData(INITIAL_WEST_SIZE);
 		westWidgetLayoutData.setCollapsible(true);
 		westWidgetLayoutData.setSplit(true);
 		westWidgetLayoutData.setCollapseMini(true);
-		Margins westMargins = new Margins(1);
+		final Margins westMargins = new Margins(1);
 		westWidgetLayoutData.setMargins(westMargins);
 		//
-		ContentPanel westWidget = new ContentPanel();
+		final ContentPanel westWidget = new ContentPanel();
 		westWidget.setHeaderVisible(false);
-		AccordionLayoutContainer accordion = new AccordionLayoutContainer();
+		final AccordionLayoutContainer accordion =
+			new AccordionLayoutContainer();
 		//
-		TreeContentPanel allJobsPanel =
+		final TreeContentPanel allJobsPanel =
 			new TreeContentPanel(new AllJobsTree());
 		allJobsPanel.setHeadingText("View All Jobs");
 		accordion.add(allJobsPanel);
 		accordion.setActiveWidget(allJobsPanel);
 		//
-		TreeContentPanel jobsByPrinterPanel =
+		final TreeContentPanel jobsByPrinterPanel =
 			new TreeContentPanel(new JobsByPrinterTree());
 		jobsByPrinterPanel.setHeadingText("View Jobs By Printer");
 		accordion.add(jobsByPrinterPanel);
 		//
-		TreeContentPanel jobsByStatusPanel =
+		final TreeContentPanel jobsByStatusPanel =
 			new TreeContentPanel(new JobsByStatusTree());
 		jobsByStatusPanel.setHeadingText("View Jobs By Status");
 		accordion.add(jobsByStatusPanel);
