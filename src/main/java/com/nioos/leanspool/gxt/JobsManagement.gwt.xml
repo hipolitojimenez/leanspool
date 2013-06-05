@@ -3,5 +3,6 @@
 <module>
 	<inherits name="com.sencha.gxt.ui.GXT" />
 	<source path="client" />
+	<source path="shared" />
 	<entry-point class="com.nioos.leanspool.gxt.client.JobsManagement" />
 </module>

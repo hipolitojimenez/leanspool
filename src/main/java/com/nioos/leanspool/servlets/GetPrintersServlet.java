@@ -3,10 +3,20 @@ package com.nioos.leanspool.servlets;
 
 
 import java.io.IOException;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import net.sf.json.JSONObject;
+
+import com.nioos.leanspool.gxt.shared.PrinterModel;
+import com.nioos.leanspool.printer.Printers;
+import com.nioos.leanspool.printer.PrintersException;
 
 
 
@@ -24,13 +34,28 @@ public class GetPrintersServlet extends HttpServlet {
 	private static final long serialVersionUID = 2196005984475478275L;
 	
 	
+	private Printers printers;
+	
+	
+	public GetPrintersServlet() throws PrintersException {
+		printers = new Printers();
+	}
+	
+	
 	@Override
 	protected final void doGet(final HttpServletRequest request,
 				final HttpServletResponse response) throws ServletException,
 			IOException {
-		// TODO Auto-generated method stub
-		final String result = "{\"printers\": [{\"key\": \"Key 01\"},	{\"key\": \"Key 02\"}, {\"key\": \"Key 03\"}]}"; // NOPMD
-		response.getWriter().print(result);
+		try {
+			List<PrinterModel> printerModelList = printers.getPrinters();
+			Map<String, List<PrinterModel>> printerModelMap =
+					Collections.singletonMap("printers", printerModelList);
+				JSONObject jsonObject = JSONObject.fromObject(printerModelMap);
+				String result = jsonObject.toString();
+				response.getWriter().print(result);
+		} catch (PrintersException prtEx) {
+			//TODO send json error - modify jsonreader 's
+		}
 	}
 	
 	

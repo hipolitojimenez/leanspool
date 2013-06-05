@@ -2,6 +2,7 @@ package com.nioos.leanspool.gxt.client.tree;
 
 
 
+import com.nioos.leanspool.gxt.shared.PrinterModel;
 import com.sencha.gxt.data.shared.TreeStore;
 import com.sencha.gxt.data.shared.loader.ChildTreeStoreBinding;
 import com.sencha.gxt.data.shared.loader.TreeLoader;

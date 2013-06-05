@@ -1,5 +1,7 @@
 package com.nioos.leanspool.gxt.client.tree;
 
+import com.nioos.leanspool.gxt.shared.PrinterModel;
+
 
 
 /**

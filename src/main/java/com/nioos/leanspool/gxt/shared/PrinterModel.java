@@ -1,4 +1,4 @@
-package com.nioos.leanspool.gxt.client.tree;
+package com.nioos.leanspool.gxt.shared;
 
 
 
