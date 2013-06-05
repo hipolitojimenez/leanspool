@@ -3,7 +3,9 @@ package com.nioos.leanspool.servlets;
 
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -14,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import net.sf.json.JSONObject;
 
+import com.nioos.leanspool.gxt.shared.Errors;
 import com.nioos.leanspool.gxt.shared.PrinterModel;
 import com.nioos.leanspool.printer.Printers;
 import com.nioos.leanspool.printer.PrintersException;
@@ -54,7 +57,12 @@ public class GetPrintersServlet extends HttpServlet {
 				String result = jsonObject.toString();
 				response.getWriter().print(result);
 		} catch (PrintersException prtEx) {
-			//TODO send json error - modify jsonreader 's
+			Map<String, Object> error = new HashMap<String, Object>();
+			error.put("printers", new ArrayList<PrinterModel>());
+			error.put("errorCode", Errors.GETPRINTERS);
+			JSONObject jsonObject = JSONObject.fromObject(error);
+			String result = jsonObject.toString();
+			response.getWriter().print(result);
 		}
 	}
 	

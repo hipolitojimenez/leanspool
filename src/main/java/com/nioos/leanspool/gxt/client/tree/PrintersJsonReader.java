@@ -4,6 +4,7 @@ package com.nioos.leanspool.gxt.client.tree;
 
 import java.util.List;
 
+import com.nioos.leanspool.gxt.shared.Errors;
 import com.nioos.leanspool.gxt.shared.PrinterModel;
 import com.sencha.gxt.data.shared.loader.JsonReader;
 
@@ -30,6 +31,10 @@ public class PrintersJsonReader extends
 	@Override
 	protected final List<PrinterModel> createReturnData(final Object loadConfig,
 			final PrintersJsonRoot records) {
+		Errors errorCode = records.getErrorCode();
+		if (errorCode != null) {
+			new ErrorDialog(errorCode);
+		}
 		return records.getPrinters();
 	}
 	
