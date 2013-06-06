@@ -3,7 +3,8 @@
 			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 			xsi:noNamespaceSchemaLocation="http://localhost/bugcollection">
 	<Match>
-		<Class name="com.nioos.realono.servlets.NewsJsonServlet" />
-		<Bug pattern="SE_TRANSIENT_FIELD_NOT_RESTORED" />
+		<Class name="com.nioos.leanspool.servlets.GetPrintersServlet" />
+		<Field name="printers"/>
+		<Bug pattern="SE_BAD_FIELD" />
 	</Match>
 </FindBugsFilter>

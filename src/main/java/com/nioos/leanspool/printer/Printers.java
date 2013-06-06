@@ -55,6 +55,7 @@ public class Printers {
 				PrinterModel printerModel = new PrinterModelImpl(printerKey);
 				printerModelList.add(printerModel);
 			}
+			resultSet.close();
 			return printerModelList;
 		} catch (SQLException sqle) {
 			LOG.error("Cannot get printers", sqle);

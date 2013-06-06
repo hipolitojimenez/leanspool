@@ -28,6 +28,7 @@ public class DataSourceUtils {
 		Properties properties = new Properties();
 		InputStream inputStream =
 			DataSourceUtils.class.getResourceAsStream(propertiesFile);
+		inputStream.close();
 		properties.load(inputStream);
 		return properties;
 	}
