@@ -18,7 +18,7 @@ import net.sf.json.JSONObject;
 
 import com.nioos.leanspool.gxt.shared.Errors;
 import com.nioos.leanspool.gxt.shared.PrinterModel;
-import com.nioos.leanspool.printer.Printers;
+import com.nioos.leanspool.printer.PrinterDao;
 import com.nioos.leanspool.printer.PrintersException;
 
 
@@ -37,11 +37,18 @@ public class GetPrintersServlet extends HttpServlet {
 	private static final long serialVersionUID = 2196005984475478275L;
 	
 	
-	private Printers printers;
+	/**
+	 * The printer DAO.
+	 */
+	private PrinterDao printerDao;
 	
 	
+	/**
+	 * Contructor.
+	 * @throws PrintersException on error.
+	 */
 	public GetPrintersServlet() throws PrintersException {
-		printers = new Printers();
+		printerDao = new PrinterDao();
 	}
 	
 	
@@ -50,7 +57,7 @@ public class GetPrintersServlet extends HttpServlet {
 				final HttpServletResponse response) throws ServletException,
 			IOException {
 		try {
-			List<PrinterModel> printerModelList = printers.getPrinters();
+			List<PrinterModel> printerModelList = printerDao.getPrinters();
 			Map<String, List<PrinterModel>> printerModelMap =
 					Collections.singletonMap("printers", printerModelList);
 				JSONObject jsonObject = JSONObject.fromObject(printerModelMap);

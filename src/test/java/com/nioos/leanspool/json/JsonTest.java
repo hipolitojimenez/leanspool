@@ -2,7 +2,7 @@ package com.nioos.leanspool.json;
 
 
 
-import static org.junit.Assert.*;
+import org.junit.Assert;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -19,23 +19,34 @@ import com.nioos.leanspool.printer.PrinterModelImpl;
 
 
 
+/**
+ * Json test.
+ * @author Hipolito Jimenez.
+ *
+ */
 public class JsonTest {
 	
 	
+	/**
+	 * Printer model to Json object test.
+	 */
 	@Test
-	public void printerModelToJsonObjectTest() {
+	public final void printerModelToJsonObjectTest() {
 		String expected = "{\"key\":\"Key 01\"}";
 		//
 		PrinterModel printer01 = new PrinterModelImpl("Key 01");
 		JSONObject jsonObject = JSONObject.fromObject(printer01);
 		String actual = jsonObject.toString();
 		//
-		assertEquals("Json PrinterModel failed", expected, actual);
+		Assert.assertEquals("Json PrinterModel failed", expected, actual);
 	}
 	
 	
+	/**
+	 * Printer model list to Json array test.
+	 */
 	@Test
-	public void printerModelListToJsonArrayTest() {
+	public final void printerModelListToJsonArrayTest() {
 		String expected = "[{\"key\":\"Key 01\"},{\"key\":\"Key 02\"}]";
 		//
 		List<PrinterModel> printerModelList = new ArrayList<PrinterModel>();
@@ -46,12 +57,15 @@ public class JsonTest {
 		JSONArray jsonArray = JSONArray.fromObject(printerModelList);
 		String actual = jsonArray.toString();
 		//
-		assertEquals("Json PrinterModel list failed", expected, actual);
+		Assert.assertEquals("Json PrinterModel list failed", expected, actual);
 	}
 	
 	
+	/**
+	 * Printer model map to Json rrray test.
+	 */
 	@Test
-	public void printerModelMapToJsonArrayTest() {
+	public final void printerModelMapToJsonArrayTest() {
 		String expected =
 			"{\"printers\":[{\"key\":\"Key 01\"},{\"key\":\"Key 02\"}]}";
 		//
@@ -65,7 +79,7 @@ public class JsonTest {
 		JSONObject jsonObject = JSONObject.fromObject(printerModelMap);
 		String actual = jsonObject.toString();
 		//
-		assertEquals("Json PrinterModel list failed", expected, actual);
+		Assert.assertEquals("Json PrinterModel list failed", expected, actual);
 	}
 	
 	

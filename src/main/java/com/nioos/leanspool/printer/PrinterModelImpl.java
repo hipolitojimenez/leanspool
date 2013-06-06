@@ -25,19 +25,19 @@ public class PrinterModelImpl implements PrinterModel {
 	 * Constructor.
 	 * @param theKey the key.
 	 */
-	public PrinterModelImpl(String theKey) {
+	public PrinterModelImpl(final String theKey) {
 		key = theKey;
 	}
 	
 	
 	@Override
-	public String getKey() {
+	public final String getKey() {
 		return key;
 	}
 	
 	
 	@Override
-	public void setKey(String value) {
+	public final void setKey(final String value) {
 		key = value;
 	}
 	

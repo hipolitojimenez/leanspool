@@ -7,10 +7,17 @@ import com.sencha.gxt.widget.core.client.box.AlertMessageBox;
 
 
 
+/**
+ * An error dialog that displays an error icon.
+ */
 public class ErrorDialog extends AlertMessageBox {
 	
 	
-	public ErrorDialog(Errors errorCode) {
+	/**
+	 * Constructor.
+	 * @param errorCode the error code to be shown in the error dialog.
+	 */
+	public ErrorDialog(final Errors errorCode) {
 		super("Error", null);
 		switch (errorCode) {
 			case NOERROR:

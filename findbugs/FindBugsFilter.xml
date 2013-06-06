@@ -4,7 +4,7 @@
 			xsi:noNamespaceSchemaLocation="http://localhost/bugcollection">
 	<Match>
 		<Class name="com.nioos.leanspool.servlets.GetPrintersServlet" />
-		<Field name="printers"/>
+		<Field name="printerDao"/>
 		<Bug pattern="SE_BAD_FIELD" />
 	</Match>
 </FindBugsFilter>

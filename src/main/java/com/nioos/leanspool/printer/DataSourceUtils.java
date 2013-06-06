@@ -13,24 +13,56 @@ import org.apache.commons.dbcp.BasicDataSourceFactory;
 
 
 //TODO move to own package
-public class DataSourceUtils {
+/**
+ * Utility class to build datasources.
+ * @author Hipolito Jimenez.
+ *
+ */
+public final class DataSourceUtils {
 	
 	
-	public static DataSource buildDataSource(String propertiesFile) throws Exception {
+	/**
+	 * Constructor.
+	 */
+	private DataSourceUtils() {
+		//
+	}
+	
+	
+	/**
+	 * Build a new datasource.
+	 * @param propertiesFile the properties file name as String.
+	 * @return the new datasource.
+	 * @throws Exception on error.
+	 */
+	public static DataSource buildDataSource(final String propertiesFile)
+			throws Exception {
 		Properties dataSourceProperties =
 			getDataSourceProperties(propertiesFile);
 		return BasicDataSourceFactory.createDataSource(dataSourceProperties);
 	}
 	
 	
-	private static Properties getDataSourceProperties(String propertiesFile)
-			throws IOException {
+	/**
+	 * Gets the properties file used to build the new datasource.
+	 * @param propertiesFile the properties file name as String.
+	 * @return the properties file.
+	 * @throws IOException on error.
+	 */
+	private static Properties getDataSourceProperties(
+			final String propertiesFile) throws IOException {
 		Properties properties = new Properties();
-		InputStream inputStream =
-			DataSourceUtils.class.getResourceAsStream(propertiesFile);
-		inputStream.close();
-		properties.load(inputStream);
-		return properties;
+		InputStream inputStream = null;
+		try {
+			inputStream =
+				DataSourceUtils.class.getResourceAsStream(propertiesFile);
+			properties.load(inputStream);
+			return properties;
+		} finally {
+			if (inputStream != null) {
+				inputStream.close();
+			}
+		}
 	}
 	
 	

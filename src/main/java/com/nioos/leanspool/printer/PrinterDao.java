@@ -18,16 +18,31 @@ import com.nioos.leanspool.gxt.shared.PrinterModel;
 
 
 
-public class Printers {
+/**
+ * The printer DAO.
+ * @author Hipolito Jimenez.
+ *
+ */
+public class PrinterDao {
 	
 	
-	private static final Log LOG = LogFactory.getLog(Printers.class);
+	/**
+	 * The logger.
+	 */
+	private static final Log LOG = LogFactory.getLog(PrinterDao.class);
 	
 	
+	/**
+	 * The datasource.
+	 */
 	private DataSource printersDataSource;
 	
 	
-	public Printers() throws PrintersException {
+	/**
+	 * Constructor.
+	 * @throws PrintersException on error.
+	 */
+	public PrinterDao() throws PrintersException {
 		try {
 			printersDataSource =
 				DataSourceUtils.buildDataSource("/jdbc.properties");
@@ -39,17 +54,28 @@ public class Printers {
 	}
 	
 	
-	public Printers(DataSource dataSource) {
+	/**
+	 * Constructor.
+	 * @param dataSource the data source to be used.
+	 */
+	public PrinterDao(final DataSource dataSource) {
 		printersDataSource = dataSource;
 	}
 	
 	
-	public List<PrinterModel> getPrinters() throws PrintersException {
+	/**
+	 * Retrieves the printer list.
+	 * @return the printer list.
+	 * @throws PrintersException on error.
+	 */
+	public final List<PrinterModel> getPrinters() throws PrintersException {
 		Connection connection = getSelectConnection();
 		Statement statement = getSelectStatement(connection);
 		try {
 			List<PrinterModel> printerModelList = new ArrayList<PrinterModel>();
-			ResultSet resultSet = statement.executeQuery("SELECT PrinterName FROM Printer ORDER BY PrinterName");
+			ResultSet resultSet =
+				statement.executeQuery(
+					"SELECT PrinterName FROM Printer ORDER BY PrinterName");
 			while (resultSet.next()) {
 				String printerKey = resultSet.getString(1);
 				PrinterModel printerModel = new PrinterModelImpl(printerKey);
@@ -67,7 +93,11 @@ public class Printers {
 	}
 	
 	
-	private void silentCloseConnection(Connection connection) {
+	/**
+	 * Silently close the jdbc connection.
+	 * @param connection the jdbc connection.
+	 */
+	private void silentCloseConnection(final Connection connection) {
 		if (connection != null) {
 			try {
 				connection.close();
@@ -78,7 +108,11 @@ public class Printers {
 	}
 	
 	
-	private void silentCloseStatement(Statement statement) {
+	/**
+	 * Silently close the jdbc statement.
+	 * @param statement the jdbc statement.
+	 */
+	private void silentCloseStatement(final Statement statement) {
 		if (statement != null) {
 			try {
 				statement.close();
@@ -89,7 +123,13 @@ public class Printers {
 	}
 	
 	
-	private Statement getSelectStatement(Connection connection)
+	/**
+	 * Gets and prepare a select jdbc statement from a jdbc connection.
+	 * @param connection the jdbc connection.
+	 * @return the jdbc statement.
+	 * @throws PrintersException on error.
+	 */
+	private Statement getSelectStatement(final Connection connection)
 			throws PrintersException {
 		try {
 			Statement statement =
@@ -103,6 +143,11 @@ public class Printers {
 	}
 	
 	
+	/**
+	 * Gets and prepare a select jdbc connection.
+	 * @return the jdbc connection.
+	 * @throws PrintersException on error.
+	 */
 	private Connection getSelectConnection() throws PrintersException {
 		try {
 			Connection connection = printersDataSource.getConnection();
