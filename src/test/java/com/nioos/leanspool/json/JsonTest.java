@@ -32,11 +32,11 @@ public class JsonTest {
 	 */
 	@Test
 	public final void printerModelToJsonObjectTest() {
-		String expected = "{\"key\":\"Key 01\"}";
+		final String expected = "{\"key\":\"Key 01\"}"; // NOPMD
 		//
-		PrinterModel printer01 = new PrinterModelImpl("Key 01");
-		JSONObject jsonObject = JSONObject.fromObject(printer01);
-		String actual = jsonObject.toString();
+		final PrinterModel printer01 = new PrinterModelImpl("Key 01");
+		final JSONObject jsonObject = JSONObject.fromObject(printer01);
+		final String actual = jsonObject.toString();
 		//
 		Assert.assertEquals("Json PrinterModel failed", expected, actual);
 	}
@@ -47,15 +47,17 @@ public class JsonTest {
 	 */
 	@Test
 	public final void printerModelListToJsonArrayTest() {
-		String expected = "[{\"key\":\"Key 01\"},{\"key\":\"Key 02\"}]";
+		final String expected = // NOPMD
+			"[{\"key\":\"Key 01\"},{\"key\":\"Key 02\"}]";
 		//
-		List<PrinterModel> printerModelList = new ArrayList<PrinterModel>();
-		PrinterModel printer01 = new PrinterModelImpl("Key 01");
+		final List<PrinterModel> printerModelList =
+			new ArrayList<PrinterModel>();
+		final PrinterModel printer01 = new PrinterModelImpl("Key 01");
 		printerModelList.add(printer01);
-		PrinterModel printer02 = new PrinterModelImpl("Key 02");
+		final PrinterModel printer02 = new PrinterModelImpl("Key 02");
 		printerModelList.add(printer02);
-		JSONArray jsonArray = JSONArray.fromObject(printerModelList);
-		String actual = jsonArray.toString();
+		final JSONArray jsonArray = JSONArray.fromObject(printerModelList);
+		final String actual = jsonArray.toString();
 		//
 		Assert.assertEquals("Json PrinterModel list failed", expected, actual);
 	}
@@ -66,18 +68,18 @@ public class JsonTest {
 	 */
 	@Test
 	public final void printerModelMapToJsonArrayTest() {
-		String expected =
+		final String expected = // NOPMD
 			"{\"printers\":[{\"key\":\"Key 01\"},{\"key\":\"Key 02\"}]}";
 		//
-		List<PrinterModel> printerModelList = new ArrayList<PrinterModel>();
-		PrinterModel printer01 = new PrinterModelImpl("Key 01");
+		final List<PrinterModel> printerModelList = new ArrayList<PrinterModel>();
+		final PrinterModel printer01 = new PrinterModelImpl("Key 01");
 		printerModelList.add(printer01);
-		PrinterModel printer02 = new PrinterModelImpl("Key 02");
+		final PrinterModel printer02 = new PrinterModelImpl("Key 02");
 		printerModelList.add(printer02);
-		Map<String, List<PrinterModel>> printerModelMap =
+		final Map<String, List<PrinterModel>> printerModelMap =
 				Collections.singletonMap("printers", printerModelList);
-		JSONObject jsonObject = JSONObject.fromObject(printerModelMap);
-		String actual = jsonObject.toString();
+		final JSONObject jsonObject = JSONObject.fromObject(printerModelMap);
+		final String actual = jsonObject.toString();
 		//
 		Assert.assertEquals("Json PrinterModel list failed", expected, actual);
 	}

@@ -31,7 +31,7 @@ public class PrintersJsonReader extends
 	@Override
 	protected final List<PrinterModel> createReturnData(final Object loadConfig,
 			final PrintersJsonRoot records) {
-		Errors errorCode = records.getErrorCode();
+		final Errors errorCode = records.getErrorCode();
 		if (errorCode != null) {
 			new ErrorDialog(errorCode);
 		}

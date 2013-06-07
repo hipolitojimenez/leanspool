@@ -36,8 +36,8 @@ public final class DataSourceUtils {
 	 * @throws Exception on error.
 	 */
 	public static DataSource buildDataSource(final String propertiesFile)
-			throws Exception {
-		Properties dataSourceProperties =
+			throws Exception { // NOPMD
+		final Properties dataSourceProperties =
 			getDataSourceProperties(propertiesFile);
 		return BasicDataSourceFactory.createDataSource(dataSourceProperties);
 	}
@@ -51,8 +51,8 @@ public final class DataSourceUtils {
 	 */
 	private static Properties getDataSourceProperties(
 			final String propertiesFile) throws IOException {
-		Properties properties = new Properties();
-		InputStream inputStream = null;
+		final Properties properties = new Properties();
+		InputStream inputStream = null; // NOPMD
 		try {
 			inputStream =
 				DataSourceUtils.class.getResourceAsStream(propertiesFile);

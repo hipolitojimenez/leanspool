@@ -20,7 +20,7 @@ public class PrintersException extends Exception {
 	 * Default constructor.
 	 */
 	public PrintersException() {
-		//
+		super();
 	}
 	
 	

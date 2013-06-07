@@ -40,7 +40,7 @@ public class GetPrintersServlet extends HttpServlet {
 	/**
 	 * The printer DAO.
 	 */
-	private PrinterDao printerDao;
+	private transient final PrinterDao printerDao;
 	
 	
 	/**
@@ -48,6 +48,7 @@ public class GetPrintersServlet extends HttpServlet {
 	 * @throws PrintersException on error.
 	 */
 	public GetPrintersServlet() throws PrintersException {
+		super();
 		printerDao = new PrinterDao();
 	}
 	
@@ -57,18 +58,20 @@ public class GetPrintersServlet extends HttpServlet {
 				final HttpServletResponse response) throws ServletException,
 			IOException {
 		try {
-			List<PrinterModel> printerModelList = printerDao.getPrinters();
-			Map<String, List<PrinterModel>> printerModelMap =
+			final List<PrinterModel> printerModelList =
+				printerDao.getPrinters();
+			final Map<String, List<PrinterModel>> printerModelMap =
 					Collections.singletonMap("printers", printerModelList);
-				JSONObject jsonObject = JSONObject.fromObject(printerModelMap);
-				String result = jsonObject.toString();
-				response.getWriter().print(result);
+			final JSONObject jsonObject =
+				JSONObject.fromObject(printerModelMap);
+			final String result = jsonObject.toString();
+			response.getWriter().print(result);
 		} catch (PrintersException prtEx) {
-			Map<String, Object> error = new HashMap<String, Object>();
+			final Map<String, Object> error = new HashMap<String, Object>();
 			error.put("printers", new ArrayList<PrinterModel>());
 			error.put("errorCode", Errors.GETPRINTERS);
-			JSONObject jsonObject = JSONObject.fromObject(error);
-			String result = jsonObject.toString();
+			final JSONObject jsonObject = JSONObject.fromObject(error);
+			final String result = jsonObject.toString();
 			response.getWriter().print(result);
 		}
 	}

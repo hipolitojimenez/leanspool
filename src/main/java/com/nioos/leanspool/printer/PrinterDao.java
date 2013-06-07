@@ -35,7 +35,7 @@ public class PrinterDao {
 	/**
 	 * The datasource.
 	 */
-	private DataSource printersDataSource;
+	private transient DataSource printersDataSource;
 	
 	
 	/**
@@ -69,16 +69,18 @@ public class PrinterDao {
 	 * @throws PrintersException on error.
 	 */
 	public final List<PrinterModel> getPrinters() throws PrintersException {
-		Connection connection = getSelectConnection();
-		Statement statement = getSelectStatement(connection);
+		final Connection connection = getSelectConnection(); // NOPMD
+		final Statement statement = getSelectStatement(connection); // NOPMD
 		try {
-			List<PrinterModel> printerModelList = new ArrayList<PrinterModel>();
-			ResultSet resultSet =
+			final List<PrinterModel> printerModelList =
+				new ArrayList<PrinterModel>();
+			final ResultSet resultSet = // NOPMD
 				statement.executeQuery(
 					"SELECT PrinterName FROM Printer ORDER BY PrinterName");
 			while (resultSet.next()) {
-				String printerKey = resultSet.getString(1);
-				PrinterModel printerModel = new PrinterModelImpl(printerKey);
+				final String printerKey = resultSet.getString(1);
+				final PrinterModel printerModel =
+					new PrinterModelImpl(printerKey); // NOPMD
 				printerModelList.add(printerModel);
 			}
 			resultSet.close();
@@ -132,7 +134,7 @@ public class PrinterDao {
 	private Statement getSelectStatement(final Connection connection)
 			throws PrintersException {
 		try {
-			Statement statement =
+			final Statement statement = // NOPMD
 				connection.createStatement(ResultSet.TYPE_FORWARD_ONLY,
 					ResultSet.CONCUR_READ_ONLY);
 			return statement;
@@ -150,7 +152,8 @@ public class PrinterDao {
 	 */
 	private Connection getSelectConnection() throws PrintersException {
 		try {
-			Connection connection = printersDataSource.getConnection();
+			final Connection connection = // NOPMD
+				printersDataSource.getConnection();
 			connection.setAutoCommit(false);
 			//
 			connection.setReadOnly(true);

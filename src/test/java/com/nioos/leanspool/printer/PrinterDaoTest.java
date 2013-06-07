@@ -33,27 +33,27 @@ public class PrinterDaoTest {
 	 * @throws Exception on error.
 	 */
 	@Test
-	public final void testGetPrinters() throws Exception {
-		DataSource dataSource =
+	public final void testGetPrinters() throws Exception { // NOPMD
+		final DataSource dataSource =
 			DataSourceUtils.buildDataSource("/jdbc.properties");
 		//
-		IDatabaseConnection dbConnection =
+		final IDatabaseConnection dbConnection =
 			new DatabaseDataSourceConnection(dataSource);
-		FlatXmlDataSetBuilder flatXmlDataSetBuilder =
+		final FlatXmlDataSetBuilder flatXmlDataSetBuilder =
 			new FlatXmlDataSetBuilder();
-		IDataSet dataSet =
+		final IDataSet dataSet =
 			flatXmlDataSetBuilder.build(
 				new File("./src/test/resources/dbunit/PrintersTest.xml"));
 		DatabaseOperation.CLEAN_INSERT.execute(dbConnection, dataSet);
 		dbConnection.getConnection().commit();
 		dbConnection.close();
 		//
-		PrinterDao printers = new PrinterDao();
-		List<PrinterModel> printerModelList = printers.getPrinters();
+		final PrinterDao printers = new PrinterDao();
+		final List<PrinterModel> printerModelList = printers.getPrinters();
 		Assert.assertEquals("invalid size",
 			dataSet.getTable("Printer").getRowCount(),
 			printerModelList.size());
-		PrinterModel printerModel = printerModelList.get(0);
+		final PrinterModel printerModel = printerModelList.get(0);
 		Assert.assertEquals("invalid key", "Printer01", printerModel.getKey());
 	}
 	
