@@ -1,4 +1,4 @@
-package com.nioos.leanspool.gxt.client.grid;
+package com.nioos.leanspool.gxt.shared;
 
 
 
@@ -23,17 +23,18 @@ public interface PrintJobModel {
 	void setJobId(String value);
 	
 	
-	//private String jobId;
+	/**
+	 * Gets the printer name.
+	 * @return the printer name.
+	 */
+	String getPrinterName();
 	
 	
-	//public String getJobId() {
-	//	return jobId;
-	//}
-	
-	
-	//public void setJobId(String value) {
-	//	jobId = value;
-	//}
+	/**
+	 * Sets the printer name.
+	 * @param value the printer name.
+	 */
+	void setPrinterName(String value);
 	
 	
 }

@@ -4,6 +4,7 @@ package com.nioos.leanspool.gxt.client.grid;
 
 import java.util.List;
 
+import com.nioos.leanspool.gxt.shared.PrintJobModel;
 import com.sencha.gxt.data.shared.loader.JsonReader;
 import com.sencha.gxt.data.shared.loader.ListLoadResult;
 import com.sencha.gxt.data.shared.loader.ListLoadResultBean;

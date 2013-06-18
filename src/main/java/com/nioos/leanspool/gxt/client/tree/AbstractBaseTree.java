@@ -7,8 +7,8 @@ import java.util.List;
 
 import com.nioos.leanspool.gxt.client.HasRelatedGrid;
 import com.nioos.leanspool.gxt.client.grid.JobIdColumnConfig;
-import com.nioos.leanspool.gxt.client.grid.PrintJobModel;
 import com.nioos.leanspool.gxt.client.grid.PrintJobsGrid;
+import com.nioos.leanspool.gxt.shared.PrintJobModel;
 import com.sencha.gxt.core.client.ValueProvider;
 import com.sencha.gxt.data.shared.TreeStore;
 import com.sencha.gxt.widget.core.client.grid.ColumnConfig;

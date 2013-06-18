@@ -40,7 +40,7 @@ public class GetPrintersServlet extends HttpServlet {
 	/**
 	 * The printer DAO.
 	 */
-	private transient final PrinterDao printerDao;
+	private final transient PrinterDao printerDao;
 	
 	
 	/**

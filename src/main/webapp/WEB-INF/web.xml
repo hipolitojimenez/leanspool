@@ -4,6 +4,7 @@
   <welcome-file-list>
     <welcome-file>jobs-management.html</welcome-file>
   </welcome-file-list>
+  
   <servlet>
   	<servlet-name>GetPrinters</servlet-name>
   	<servlet-class>com.nioos.leanspool.servlets.GetPrintersServlet</servlet-class>
@@ -12,4 +13,14 @@
   	<servlet-name>GetPrinters</servlet-name>
   	<url-pattern>/getPrinters.json</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>GetPrintJobs</servlet-name>
+  	<servlet-class>com.nioos.leanspool.servlets.GetPrintJobsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>GetPrintJobs</servlet-name>
+  	<url-pattern>/getPrintJobs.json</url-pattern>
+  </servlet-mapping>
+  
 </web-app>

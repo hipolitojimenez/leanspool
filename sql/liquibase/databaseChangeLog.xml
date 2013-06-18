@@ -17,5 +17,16 @@
 				<constraints nullable="false" primaryKey="true" primaryKeyName="PK_Printer" />
 			</column>
 		</createTable>
+		<createTable tableName="PrintJob">
+			<column name="JobId" type="nvarchar(250)">
+				<constraints nullable="false" primaryKey="true" primaryKeyName="PK_PrintJob" />
+			</column>
+			<column name="PrinterName" type="nvarchar(250)">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+		<createIndex tableName="PrintJob" indexName="PrintJob_PrinterName">
+			<column name="PrinterName" />
+		</createIndex>
 	</changeSet>
 </databaseChangeLog>

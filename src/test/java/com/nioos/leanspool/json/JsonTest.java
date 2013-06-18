@@ -14,8 +14,10 @@ import net.sf.json.JSONObject;
 
 import org.junit.Test;
 
+import com.nioos.leanspool.gxt.shared.PrintJobModel;
 import com.nioos.leanspool.gxt.shared.PrinterModel;
 import com.nioos.leanspool.printer.PrinterModelImpl;
+import com.nioos.leanspool.printjobs.PrintJobModelImpl;
 
 
 
@@ -25,6 +27,13 @@ import com.nioos.leanspool.printer.PrinterModelImpl;
  *
  */
 public class JsonTest {
+	
+	
+	/**
+	 * Expected result of the print job model to Json object test.
+	 */
+	private static final String EXPECTED_PJMTJO =
+		"{\"jobId\":\"JobId 01\",\"printerName\":\"\"}";
 	
 	
 	/**
@@ -82,6 +91,70 @@ public class JsonTest {
 		final String actual = jsonObject.toString();
 		//
 		Assert.assertEquals("Json PrinterModel list failed", expected, actual);
+	}
+	
+	
+	/**
+	 * Print job model to Json object test.
+	 */
+	@Test
+	public final void printJobModelToJsonObjectTest() {
+		final PrintJobModel printJob01 = new PrintJobModelImpl();
+		printJob01.setJobId("JobId 01");
+		final JSONObject jsonObject = JSONObject.fromObject(printJob01);
+		final String actual = jsonObject.toString();
+		//
+		Assert.assertEquals("Json PrintJobModel failed", EXPECTED_PJMTJO, actual);
+	}
+	
+	
+	/**
+	 * Print job model list to Json array test.
+	 */
+	@Test
+	public final void printJobModelListToJsonArrayTest() {
+		final String expected = // NOPMD
+			"[{\"jobId\":\"Job 01\",\"printerName\":\"\"},{\"jobId\":\"Job 02\",\"printerName\":\"\"}]";
+		//
+		final List<PrintJobModel> printJobModelList =
+			new ArrayList<PrintJobModel>();
+		final PrintJobModel printJob01 = new PrintJobModelImpl();
+		printJob01.setJobId("Job 01");
+		printJobModelList.add(printJob01);
+		final PrintJobModel printJob02 = new PrintJobModelImpl();
+		printJob02.setJobId("Job 02");
+		printJobModelList.add(printJob02);
+		final JSONArray jsonArray = JSONArray.fromObject(printJobModelList);
+		final String actual = jsonArray.toString();
+		//
+		Assert.assertEquals("Json PrinterJobModel list failed", expected,
+			actual);
+	}
+	
+	
+	/**
+	 * Print job model map to Json rrray test.
+	 */
+	@Test
+	public final void printJobModelMapToJsonArrayTest() {
+		final String expected = // NOPMD
+			"{\"jobs\":[{\"jobId\":\"Job 01\",\"printerName\":\"\"},{\"jobId\":\"Job 02\",\"printerName\":\"\"}]}";
+		//
+		final List<PrintJobModel> printJobModelList =
+			new ArrayList<PrintJobModel>();
+		final PrintJobModel printJob01 = new PrintJobModelImpl();
+		printJob01.setJobId("Job 01");
+		printJobModelList.add(printJob01);
+		final PrintJobModel printJob02 = new PrintJobModelImpl();
+		printJob02.setJobId("Job 02");
+		printJobModelList.add(printJob02);
+		final Map<String, List<PrintJobModel>> printJobModelMap =
+			Collections.singletonMap("jobs", printJobModelList);
+		final JSONObject jsonObject = JSONObject.fromObject(printJobModelMap);
+		final String actual = jsonObject.toString();
+		//
+		Assert.assertEquals("Json PrintJobModel list failed", expected,
+			actual);
 	}
 	
 	

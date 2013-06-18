@@ -7,4 +7,14 @@
 		<Field name="printerDao"/>
 		<Bug pattern="SE_TRANSIENT_FIELD_NOT_RESTORED"/>
 	</Match>
+	<Match>
+		<Class name="com.nioos.leanspool.servlets.GetPrintJobsServlet" />
+		<Field name="printJobsDao"/>
+		<Bug pattern="SE_TRANSIENT_FIELD_NOT_RESTORED"/>
+	</Match>
+	<Match>
+		<Class name="com.nioos.leanspool.printjobs.PrintJobsDao" />
+		<Method name="getSelectPreparedStatement"/>
+		<Bug pattern="SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING"/>
+	</Match>
 </FindBugsFilter>

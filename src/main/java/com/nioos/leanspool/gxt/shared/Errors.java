@@ -14,7 +14,12 @@ public enum Errors {
 	NOERROR,
 	
 	/**
-	 * Error geting printers.
+	 * Error getting printers.
 	 */
-	GETPRINTERS
+	GETPRINTERS,
+	
+	/**
+	 * Error getting jobs.
+	 */
+	GETJOBS
 }

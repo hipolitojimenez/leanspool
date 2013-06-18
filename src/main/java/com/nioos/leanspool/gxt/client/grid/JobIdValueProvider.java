@@ -2,6 +2,7 @@ package com.nioos.leanspool.gxt.client.grid;
 
 
 
+import com.nioos.leanspool.gxt.shared.PrintJobModel;
 import com.sencha.gxt.core.client.ValueProvider;
 
 
