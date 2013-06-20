@@ -26,6 +26,9 @@ public class ErrorDialog extends AlertMessageBox {
 			case GETPRINTERS:
 				setMessage("Cannot get printers");
 				break;
+			case GETJOBS:
+				setMessage("Cannot get print jobs");
+				break;
 			default:
 				setMessage("Unknown error");
 				break;

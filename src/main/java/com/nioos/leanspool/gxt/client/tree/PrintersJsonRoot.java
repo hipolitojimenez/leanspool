@@ -4,7 +4,7 @@ package com.nioos.leanspool.gxt.client.tree;
 
 import java.util.List;
 
-import com.nioos.leanspool.gxt.shared.Errors;
+import com.nioos.leanspool.gxt.client.ErrorJsonRoot;
 import com.nioos.leanspool.gxt.shared.PrinterModel;
 
 
@@ -15,18 +15,12 @@ import com.nioos.leanspool.gxt.shared.PrinterModel;
  * @author Hipolito Jimenez.
  *
  */
-public interface PrintersJsonRoot {
+public interface PrintersJsonRoot extends ErrorJsonRoot {
 	
 	/**
 	 * Gets the list of printers.
 	 * @return the list of printers.
 	 */
 	List<PrinterModel> getPrinters();
-	
-	/**
-	 * Get the error code.
-	 * @return  the error code.
-	 */
-	Errors getErrorCode();
 	
 }

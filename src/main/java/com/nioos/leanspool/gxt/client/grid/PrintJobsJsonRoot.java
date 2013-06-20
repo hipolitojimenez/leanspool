@@ -4,6 +4,7 @@ package com.nioos.leanspool.gxt.client.grid;
 
 import java.util.List;
 
+import com.nioos.leanspool.gxt.client.ErrorJsonRoot;
 import com.nioos.leanspool.gxt.shared.PrintJobModel;
 
 
@@ -14,7 +15,7 @@ import com.nioos.leanspool.gxt.shared.PrintJobModel;
  * @author Hipolito Jimenez.
  *
  */
-public interface PrintJobsJsonRoot {
+public interface PrintJobsJsonRoot extends ErrorJsonRoot {
 	
 	/**
 	 * Get the jobs list.
