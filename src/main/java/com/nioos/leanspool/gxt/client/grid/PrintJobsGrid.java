@@ -32,4 +32,12 @@ public class PrintJobsGrid extends Grid<PrintJobModel> {
 	}
 	
 	
+	/**
+	 * Hide the printer name column.
+	 */
+	public void hidePrinterNameColumn() {
+		getColumnModel().findColumnConfig("Printer Name").setHidden(true);
+	}
+	
+	
 }

@@ -8,30 +8,30 @@ import com.sencha.gxt.core.client.ValueProvider;
 
 
 /**
- * Job Id grid value provider.
+ * Printer name grid value provider.
  * 
  * @author Hipolito Jimenez.
  *
  */
-public class JobIdValueProvider implements
+public class PrinterNameValueProvider implements
 		ValueProvider<PrintJobModel, String> {
 	
 	
 	@Override
 	public final String getValue(final PrintJobModel object) {
-		return object.getJobId();
+		return object.getPrinterName();
 	}
 	
 	
 	@Override
 	public final void setValue(final PrintJobModel object, final String value) {
-		object.setJobId(value);
+		object.setPrinterName(value);
 	}
 	
 	
 	@Override
 	public final String getPath() {
-		return "Job ID";
+		return "Printer Name";
 	}
 	
 	

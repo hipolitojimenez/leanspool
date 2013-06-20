@@ -8,6 +8,7 @@ import java.util.List;
 import com.nioos.leanspool.gxt.client.HasRelatedGrid;
 import com.nioos.leanspool.gxt.client.grid.JobIdColumnConfig;
 import com.nioos.leanspool.gxt.client.grid.PrintJobsGrid;
+import com.nioos.leanspool.gxt.client.grid.PrinterNameColumnConfig;
 import com.nioos.leanspool.gxt.shared.PrintJobModel;
 import com.sencha.gxt.core.client.ValueProvider;
 import com.sencha.gxt.data.shared.TreeStore;
@@ -62,6 +63,9 @@ public abstract class AbstractBaseTree<M, C> extends Tree<M, C>
 			new ArrayList<ColumnConfig<PrintJobModel, ?>>();
 		final JobIdColumnConfig jobIdColumnConfig = new JobIdColumnConfig();
 		columnConfigList.add(jobIdColumnConfig);
+		final PrinterNameColumnConfig printerNameColumnConfig =
+			new PrinterNameColumnConfig();
+		columnConfigList.add(printerNameColumnConfig);
 		printJobsGrid = new PrintJobsGrid(columnConfigList);
 	}
 	

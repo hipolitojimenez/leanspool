@@ -24,6 +24,8 @@ public class JobsByPrinterTree extends AbstractBaseTree<PrinterModel, String> {
 		getStyle().setLeafIcon(TreeImages.INSTANCE.printer());
 		//
 		setLoader(new PrintersTreeLoader(getStore()));
+		//
+		getRelatedGrid().hidePrinterNameColumn();
 	}
 	
 	
