@@ -24,10 +24,12 @@ public class PrintJobsListLoader extends
 	
 	/**
 	 * Constructor.
+	 * @param printJobsHttpProxy the print jobs http proxy.
 	 * @param listStore the print jobs list store.
 	 */
-	public PrintJobsListLoader(final ListStore<PrintJobModel> listStore) {
-		super(new PrintJobsHttpProxy(), new PrintJobsJsonReader());
+	public PrintJobsListLoader(final PrintJobsHttpProxy printJobsHttpProxy,
+			final ListStore<PrintJobModel> listStore) {
+		super(printJobsHttpProxy, new PrintJobsJsonReader());
 		//
 		final LoadHandler<ListLoadConfig, ListLoadResult<PrintJobModel>> handler = new LoadResultListStoreBinding<ListLoadConfig, PrintJobModel, ListLoadResult<PrintJobModel>>(listStore);
 		addLoadHandler(handler);

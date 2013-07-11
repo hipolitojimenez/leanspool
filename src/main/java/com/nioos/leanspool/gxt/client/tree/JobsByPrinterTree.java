@@ -2,6 +2,7 @@ package com.nioos.leanspool.gxt.client.tree;
 
 
 
+import com.nioos.leanspool.gxt.client.grid.PrintJobsGrid;
 import com.nioos.leanspool.gxt.shared.PrinterModel;
 
 
@@ -26,6 +27,14 @@ public class JobsByPrinterTree extends AbstractBaseTree<PrinterModel, String> {
 		setLoader(new PrintersTreeLoader(getStore()));
 		//
 		getRelatedGrid().hidePrinterNameColumn();
+	}
+	
+	
+	@Override
+	protected final void changeSelectedNodeName(
+			final String theSelectedNodeName) {
+		final PrintJobsGrid printJobsGrid = getRelatedGrid();
+		printJobsGrid.setPrinter(theSelectedNodeName);
 	}
 	
 	

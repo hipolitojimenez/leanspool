@@ -54,6 +54,8 @@ public abstract class AbstractBaseTree<M, C> extends Tree<M, C>
 					treeChangeEvent.setLeaf(isTheCurrentNodeLeaf);
 					selectedNodeName =
 						treeChangeEvent.setCurrentNodeName(selection);
+					AbstractBaseTree.this.changeSelectedNodeName(
+						selectedNodeName);
 				}
 				treeChangeEvent.fireFromSource(AbstractBaseTree.this);
 			}
@@ -68,6 +70,14 @@ public abstract class AbstractBaseTree<M, C> extends Tree<M, C>
 		columnConfigList.add(printerNameColumnConfig);
 		printJobsGrid = new PrintJobsGrid(columnConfigList);
 	}
+	
+	
+	/**
+	 * Change the selected node name.
+	 * @param theSelectedNodeName the selected node name.
+	 */
+	protected abstract void changeSelectedNodeName(
+		final String theSelectedNodeName);
 	
 	
 	/**

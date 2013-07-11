@@ -19,4 +19,10 @@ public class AllJobsTree extends AbstractBaseTree<String, String> {
 	}
 	
 	
+	@Override
+	protected void changeSelectedNodeName(final String theSelectedNodeName) {
+		//Do nothing
+	}
+	
+	
 }

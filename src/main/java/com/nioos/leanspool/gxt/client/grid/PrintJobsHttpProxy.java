@@ -37,4 +37,18 @@ public class PrintJobsHttpProxy extends HttpProxy<ListLoadConfig> {
 	}
 	
 	
+	/**
+	 * Sets the printer parameter.
+	 * @param printer the printer parameter.
+	 */
+	public final void setPrinter(final String printer) {
+		String newUrl = PRINTJOBS_URL; // NOPMD
+		if (printer != null) {
+			newUrl = PRINTJOBS_URL + "?printer=" + printer;
+		}
+		initUrl = newUrl;
+		builder = new RequestBuilder(RequestBuilder.GET, newUrl);
+	}
+	
+	
 }

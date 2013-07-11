@@ -13,7 +13,8 @@ import com.sencha.gxt.widget.core.client.grid.ColumnConfig;
  * @author Hipolito Jimenez.
  *
  */
-public class PrinterNameColumnConfig extends ColumnConfig<PrintJobModel, String> {
+public class PrinterNameColumnConfig
+		extends ColumnConfig<PrintJobModel, String> {
 	
 	
 	/**

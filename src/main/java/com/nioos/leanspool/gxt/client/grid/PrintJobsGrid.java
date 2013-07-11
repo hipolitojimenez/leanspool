@@ -21,6 +21,13 @@ public class PrintJobsGrid extends Grid<PrintJobModel> {
 	
 	
 	/**
+	 * The print jobs HTTP proxy.
+	 */
+	private final transient PrintJobsHttpProxy printJobsHttpProxy =
+		new PrintJobsHttpProxy();
+	
+	
+	/**
 	 * Constructor.
 	 * @param columnConfigList the column config list.
 	 */
@@ -28,15 +35,24 @@ public class PrintJobsGrid extends Grid<PrintJobModel> {
 			final List<ColumnConfig<PrintJobModel, ?>> columnConfigList) {
 		super(new PrintJobsGridStore(),
 			new ColumnModel<PrintJobModel>(columnConfigList));
-		setLoader(new PrintJobsListLoader(getStore()));
+		setLoader(new PrintJobsListLoader(printJobsHttpProxy, getStore()));
 	}
 	
 	
 	/**
 	 * Hide the printer name column.
 	 */
-	public void hidePrinterNameColumn() {
+	public final void hidePrinterNameColumn() {
 		getColumnModel().findColumnConfig("Printer Name").setHidden(true);
+	}
+	
+	
+	/**
+	 * Sets the printer whose print jobs we are interested.
+	 * @param printer the printer.
+	 */
+	public final void setPrinter(final String printer) {
+		printJobsHttpProxy.setPrinter(printer);
 	}
 	
 	

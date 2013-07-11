@@ -20,4 +20,10 @@ public class JobsByStatusTree extends AbstractBaseTree<String, String> {
 	}
 	
 	
+	@Override
+	protected void changeSelectedNodeName(final String theSelectedNodeName) {
+		// TODO Auto-generated method stub
+	}
+	
+	
 }
