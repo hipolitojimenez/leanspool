@@ -84,7 +84,7 @@ public class PrintJobsDao {
 		final PreparedStatement preparedStatement =
 			getSelectPreparedStatement(connection,
 			"SELECT JobId, JobStatus FROM PrintJob"
-			+ "WHERE PrinterName = ? ORDER BY JobId");
+			+ " WHERE PrinterName = ? ORDER BY JobId");
 		try {
 			final List<PrintJobModel> printJobModelList =
 				new ArrayList<PrintJobModel>();
@@ -127,7 +127,7 @@ public class PrintJobsDao {
 			final ResultSet resultSet = // NOPMD
 				statement.executeQuery(
 					"SELECT JobId, PrinterName, JobStatus"
-					+ "FROM PrintJob ORDER BY JobId");
+					+ " FROM PrintJob ORDER BY JobId");
 			while (resultSet.next()) {
 				final String jobId = resultSet.getString(1);
 				final String printerName = resultSet.getString(2);

@@ -56,4 +56,12 @@ public class PrintJobsGrid extends Grid<PrintJobModel> {
 	}
 	
 	
+	/**
+	 * Hide the status column.
+	 */
+	public final void hideStatusColumn() {
+		getColumnModel().findColumnConfig("Status").setHidden(true);
+	}
+	
+	
 }

@@ -28,6 +28,8 @@ public class JobsByStatusTreeStore extends TreeStore<String> {
 		super(new StringKeyProvider());
 		//
 		add(ROOT);
+		//final String newStr = "New";
+		add(ROOT, "New");
 		//final String pending = "Pending";
 		add(ROOT, "Pending");
 		//final String completed = "Completed";
