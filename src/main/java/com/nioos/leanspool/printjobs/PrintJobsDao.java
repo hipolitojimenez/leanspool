@@ -83,7 +83,8 @@ public class PrintJobsDao {
 		final Connection connection = getSelectConnection(); // NOPMD
 		final PreparedStatement preparedStatement =
 			getSelectPreparedStatement(connection,
-			"SELECT JobId FROM PrintJob WHERE PrinterName = ? ORDER BY JobId");
+			"SELECT JobId, JobStatus FROM PrintJob"
+			+ "WHERE PrinterName = ? ORDER BY JobId");
 		try {
 			final List<PrintJobModel> printJobModelList =
 				new ArrayList<PrintJobModel>();
@@ -92,10 +93,12 @@ public class PrintJobsDao {
 				preparedStatement.executeQuery();
 			while (resultSet.next()) {
 				final String jobId = resultSet.getString(1);
+				final String jobStatus = resultSet.getString(2);
 				final PrintJobModel printJobModel =
 					new PrintJobModelImpl(); // NOPMD
 				printJobModel.setJobId(jobId);
 				printJobModel.setPrinterName(printer);
+				printJobModel.setJobStatus(jobStatus);
 				printJobModelList.add(printJobModel);
 			}
 			resultSet.close();
@@ -123,14 +126,17 @@ public class PrintJobsDao {
 				new ArrayList<PrintJobModel>();
 			final ResultSet resultSet = // NOPMD
 				statement.executeQuery(
-					"SELECT JobId, PrinterName FROM PrintJob ORDER BY JobId");
+					"SELECT JobId, PrinterName, JobStatus"
+					+ "FROM PrintJob ORDER BY JobId");
 			while (resultSet.next()) {
 				final String jobId = resultSet.getString(1);
 				final String printerName = resultSet.getString(2);
+				final String jobStatus = resultSet.getString(3);
 				final PrintJobModel printJobModel =
 					new PrintJobModelImpl(); // NOPMD
 				printJobModel.setJobId(jobId);
 				printJobModel.setPrinterName(printerName);
+				printJobModel.setJobStatus(jobStatus);
 				printJobModelList.add(printJobModel);
 			}
 			resultSet.close();

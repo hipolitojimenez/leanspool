@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.nioos.leanspool.gxt.client.HasRelatedGrid;
 import com.nioos.leanspool.gxt.client.grid.JobIdColumnConfig;
+import com.nioos.leanspool.gxt.client.grid.JobStatusColumnConfig;
 import com.nioos.leanspool.gxt.client.grid.PrintJobsGrid;
 import com.nioos.leanspool.gxt.client.grid.PrinterNameColumnConfig;
 import com.nioos.leanspool.gxt.shared.PrintJobModel;
@@ -68,6 +69,9 @@ public abstract class AbstractBaseTree<M, C> extends Tree<M, C>
 		final PrinterNameColumnConfig printerNameColumnConfig =
 			new PrinterNameColumnConfig();
 		columnConfigList.add(printerNameColumnConfig);
+		final JobStatusColumnConfig jobStatusColumnConfig =
+			new JobStatusColumnConfig();
+		columnConfigList.add(jobStatusColumnConfig);
 		printJobsGrid = new PrintJobsGrid(columnConfigList);
 	}
 	

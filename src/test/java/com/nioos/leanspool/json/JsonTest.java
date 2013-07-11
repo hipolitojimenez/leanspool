@@ -33,7 +33,7 @@ public class JsonTest {
 	 * Expected result of the print job model to Json object test.
 	 */
 	private static final String EXPECTED_PJMTJO =
-		"{\"jobId\":\"JobId 01\",\"printerName\":\"\"}";
+		"{\"jobId\":\"JobId 01\",\"jobStatus\":\"Status 01\",\"printerName\":\"Printer 01\"}";
 	
 	
 	/**
@@ -101,6 +101,8 @@ public class JsonTest {
 	public final void printJobModelToJsonObjectTest() {
 		final PrintJobModel printJob01 = new PrintJobModelImpl();
 		printJob01.setJobId("JobId 01");
+		printJob01.setJobStatus("Status 01");
+		printJob01.setPrinterName("Printer 01");
 		final JSONObject jsonObject = JSONObject.fromObject(printJob01);
 		final String actual = jsonObject.toString();
 		//
@@ -114,15 +116,19 @@ public class JsonTest {
 	@Test
 	public final void printJobModelListToJsonArrayTest() {
 		final String expected = // NOPMD
-			"[{\"jobId\":\"Job 01\",\"printerName\":\"\"},{\"jobId\":\"Job 02\",\"printerName\":\"\"}]";
+			"[{\"jobId\":\"Job 01\",\"jobStatus\":\"Status 01\",\"printerName\":\"Printer 01\"},{\"jobId\":\"Job 02\",\"jobStatus\":\"Status 02\",\"printerName\":\"Printer 02\"}]";
 		//
 		final List<PrintJobModel> printJobModelList =
 			new ArrayList<PrintJobModel>();
 		final PrintJobModel printJob01 = new PrintJobModelImpl();
 		printJob01.setJobId("Job 01");
+		printJob01.setJobStatus("Status 01");
+		printJob01.setPrinterName("Printer 01");
 		printJobModelList.add(printJob01);
 		final PrintJobModel printJob02 = new PrintJobModelImpl();
 		printJob02.setJobId("Job 02");
+		printJob02.setJobStatus("Status 02");
+		printJob02.setPrinterName("Printer 02");
 		printJobModelList.add(printJob02);
 		final JSONArray jsonArray = JSONArray.fromObject(printJobModelList);
 		final String actual = jsonArray.toString();
@@ -138,15 +144,19 @@ public class JsonTest {
 	@Test
 	public final void printJobModelMapToJsonArrayTest() {
 		final String expected = // NOPMD
-			"{\"jobs\":[{\"jobId\":\"Job 01\",\"printerName\":\"\"},{\"jobId\":\"Job 02\",\"printerName\":\"\"}]}";
+			"{\"jobs\":[{\"jobId\":\"Job 01\",\"jobStatus\":\"Status 01\",\"printerName\":\"Printer 01\"},{\"jobId\":\"Job 02\",\"jobStatus\":\"Status 02\",\"printerName\":\"Printer 02\"}]}";
 		//
 		final List<PrintJobModel> printJobModelList =
 			new ArrayList<PrintJobModel>();
 		final PrintJobModel printJob01 = new PrintJobModelImpl();
 		printJob01.setJobId("Job 01");
+		printJob01.setJobStatus("Status 01");
+		printJob01.setPrinterName("Printer 01");
 		printJobModelList.add(printJob01);
 		final PrintJobModel printJob02 = new PrintJobModelImpl();
 		printJob02.setJobId("Job 02");
+		printJob02.setJobStatus("Status 02");
+		printJob02.setPrinterName("Printer 02");
 		printJobModelList.add(printJob02);
 		final Map<String, List<PrintJobModel>> printJobModelMap =
 			Collections.singletonMap("jobs", printJobModelList);

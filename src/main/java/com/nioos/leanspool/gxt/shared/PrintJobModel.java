@@ -36,5 +36,16 @@ public interface PrintJobModel {
 	 */
 	void setPrinterName(String value);
 	
+	/**
+	 * Gets the job status.
+	 * @return the job status.
+	 */
+	String getJobStatus();
+	
+	/**
+	 * Sets the job status.
+	 * @param value the job status.
+	 */
+	void setJobStatus(String value);
 	
 }

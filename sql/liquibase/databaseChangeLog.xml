@@ -24,9 +24,15 @@
 			<column name="PrinterName" type="nvarchar(250)">
 				<constraints nullable="false" />
 			</column>
+			<column name="JobStatus" type="nvarchar(250)">
+				<constraints nullable="false" />
+			</column>
 		</createTable>
 		<createIndex tableName="PrintJob" indexName="PrintJob_PrinterName">
 			<column name="PrinterName" />
+		</createIndex>
+		<createIndex tableName="PrintJob" indexName="PrintJob_JobStatus">
+			<column name="JobStatus" />
 		</createIndex>
 	</changeSet>
 </databaseChangeLog>

@@ -83,30 +83,4 @@ public class GetPrintJobsServlet extends HttpServlet {
 	}
 	
 	
-	/*
-	@Override
-	protected final void doGet(final HttpServletRequest request,
-				final HttpServletResponse response) throws ServletException,
-			IOException {
-		try {
-			final List<PrinterModel> printerModelList =
-				printerDao.getPrinters();
-			final Map<String, List<PrinterModel>> printerModelMap =
-					Collections.singletonMap("printers", printerModelList);
-			final JSONObject jsonObject =
-				JSONObject.fromObject(printerModelMap);
-			final String result = jsonObject.toString();
-			response.getWriter().print(result);
-		} catch (PrintersException prtEx) {
-			final Map<String, Object> error = new HashMap<String, Object>();
-			error.put("printers", new ArrayList<PrinterModel>());
-			error.put("errorCode", Errors.GETPRINTERS);
-			final JSONObject jsonObject = JSONObject.fromObject(error);
-			final String result = jsonObject.toString();
-			response.getWriter().print(result);
-		}
-	}
-	*/
-	
-	
 }

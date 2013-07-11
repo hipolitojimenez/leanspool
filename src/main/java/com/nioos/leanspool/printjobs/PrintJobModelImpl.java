@@ -26,6 +26,12 @@ public class PrintJobModelImpl implements PrintJobModel {
 	
 	
 	/**
+	 * The job status.
+	 */
+	private String jobStatus;
+	
+	
+	/**
 	 * Gets the job id.
 	 * @return the job id.
 	 */
@@ -58,6 +64,24 @@ public class PrintJobModelImpl implements PrintJobModel {
 	 */
 	public final void setPrinterName(final String value) {
 		printerName = value;
+	}
+	
+	
+	/**
+	 * Gets the job status.
+	 * @return the job status.
+	 */
+	public final String getJobStatus() {
+		return jobStatus;
+	}
+	
+	
+	/**
+	 * Sets the job status.
+	 * @param value the job status.
+	 */
+	public final void setJobStatus(final String value) {
+		jobStatus = value;
 	}
 	
 	
