@@ -245,4 +245,45 @@ public class PrintJobsDao {
 	}
 	
 	
+	/**
+	 * Gets the print job list with the given status.
+	 * @param status the print job status.
+	 * @return the print job list with the given status.
+	 * @throws PrintJobsException on error.
+	 */
+	public List<PrintJobModel> getPrintJobsForStatus(String status)
+			throws PrintJobsException {
+		final Connection connection = getSelectConnection(); // NOPMD
+		final PreparedStatement preparedStatement =
+			getSelectPreparedStatement(connection,
+			"SELECT JobId, PrinterName FROM PrintJob"
+			+ " WHERE JobStatus = ? ORDER BY JobId");
+		try {
+			final List<PrintJobModel> printJobModelList =
+				new ArrayList<PrintJobModel>();
+			preparedStatement.setString(1, status);
+			final ResultSet resultSet = // NOPMD
+				preparedStatement.executeQuery();
+			while (resultSet.next()) {
+				final String jobId = resultSet.getString(1);
+				final String printerName = resultSet.getString(2);
+				final PrintJobModel printJobModel =
+					new PrintJobModelImpl(); // NOPMD
+				printJobModel.setJobId(jobId);
+				printJobModel.setPrinterName(printerName);
+				printJobModel.setJobStatus(status);
+				printJobModelList.add(printJobModel);
+			}
+			resultSet.close();
+			return printJobModelList;
+		} catch (SQLException sqle) {
+			LOG.error(CANNOT_GET_PRINT_JOBS, sqle);
+			throw new PrintJobsException(CANNOT_GET_PRINT_JOBS, sqle);
+		} finally {
+			silentCloseStatement(preparedStatement);
+			silentCloseConnection(connection);
+		}
+	}
+	
+	
 }

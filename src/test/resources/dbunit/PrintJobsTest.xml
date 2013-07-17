@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataset>
-	<PrintJob JobId="jobId02" PrinterName="Printer02" JobStatus="New" />
+	<PrintJob JobId="jobId02" PrinterName="Printer02" JobStatus="Failed" />
 	<PrintJob JobId="jobId01" PrinterName="Printer01" JobStatus="New" />
-	<PrintJob JobId="jobId03" PrinterName="Printer03" JobStatus="New" />
+	<PrintJob JobId="jobId03" PrinterName="Printer03" JobStatus="Completed" />
 </dataset>

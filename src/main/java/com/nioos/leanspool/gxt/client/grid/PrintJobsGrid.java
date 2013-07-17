@@ -64,4 +64,13 @@ public class PrintJobsGrid extends Grid<PrintJobModel> {
 	}
 	
 	
+	/**
+	 * Sets the status whose print jobs we are interested.
+	 * @param status the status.
+	 */
+	public final void setStatus(final String status) {
+		printJobsHttpProxy.setStatus(status);
+	}
+	
+	
 }

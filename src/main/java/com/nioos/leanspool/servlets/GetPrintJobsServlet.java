@@ -58,13 +58,26 @@ public class GetPrintJobsServlet extends HttpServlet {
 	protected final void doGet(final HttpServletRequest req,
 				final HttpServletResponse resp)
 			throws ServletException, IOException {
+		boolean hasParameter = false;
 		final String printer = req.getParameter("printer");
+		if (printer != null) {
+			hasParameter = true;
+		}
+		final String status = req.getParameter("status");
+		if (status != null) {
+			hasParameter = true;
+		}
 		try {
-			List<PrintJobModel> printJobList;
-			if (printer == null) {
+			List<PrintJobModel> printJobList = new ArrayList<PrintJobModel>();
+			if (!hasParameter) {
 				printJobList = printJobsDao.getPrintJobs();
 			} else {
-				printJobList = printJobsDao.getPrintJobsForPrinter(printer);
+				if (printer != null) {
+					printJobList = printJobsDao.getPrintJobsForPrinter(printer);
+				}
+				if (status != null) {
+					printJobList = printJobsDao.getPrintJobsForStatus(status);
+				}
 			}
 			final Map<String, List<PrintJobModel>> printJobModelMap =
 					Collections.singletonMap("jobs", printJobList);

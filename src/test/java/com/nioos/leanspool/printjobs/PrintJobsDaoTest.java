@@ -91,4 +91,35 @@ public class PrintJobsDaoTest {
 	}
 	
 	
+	/**
+	 * Get Print Jobs For Status Test.
+	 * @throws Exception on error.
+	 */
+	@Test
+	public final void testGetPrintJobsForStatus() throws Exception {
+		final DataSource dataSource =
+			DataSourceUtils.buildDataSource("/jdbc.properties");
+		//
+		final IDatabaseConnection dbConnection =
+			new DatabaseDataSourceConnection(dataSource);
+		final FlatXmlDataSetBuilder flatXmlDataSetBuilder =
+			new FlatXmlDataSetBuilder();
+		final IDataSet dataSet =
+			flatXmlDataSetBuilder.build(
+				new File("./src/test/resources/dbunit/PrintJobsTest.xml"));
+		DatabaseOperation.CLEAN_INSERT.execute(dbConnection, dataSet);
+		dbConnection.getConnection().commit();
+		dbConnection.close();
+		//
+		final PrintJobsDao printJobsDao = new PrintJobsDao();
+		final List<PrintJobModel> printJobList =
+			printJobsDao.getPrintJobsForStatus("New");
+		final PrintJobModel printJob = printJobList.get(0);
+		final String printerName = printJob.getPrinterName();
+		Assert.assertEquals("Invalid print name", "Printer01", printerName);
+		final String jobId = printJob.getJobId();
+		Assert.assertEquals("Invalid print job ID", "jobId01", jobId);
+	}
+	
+	
 }

@@ -38,6 +38,16 @@ public class PrintJobsHttpProxy extends HttpProxy<ListLoadConfig> {
 	
 	
 	/**
+	 * Binds the proxy to the new url.
+	 * @param newUrl the new url.
+	 */
+	private void bindNewUrl(String newUrl) {
+		initUrl = newUrl;
+		builder = new RequestBuilder(RequestBuilder.GET, newUrl);
+	}
+	
+	
+	/**
 	 * Sets the printer parameter.
 	 * @param printer the printer parameter.
 	 */
@@ -46,8 +56,20 @@ public class PrintJobsHttpProxy extends HttpProxy<ListLoadConfig> {
 		if (printer != null) {
 			newUrl = PRINTJOBS_URL + "?printer=" + printer;
 		}
-		initUrl = newUrl;
-		builder = new RequestBuilder(RequestBuilder.GET, newUrl);
+		bindNewUrl(newUrl);
+	}
+	
+	
+	/**
+	 * Sets the status parameter.
+	 * @param status the status parameter.
+	 */
+	public final void setStatus(final String status) {
+		String newUrl = PRINTJOBS_URL; // NOPMD
+		if (status != null) {
+			newUrl = PRINTJOBS_URL + "?status=" + status;
+		}
+		bindNewUrl(newUrl);
 	}
 	
 	
