@@ -13,7 +13,7 @@ import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import com.nioos.leanspool.dao.AbstractBaseDao;
+import com.nioos.leanspool.dao.BaseDao;
 import com.nioos.leanspool.dao.DaoException;
 import com.nioos.leanspool.gxt.shared.PrintJobModel;
 
@@ -24,7 +24,7 @@ import com.nioos.leanspool.gxt.shared.PrintJobModel;
  * @author Hipolito Jimenez.
  *
  */
-public class PrintJobsDao extends AbstractBaseDao {
+public class PrintJobsDao extends BaseDao {
 	
 	
 	/**
@@ -138,7 +138,7 @@ public class PrintJobsDao extends AbstractBaseDao {
 	 * @throws PrintJobsException on error.
 	 * @throws DaoException  on error.
 	 */
-	public List<PrintJobModel> getPrintJobsForStatus(String status)
+	public final List<PrintJobModel> getPrintJobsForStatus(final String status)
 			throws PrintJobsException, DaoException {
 		final Connection connection = getSelectConnection(); // NOPMD
 		final PreparedStatement preparedStatement =

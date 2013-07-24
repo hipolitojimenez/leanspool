@@ -32,10 +32,11 @@ public final class Error2JSON {
 	/**
 	 * Sends an HTTP error.
 	 * @param resp the response.
+	 * @param errorCode the error code.
 	 * @throws IOException on error.
 	 */
-	public static void send(final HttpServletResponse resp, Errors errorCode)
-			throws IOException {
+	public static void send(final HttpServletResponse resp,
+			final Errors errorCode) throws IOException {
 		final Map<String, Object> error = new HashMap<String, Object>();
 		error.put("jobs", new ArrayList<PrinterModel>());
 		error.put("errorCode", errorCode);

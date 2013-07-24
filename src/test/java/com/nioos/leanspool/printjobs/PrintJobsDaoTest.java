@@ -52,7 +52,7 @@ public class PrintJobsDaoTest {
 		//
 		final PrintJobsDao printJobsDao = new PrintJobsDao();
 		final List<PrintJobModel> printJobList =
-			printJobsDao.getPrintJobsForPrinter("Printer01");
+			printJobsDao.getPrintJobsForPrinter("Printer01"); // NOPMD
 		final PrintJobModel printJob = printJobList.get(0);
 		final String printerName = printJob.getPrinterName();
 		Assert.assertEquals("Invalid print name", "Printer01", printerName);
@@ -96,7 +96,7 @@ public class PrintJobsDaoTest {
 	 * @throws Exception on error.
 	 */
 	@Test
-	public final void testGetPrintJobsForStatus() throws Exception {
+	public final void testGetPrintJobsForStatus() throws Exception { // NOPMD
 		final DataSource dataSource =
 			DataSourceUtils.buildDataSource("/jdbc.properties");
 		//

@@ -41,7 +41,7 @@ public class PrintJobsHttpProxy extends HttpProxy<ListLoadConfig> {
 	 * Binds the proxy to the new url.
 	 * @param newUrl the new url.
 	 */
-	private void bindNewUrl(String newUrl) {
+	private void bindNewUrl(final String newUrl) {
 		initUrl = newUrl;
 		builder = new RequestBuilder(RequestBuilder.GET, newUrl);
 	}

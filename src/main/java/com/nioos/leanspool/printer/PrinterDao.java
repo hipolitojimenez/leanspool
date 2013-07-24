@@ -12,7 +12,7 @@ import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import com.nioos.leanspool.dao.AbstractBaseDao;
+import com.nioos.leanspool.dao.BaseDao;
 import com.nioos.leanspool.dao.DaoException;
 import com.nioos.leanspool.gxt.shared.PrinterModel;
 
@@ -23,9 +23,13 @@ import com.nioos.leanspool.gxt.shared.PrinterModel;
  * @author Hipolito Jimenez.
  *
  */
-public class PrinterDao extends AbstractBaseDao {
+public class PrinterDao extends BaseDao {
 	
 	
+	/**
+	 * Constructor.
+	 * @throws DaoException on error.
+	 */
 	public PrinterDao() throws DaoException {
 		super();
 	}

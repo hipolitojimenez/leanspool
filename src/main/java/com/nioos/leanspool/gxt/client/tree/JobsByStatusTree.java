@@ -25,7 +25,8 @@ public class JobsByStatusTree extends AbstractBaseTree<String, String> {
 	
 	
 	@Override
-	protected void changeSelectedNodeName(final String theSelectedNodeName) {
+	protected final void changeSelectedNodeName(
+			final String theSelectedNodeName) {
 		final PrintJobsGrid printJobsGrid = getRelatedGrid();
 		printJobsGrid.setStatus(theSelectedNodeName);
 	}

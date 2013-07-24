@@ -15,13 +15,17 @@ import org.apache.commons.logging.LogFactory;
 
 
 
-public abstract class AbstractBaseDao {
+/**
+ * Abstract base DAO.
+ * @author Hipolito Jimenez.
+ */
+public class BaseDao {
 	
 	
 	/**
 	 * The logger.
 	 */
-	private static final Log LOG = LogFactory.getLog(AbstractBaseDao.class);
+	private static final Log LOG = LogFactory.getLog(BaseDao.class);
 	
 	
 	/**
@@ -34,7 +38,7 @@ public abstract class AbstractBaseDao {
 	 * Constructor.
 	 * @throws DaoException on error.
 	 */
-	public AbstractBaseDao() throws DaoException {
+	protected BaseDao() throws DaoException {
 		try {
 			dataSource =
 				DataSourceUtils.buildDataSource("/jdbc.properties");
@@ -50,7 +54,7 @@ public abstract class AbstractBaseDao {
 	 * Constructor.
 	 * @param theDataSource the data source to be used.
 	 */
-	public AbstractBaseDao(final DataSource theDataSource) {
+	protected BaseDao(final DataSource theDataSource) {
 		dataSource = theDataSource;
 	}
 	
@@ -59,7 +63,7 @@ public abstract class AbstractBaseDao {
 	 * Silently close the jdbc connection.
 	 * @param connection the jdbc connection.
 	 */
-	protected void silentCloseConnection(final Connection connection) {
+	public final void silentCloseConnection(final Connection connection) {
 		if (connection != null) {
 			try {
 				connection.close();
@@ -73,7 +77,7 @@ public abstract class AbstractBaseDao {
 	 * Silently close the jdbc statement.
 	 * @param statement the jdbc statement.
 	 */
-	protected void silentCloseStatement(final Statement statement) {
+	public final void silentCloseStatement(final Statement statement) {
 		if (statement != null) {
 			try {
 				statement.close();
@@ -89,7 +93,7 @@ public abstract class AbstractBaseDao {
 	 * @return the jdbc statement.
 	 * @throws DaoException on error.
 	 */
-	protected Statement getSelectStatement(final Connection connection)
+	public final Statement getSelectStatement(final Connection connection)
 			throws DaoException {
 		try {
 			final Statement statement = // NOPMD
@@ -107,7 +111,7 @@ public abstract class AbstractBaseDao {
 	 * @return the jdbc connection.
 	 * @throws DaoException on error.
 	 */
-	protected Connection getSelectConnection() throws DaoException {
+	public final Connection getSelectConnection() throws DaoException {
 		try {
 			final Connection connection = // NOPMD
 				dataSource.getConnection();
@@ -130,7 +134,7 @@ public abstract class AbstractBaseDao {
 	 * @return the jdbc prepared statement.
 	 * @throws DaoException on error.
 	 */
-	protected PreparedStatement getSelectPreparedStatement(
+	public final PreparedStatement getSelectPreparedStatement(
 				final Connection connection, final String sqlStatement)
 			throws DaoException {
 		try {
