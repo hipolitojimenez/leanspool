@@ -16,8 +16,8 @@ import org.junit.Assert;
 
 import org.junit.Test;
 
+import com.nioos.leanspool.dao.DataSourceUtils;
 import com.nioos.leanspool.gxt.shared.PrintJobModel;
-import com.nioos.leanspool.printer.DataSourceUtils;
 
 
 

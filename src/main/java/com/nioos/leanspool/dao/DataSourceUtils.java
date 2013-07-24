@@ -1,4 +1,4 @@
-package com.nioos.leanspool.printer;
+package com.nioos.leanspool.dao;
 
 
 
@@ -12,7 +12,6 @@ import org.apache.commons.dbcp.BasicDataSourceFactory;
 
 
 
-//TODO move to own package
 /**
  * Utility class to build datasources.
  * @author Hipolito Jimenez.

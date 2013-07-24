@@ -9,11 +9,11 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.sql.DataSource;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import com.nioos.leanspool.dao.AbstractBaseDao;
+import com.nioos.leanspool.dao.DaoException;
 import com.nioos.leanspool.gxt.shared.PrinterModel;
 
 
@@ -23,7 +23,12 @@ import com.nioos.leanspool.gxt.shared.PrinterModel;
  * @author Hipolito Jimenez.
  *
  */
-public class PrinterDao {
+public class PrinterDao extends AbstractBaseDao {
+	
+	
+	public PrinterDao() throws DaoException {
+		super();
+	}
 	
 	
 	/**
@@ -33,42 +38,13 @@ public class PrinterDao {
 	
 	
 	/**
-	 * The datasource.
-	 */
-	private transient DataSource printersDataSource;
-	
-	
-	/**
-	 * Constructor.
-	 * @throws PrintersException on error.
-	 */
-	public PrinterDao() throws PrintersException {
-		try {
-			printersDataSource =
-				DataSourceUtils.buildDataSource("/jdbc.properties");
-		} catch (Exception exc) {
-			LOG.fatal("Cannot create datasource '/jdbc.properties'", exc);
-			throw new PrintersException(
-				"Cannot create datasource '/jdbc.properties'", exc);
-		}
-	}
-	
-	
-	/**
-	 * Constructor.
-	 * @param dataSource the data source to be used.
-	 */
-	public PrinterDao(final DataSource dataSource) {
-		printersDataSource = dataSource;
-	}
-	
-	
-	/**
 	 * Retrieves the printer list.
 	 * @return the printer list.
 	 * @throws PrintersException on error.
+	 * @throws DaoException on error.
 	 */
-	public final List<PrinterModel> getPrinters() throws PrintersException {
+	public final List<PrinterModel> getPrinters()
+			throws PrintersException, DaoException {
 		final Connection connection = getSelectConnection(); // NOPMD
 		final Statement statement = getSelectStatement(connection); // NOPMD
 		try {
@@ -91,77 +67,6 @@ public class PrinterDao {
 		} finally {
 			silentCloseStatement(statement);
 			silentCloseConnection(connection);
-		}
-	}
-	
-	
-	/**
-	 * Silently close the jdbc connection.
-	 * @param connection the jdbc connection.
-	 */
-	private void silentCloseConnection(final Connection connection) {
-		if (connection != null) {
-			try {
-				connection.close();
-			} catch (SQLException sqle) {
-				LOG.error("Cannot silently close connection", sqle);
-			}
-		}
-	}
-	
-	
-	/**
-	 * Silently close the jdbc statement.
-	 * @param statement the jdbc statement.
-	 */
-	private void silentCloseStatement(final Statement statement) {
-		if (statement != null) {
-			try {
-				statement.close();
-			} catch (SQLException sqle) {
-				LOG.error("Cannot silently close statement", sqle);
-			}
-		}
-	}
-	
-	
-	/**
-	 * Gets and prepare a select jdbc statement from a jdbc connection.
-	 * @param connection the jdbc connection.
-	 * @return the jdbc statement.
-	 * @throws PrintersException on error.
-	 */
-	private Statement getSelectStatement(final Connection connection)
-			throws PrintersException {
-		try {
-			final Statement statement = // NOPMD
-				connection.createStatement(ResultSet.TYPE_FORWARD_ONLY,
-					ResultSet.CONCUR_READ_ONLY);
-			return statement;
-		} catch (SQLException sqle) {
-			LOG.fatal("Cannot get sql statement", sqle);
-			throw new PrintersException("Cannot get sql statement", sqle);
-		}
-	}
-	
-	
-	/**
-	 * Gets and prepare a select jdbc connection.
-	 * @return the jdbc connection.
-	 * @throws PrintersException on error.
-	 */
-	private Connection getSelectConnection() throws PrintersException {
-		try {
-			final Connection connection = // NOPMD
-				printersDataSource.getConnection();
-			connection.setAutoCommit(false);
-			//
-			connection.setReadOnly(true);
-			//
-			return connection;
-		} catch (SQLException sqle) {
-			LOG.fatal("Cannot get sql connection", sqle);
-			throw new PrintersException("Cannot get sql connection", sqle);
 		}
 	}
 	

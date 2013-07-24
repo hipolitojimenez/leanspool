@@ -5,7 +5,6 @@ package com.nioos.leanspool.servlets;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -16,9 +15,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import net.sf.json.JSONObject;
 
+import com.nioos.leanspool.dao.DaoException;
 import com.nioos.leanspool.gxt.shared.Errors;
 import com.nioos.leanspool.gxt.shared.PrintJobModel;
-import com.nioos.leanspool.gxt.shared.PrinterModel;
 import com.nioos.leanspool.printjobs.PrintJobsDao;
 import com.nioos.leanspool.printjobs.PrintJobsException;
 
@@ -46,9 +45,9 @@ public class GetPrintJobsServlet extends HttpServlet {
 	
 	/**
 	 * Constructor.
-	 * @throws PrintJobsException on error.
+	 * @throws DaoException on error.
 	 */
-	public GetPrintJobsServlet() throws PrintJobsException {
+	public GetPrintJobsServlet() throws DaoException {
 		super();
 		printJobsDao = new PrintJobsDao();
 	}
@@ -86,12 +85,9 @@ public class GetPrintJobsServlet extends HttpServlet {
 			final String result = jsonObject.toString();
 			resp.getWriter().print(result);
 		} catch (PrintJobsException pje) {
-			final Map<String, Object> error = new HashMap<String, Object>();
-			error.put("jobs", new ArrayList<PrinterModel>());
-			error.put("errorCode", Errors.GETJOBS);
-			final JSONObject jsonObject = JSONObject.fromObject(error);
-			final String result = jsonObject.toString();
-			resp.getWriter().print(result);
+			Error2JSON.send(resp, Errors.GETJOBS);
+		} catch (DaoException daoEx) {
+			Error2JSON.send(resp, Errors.GETJOBS);
 		}
 	}
 	

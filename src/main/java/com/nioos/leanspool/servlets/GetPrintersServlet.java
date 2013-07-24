@@ -3,9 +3,7 @@ package com.nioos.leanspool.servlets;
 
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -16,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import net.sf.json.JSONObject;
 
+import com.nioos.leanspool.dao.DaoException;
 import com.nioos.leanspool.gxt.shared.Errors;
 import com.nioos.leanspool.gxt.shared.PrinterModel;
 import com.nioos.leanspool.printer.PrinterDao;
@@ -45,9 +44,9 @@ public class GetPrintersServlet extends HttpServlet {
 	
 	/**
 	 * Contructor.
-	 * @throws PrintersException on error.
+	 * @throws DaoException on error. 
 	 */
-	public GetPrintersServlet() throws PrintersException {
+	public GetPrintersServlet() throws DaoException {
 		super();
 		printerDao = new PrinterDao();
 	}
@@ -67,12 +66,9 @@ public class GetPrintersServlet extends HttpServlet {
 			final String result = jsonObject.toString();
 			response.getWriter().print(result);
 		} catch (PrintersException prtEx) {
-			final Map<String, Object> error = new HashMap<String, Object>();
-			error.put("printers", new ArrayList<PrinterModel>());
-			error.put("errorCode", Errors.GETPRINTERS);
-			final JSONObject jsonObject = JSONObject.fromObject(error);
-			final String result = jsonObject.toString();
-			response.getWriter().print(result);
+			Error2JSON.send(response, Errors.GETPRINTERS);
+		} catch (DaoException daoEx) {
+			Error2JSON.send(response, Errors.GETPRINTERS);
 		}
 	}
 	

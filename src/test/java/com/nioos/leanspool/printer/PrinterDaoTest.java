@@ -16,6 +16,7 @@ import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.dbunit.operation.DatabaseOperation;
 import org.junit.Test;
 
+import com.nioos.leanspool.dao.DataSourceUtils;
 import com.nioos.leanspool.gxt.shared.PrinterModel;
 
 

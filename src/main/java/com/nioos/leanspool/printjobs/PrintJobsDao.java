@@ -10,13 +10,12 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.sql.DataSource;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import com.nioos.leanspool.dao.AbstractBaseDao;
+import com.nioos.leanspool.dao.DaoException;
 import com.nioos.leanspool.gxt.shared.PrintJobModel;
-import com.nioos.leanspool.printer.DataSourceUtils;
 
 
 
@@ -25,7 +24,7 @@ import com.nioos.leanspool.printer.DataSourceUtils;
  * @author Hipolito Jimenez.
  *
  */
-public class PrintJobsDao {
+public class PrintJobsDao extends AbstractBaseDao {
 	
 	
 	/**
@@ -42,33 +41,11 @@ public class PrintJobsDao {
 	
 	
 	/**
-	 * The datasource.
-	 */
-	private transient DataSource printJobsDataSource;
-	
-	
-	/**
 	 * Constructor.
-	 * @throws PrintJobsException on error.
+	 * @throws DaoException on error.
 	 */
-	public PrintJobsDao() throws PrintJobsException {
-		try {
-			printJobsDataSource =
-				DataSourceUtils.buildDataSource("/jdbc.properties");
-		} catch (Exception exc) {
-			LOG.fatal("Cannot create datasource '/jdbc.properties'", exc);
-			throw new PrintJobsException(
-				"Cannot create datasource '/jdbc.properties'", exc);
-		}
-	}
-	
-	
-	/**
-	 * Constructor.
-	 * @param dataSource the data source to be used.
-	 */
-	public PrintJobsDao(final DataSource dataSource) {
-		printJobsDataSource = dataSource;
+	public PrintJobsDao() throws DaoException {
+		super();
 	}
 	
 	
@@ -77,9 +54,10 @@ public class PrintJobsDao {
 	 * @param printer the printer name.
 	 * @return the print job list for the given printer.
 	 * @throws PrintJobsException on error.
+	 * @throws DaoException on error.
 	 */
 	public final List<PrintJobModel> getPrintJobsForPrinter(
-			final String printer) throws PrintJobsException {
+			final String printer) throws PrintJobsException, DaoException {
 		final Connection connection = getSelectConnection(); // NOPMD
 		final PreparedStatement preparedStatement =
 			getSelectPreparedStatement(connection,
@@ -117,8 +95,10 @@ public class PrintJobsDao {
 	 * Gets the print job list.
 	 * @return the print job list.
 	 * @throws PrintJobsException on error.
+	 * @throws DaoException on error.
 	 */
-	public final List<PrintJobModel> getPrintJobs() throws PrintJobsException {
+	public final List<PrintJobModel> getPrintJobs()
+			throws PrintJobsException, DaoException {
 		final Connection connection = getSelectConnection(); // NOPMD
 		final Statement statement = getSelectStatement(connection); // NOPMD
 		try {
@@ -152,107 +132,14 @@ public class PrintJobsDao {
 	
 	
 	/**
-	 * Silently close the jdbc connection.
-	 * @param connection the jdbc connection.
-	 */
-	private void silentCloseConnection(final Connection connection) {
-		if (connection != null) {
-			try {
-				connection.close();
-			} catch (SQLException sqle) {
-				LOG.error("Cannot silently close connection", sqle);
-			}
-		}
-	}
-	
-	
-	/**
-	 * Silently close the jdbc statement.
-	 * @param statement the jdbc statement.
-	 */
-	private void silentCloseStatement(final Statement statement) {
-		if (statement != null) {
-			try {
-				statement.close();
-			} catch (SQLException sqle) {
-				LOG.error("Cannot silently close statement", sqle);
-			}
-		}
-	}
-	
-	
-	/**
-	 * Gets and prepare a select jdbc statement from a jdbc connection.
-	 * @param connection the jdbc connection.
-	 * @return the jdbc statement.
-	 * @throws PrintJobsException on error.
-	 */
-	private Statement getSelectStatement(final Connection connection)
-			throws PrintJobsException {
-		try {
-			final Statement statement = // NOPMD
-				connection.createStatement(ResultSet.TYPE_FORWARD_ONLY,
-					ResultSet.CONCUR_READ_ONLY);
-			return statement;
-		} catch (SQLException sqle) {
-			LOG.fatal("Cannot get sql statement", sqle);
-			throw new PrintJobsException("Cannot get sql statement", sqle);
-		}
-	}
-	
-	
-	/**
-	 * Gets and prepare a select jdbc preparedstatement from a jdbc connection.
-	 * @param connection the jdbc connection.
-	 * @param sqlStatement the sql statement.
-	 * @return the jdbc prepared statement.
-	 * @throws PrintJobsException on error.
-	 */
-	private PreparedStatement getSelectPreparedStatement(
-				final Connection connection, final String sqlStatement)
-			throws PrintJobsException {
-		try {
-			final PreparedStatement preparedStatement = // NOPMD
-				connection.prepareStatement(sqlStatement,
-					ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
-			return preparedStatement;
-		} catch (SQLException sqle) {
-			LOG.fatal("Cannot get sql prepared statement", sqle);
-			throw new PrintJobsException("Cannot get sql prepared statement",
-				sqle);
-		}
-	}
-	
-	
-	/**
-	 * Gets and prepare a select jdbc connection.
-	 * @return the jdbc connection.
-	 * @throws PrintJobsException on error.
-	 */
-	private Connection getSelectConnection() throws PrintJobsException {
-		try {
-			final Connection connection = // NOPMD
-					printJobsDataSource.getConnection();
-			connection.setAutoCommit(false);
-			//
-			connection.setReadOnly(true);
-			//
-			return connection;
-		} catch (SQLException sqle) {
-			LOG.fatal("Cannot get sql connection", sqle);
-			throw new PrintJobsException("Cannot get sql connection", sqle);
-		}
-	}
-	
-	
-	/**
 	 * Gets the print job list with the given status.
 	 * @param status the print job status.
 	 * @return the print job list with the given status.
 	 * @throws PrintJobsException on error.
+	 * @throws DaoException  on error.
 	 */
 	public List<PrintJobModel> getPrintJobsForStatus(String status)
-			throws PrintJobsException {
+			throws PrintJobsException, DaoException {
 		final Connection connection = getSelectConnection(); // NOPMD
 		final PreparedStatement preparedStatement =
 			getSelectPreparedStatement(connection,
