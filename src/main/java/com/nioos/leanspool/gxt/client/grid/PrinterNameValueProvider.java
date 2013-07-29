@@ -31,7 +31,7 @@ public class PrinterNameValueProvider implements
 	
 	@Override
 	public final String getPath() {
-		return "Printer Name";
+		return "PrinterName";
 	}
 	
 	

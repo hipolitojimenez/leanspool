@@ -17,6 +17,8 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.nioos.leanspool.dao.DataSourceUtils;
+import com.nioos.leanspool.dao.SortAndPaginationParameters;
+import com.nioos.leanspool.dao.SortParameters;
 import com.nioos.leanspool.gxt.shared.PrintJobModel;
 
 
@@ -51,8 +53,12 @@ public class PrintJobsDaoTest {
 		dbConnection.close();
 		//
 		final PrintJobsDao printJobsDao = new PrintJobsDao();
+		final SortParameters sortParameters =
+			new SortParameters("JobId", "ASC");
+		final SortAndPaginationParameters sapp =
+			new SortAndPaginationParameters(sortParameters);
 		final List<PrintJobModel> printJobList =
-			printJobsDao.getPrintJobsForPrinter("Printer01"); // NOPMD
+			printJobsDao.getPrintJobsForPrinter("Printer01", sapp); // NOPMD
 		final PrintJobModel printJob = printJobList.get(0);
 		final String printerName = printJob.getPrinterName();
 		Assert.assertEquals("Invalid print name", "Printer01", printerName);
@@ -82,7 +88,12 @@ public class PrintJobsDaoTest {
 		dbConnection.close();
 		//
 		final PrintJobsDao printJobsDao = new PrintJobsDao();
-		final List<PrintJobModel> printJobList = printJobsDao.getPrintJobs();
+		final SortParameters sortParameters =
+				new SortParameters("JobId", "ASC");
+			final SortAndPaginationParameters sapp =
+				new SortAndPaginationParameters(sortParameters);
+		final List<PrintJobModel> printJobList =
+			printJobsDao.getPrintJobs(sapp);
 		final PrintJobModel printJob = printJobList.get(0);
 		final String printerName = printJob.getPrinterName();
 		Assert.assertEquals("Invalid print name", "Printer01", printerName);
@@ -112,8 +123,12 @@ public class PrintJobsDaoTest {
 		dbConnection.close();
 		//
 		final PrintJobsDao printJobsDao = new PrintJobsDao();
+		final SortParameters sortParameters =
+				new SortParameters("JobId", "ASC");
+			final SortAndPaginationParameters sapp =
+				new SortAndPaginationParameters(sortParameters);
 		final List<PrintJobModel> printJobList =
-			printJobsDao.getPrintJobsForStatus("New");
+			printJobsDao.getPrintJobsForStatus("New", sapp);
 		final PrintJobModel printJob = printJobList.get(0);
 		final String printerName = printJob.getPrinterName();
 		Assert.assertEquals("Invalid print name", "Printer01", printerName);

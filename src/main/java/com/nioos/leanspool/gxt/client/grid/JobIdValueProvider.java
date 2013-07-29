@@ -31,7 +31,7 @@ public class JobIdValueProvider implements
 	
 	@Override
 	public final String getPath() {
-		return "Job ID";
+		return "JobId";
 	}
 	
 	

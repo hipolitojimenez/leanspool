@@ -16,6 +16,8 @@ import javax.servlet.http.HttpServletResponse;
 import net.sf.json.JSONObject;
 
 import com.nioos.leanspool.dao.DaoException;
+import com.nioos.leanspool.dao.SortAndPaginationParameters;
+import com.nioos.leanspool.dao.SortParameters;
 import com.nioos.leanspool.gxt.shared.Errors;
 import com.nioos.leanspool.gxt.shared.PrintJobModel;
 import com.nioos.leanspool.printjobs.PrintJobsDao;
@@ -57,6 +59,12 @@ public class GetPrintJobsServlet extends HttpServlet {
 	protected final void doGet(final HttpServletRequest req,
 				final HttpServletResponse resp)
 			throws ServletException, IOException {
+		final String sortField = req.getParameter("sortField");
+		final String sortDir = req.getParameter("sortDir");
+		final SortParameters sortParameters =
+			new SortParameters(sortField, sortDir);
+		final SortAndPaginationParameters sapp = // NOPMD
+			new SortAndPaginationParameters(sortParameters);
 		boolean hasParameter = false; // NOPMD
 		final String printer = req.getParameter("printer");
 		if (printer != null) {
@@ -72,13 +80,14 @@ public class GetPrintJobsServlet extends HttpServlet {
 			if (hasParameter) {
 				if (printer != null) {
 					printJobList = // NOPMD
-						printJobsDao.getPrintJobsForPrinter(printer);
+						printJobsDao.getPrintJobsForPrinter(printer, sapp);
 				}
 				if (status != null) {
-					printJobList = printJobsDao.getPrintJobsForStatus(status);
+					printJobList =
+						printJobsDao.getPrintJobsForStatus(status, sapp);
 				}
 			} else {
-				printJobList = printJobsDao.getPrintJobs();
+				printJobList = printJobsDao.getPrintJobs(sapp);
 			}
 			final Map<String, List<PrintJobModel>> printJobModelMap =
 					Collections.singletonMap("jobs", printJobList);

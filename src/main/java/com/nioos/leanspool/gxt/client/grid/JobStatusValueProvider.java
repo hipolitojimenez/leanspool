@@ -31,7 +31,7 @@ public class JobStatusValueProvider implements
 	
 	@Override
 	public final String getPath() {
-		return "Status";
+		return "JobStatus";
 	}
 	
 	

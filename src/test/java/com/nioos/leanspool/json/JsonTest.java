@@ -80,7 +80,8 @@ public class JsonTest {
 		final String expected = // NOPMD
 			"{\"printers\":[{\"key\":\"Key 01\"},{\"key\":\"Key 02\"}]}";
 		//
-		final List<PrinterModel> printerModelList = new ArrayList<PrinterModel>();
+		final List<PrinterModel> printerModelList =
+			new ArrayList<PrinterModel>();
 		final PrinterModel printer01 = new PrinterModelImpl("Key 01");
 		printerModelList.add(printer01);
 		final PrinterModel printer02 = new PrinterModelImpl("Key 02");
@@ -106,7 +107,8 @@ public class JsonTest {
 		final JSONObject jsonObject = JSONObject.fromObject(printJob01);
 		final String actual = jsonObject.toString();
 		//
-		Assert.assertEquals("Json PrintJobModel failed", EXPECTED_PJMTJO, actual);
+		Assert.assertEquals("Json PrintJobModel failed", EXPECTED_PJMTJO,
+			actual);
 	}
 	
 	

@@ -43,7 +43,7 @@ public class PrintJobsGrid extends Grid<PrintJobModel> {
 	 * Hide the printer name column.
 	 */
 	public final void hidePrinterNameColumn() {
-		getColumnModel().findColumnConfig("Printer Name").setHidden(true);
+		getColumnModel().findColumnConfig("PrinterName").setHidden(true);
 	}
 	
 	
@@ -60,7 +60,7 @@ public class PrintJobsGrid extends Grid<PrintJobModel> {
 	 * Hide the status column.
 	 */
 	public final void hideStatusColumn() {
-		getColumnModel().findColumnConfig("Status").setHidden(true);
+		getColumnModel().findColumnConfig("JobStatus").setHidden(true);
 	}
 	
 	

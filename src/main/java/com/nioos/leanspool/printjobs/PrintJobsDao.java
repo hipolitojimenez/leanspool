@@ -15,6 +15,7 @@ import org.apache.commons.logging.LogFactory;
 
 import com.nioos.leanspool.dao.BaseDao;
 import com.nioos.leanspool.dao.DaoException;
+import com.nioos.leanspool.dao.SortAndPaginationParameters;
 import com.nioos.leanspool.gxt.shared.PrintJobModel;
 
 
@@ -41,6 +42,27 @@ public class PrintJobsDao extends BaseDao {
 	
 	
 	/**
+	 * SQL statement to retrieve the print jobs for a given printer.
+	 */
+	private static final String GETPRINTJOBSFORPRINTERSTMT =
+		"SELECT JobId, JobStatus FROM PrintJob WHERE PrinterName = ?";
+	
+	
+	/**
+	 * SQL statement to retrieve all the print jobs.
+	 */
+	private static final String GETPRINTJOBSSTMT =
+		"SELECT JobId, PrinterName, JobStatus FROM PrintJob";
+	
+	
+	/**
+	 * SQL statement to retrieve the print jobs for a given printer.
+	 */
+	private static final String GETPRINTJOBSFORSTATUSSTMT =
+		"SELECT JobId, PrinterName FROM PrintJob WHERE JobStatus = ?";
+	
+	
+	/**
 	 * Constructor.
 	 * @throws DaoException on error.
 	 */
@@ -52,17 +74,19 @@ public class PrintJobsDao extends BaseDao {
 	/**
 	 * Gets the print job list for the given printer.
 	 * @param printer the printer name.
+	 * @param sapp the sort and pagination parameters.
 	 * @return the print job list for the given printer.
 	 * @throws PrintJobsException on error.
 	 * @throws DaoException on error.
 	 */
 	public final List<PrintJobModel> getPrintJobsForPrinter(
-			final String printer) throws PrintJobsException, DaoException {
+			final String printer,
+			final SortAndPaginationParameters sapp)
+				throws PrintJobsException, DaoException {
 		final Connection connection = getSelectConnection(); // NOPMD
+		final String sql = GETPRINTJOBSFORPRINTERSTMT + sapp.getSortParameters().getSortClause();
 		final PreparedStatement preparedStatement =
-			getSelectPreparedStatement(connection,
-			"SELECT JobId, JobStatus FROM PrintJob"
-			+ " WHERE PrinterName = ? ORDER BY JobId");
+			getSelectPreparedStatement(connection, sql);
 		try {
 			final List<PrintJobModel> printJobModelList =
 				new ArrayList<PrintJobModel>();
@@ -93,21 +117,22 @@ public class PrintJobsDao extends BaseDao {
 	
 	/**
 	 * Gets the print job list.
+	 * @param sapp the sort and pagination parameters. 
 	 * @return the print job list.
 	 * @throws PrintJobsException on error.
 	 * @throws DaoException on error.
 	 */
-	public final List<PrintJobModel> getPrintJobs()
+	public final List<PrintJobModel> getPrintJobs(
+				final SortAndPaginationParameters sapp)
 			throws PrintJobsException, DaoException {
 		final Connection connection = getSelectConnection(); // NOPMD
 		final Statement statement = getSelectStatement(connection); // NOPMD
 		try {
 			final List<PrintJobModel> printJobModelList =
 				new ArrayList<PrintJobModel>();
-			final ResultSet resultSet = // NOPMD
-				statement.executeQuery(
-					"SELECT JobId, PrinterName, JobStatus"
-					+ " FROM PrintJob ORDER BY JobId");
+			final String sql = GETPRINTJOBSSTMT +
+				sapp.getSortParameters().getSortClause();
+			final ResultSet resultSet = statement.executeQuery(sql); // NOPMD
 			while (resultSet.next()) {
 				final String jobId = resultSet.getString(1);
 				final String printerName = resultSet.getString(2);
@@ -134,17 +159,18 @@ public class PrintJobsDao extends BaseDao {
 	/**
 	 * Gets the print job list with the given status.
 	 * @param status the print job status.
+	 * @param sapp the sort and pagination parameters. 
 	 * @return the print job list with the given status.
 	 * @throws PrintJobsException on error.
 	 * @throws DaoException  on error.
 	 */
-	public final List<PrintJobModel> getPrintJobsForStatus(final String status)
+	public final List<PrintJobModel> getPrintJobsForStatus(final String status,
+				final SortAndPaginationParameters sapp)
 			throws PrintJobsException, DaoException {
 		final Connection connection = getSelectConnection(); // NOPMD
+		final String sql = GETPRINTJOBSFORSTATUSSTMT + sapp.getSortParameters().getSortClause();
 		final PreparedStatement preparedStatement =
-			getSelectPreparedStatement(connection,
-			"SELECT JobId, PrinterName FROM PrintJob"
-			+ " WHERE JobStatus = ? ORDER BY JobId");
+			getSelectPreparedStatement(connection, sql);
 		try {
 			final List<PrintJobModel> printJobModelList =
 				new ArrayList<PrintJobModel>();

@@ -17,4 +17,9 @@
 		<Method name="getSelectPreparedStatement"/>
 		<Bug pattern="SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING"/>
 	</Match>
+	<Match>
+		<Class name="com.nioos.leanspool.printjobs.PrintJobsDao" />
+		<Method name="getPrintJobs"/>
+		<Bug pattern="SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE"/>
+	</Match>
 </FindBugsFilter>
