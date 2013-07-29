@@ -84,7 +84,8 @@ public class PrintJobsDao extends BaseDao {
 			final SortAndPaginationParameters sapp)
 				throws PrintJobsException, DaoException {
 		final Connection connection = getSelectConnection(); // NOPMD
-		final String sql = GETPRINTJOBSFORPRINTERSTMT + sapp.getSortParameters().getSortClause();
+		final String sql = GETPRINTJOBSFORPRINTERSTMT
+			+ sapp.getSortParameters().getSortClause();
 		final PreparedStatement preparedStatement =
 			getSelectPreparedStatement(connection, sql);
 		try {
@@ -130,8 +131,8 @@ public class PrintJobsDao extends BaseDao {
 		try {
 			final List<PrintJobModel> printJobModelList =
 				new ArrayList<PrintJobModel>();
-			final String sql = GETPRINTJOBSSTMT +
-				sapp.getSortParameters().getSortClause();
+			final String sql = GETPRINTJOBSSTMT
+				+ sapp.getSortParameters().getSortClause();
 			final ResultSet resultSet = statement.executeQuery(sql); // NOPMD
 			while (resultSet.next()) {
 				final String jobId = resultSet.getString(1);
@@ -168,7 +169,8 @@ public class PrintJobsDao extends BaseDao {
 				final SortAndPaginationParameters sapp)
 			throws PrintJobsException, DaoException {
 		final Connection connection = getSelectConnection(); // NOPMD
-		final String sql = GETPRINTJOBSFORSTATUSSTMT + sapp.getSortParameters().getSortClause();
+		final String sql = GETPRINTJOBSFORSTATUSSTMT
+			+ sapp.getSortParameters().getSortClause();
 		final PreparedStatement preparedStatement =
 			getSelectPreparedStatement(connection, sql);
 		try {

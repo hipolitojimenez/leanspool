@@ -28,6 +28,8 @@ public class PrintersTreeLoader extends TreeLoader<PrinterModel> {
 		final ChildTreeStoreBinding<PrinterModel> handler =
 			new ChildTreeStoreBinding<PrinterModel>(treeStore);
 		addLoadHandler(handler);
+		//
+		addLoaderHandler(new PrintersLoaderHandler());
 	}
 	
 	
