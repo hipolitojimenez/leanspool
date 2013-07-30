@@ -2,6 +2,7 @@ package com.nioos.leanspool.gxt.client.grid;
 
 
 
+import com.nioos.leanspool.gxt.client.MsgBoxLoaderHandler;
 import com.nioos.leanspool.gxt.shared.PrintJobModel;
 import com.sencha.gxt.data.shared.ListStore;
 import com.sencha.gxt.data.shared.loader.ListLoadConfig;
@@ -33,6 +34,8 @@ public class PrintJobsListLoader extends
 		//
 		final LoadHandler<ListLoadConfig, ListLoadResult<PrintJobModel>> handler = new LoadResultListStoreBinding<ListLoadConfig, PrintJobModel, ListLoadResult<PrintJobModel>>(listStore);
 		addLoadHandler(handler);
+		final MsgBoxLoaderHandler<ListLoadConfig, ListLoadResult<PrintJobModel>> msgBoxHandler = new MsgBoxLoaderHandler<ListLoadConfig, ListLoadResult<PrintJobModel>>("Loading print jobs");
+		addLoaderHandler(msgBoxHandler);
 		setRemoteSort(true);
 	}
 	

@@ -2,6 +2,9 @@ package com.nioos.leanspool.gxt.client.tree;
 
 
 
+import java.util.List;
+
+import com.nioos.leanspool.gxt.client.MsgBoxLoaderHandler;
 import com.nioos.leanspool.gxt.shared.PrinterModel;
 import com.sencha.gxt.data.shared.TreeStore;
 import com.sencha.gxt.data.shared.loader.ChildTreeStoreBinding;
@@ -28,8 +31,8 @@ public class PrintersTreeLoader extends TreeLoader<PrinterModel> {
 		final ChildTreeStoreBinding<PrinterModel> handler =
 			new ChildTreeStoreBinding<PrinterModel>(treeStore);
 		addLoadHandler(handler);
-		//
-		addLoaderHandler(new PrintersLoaderHandler());
+		final MsgBoxLoaderHandler<PrinterModel, List<PrinterModel>> msgBoxHandler = new MsgBoxLoaderHandler<PrinterModel, List<PrinterModel>>("Retrieving printers");
+		addLoaderHandler(msgBoxHandler);
 	}
 	
 	
