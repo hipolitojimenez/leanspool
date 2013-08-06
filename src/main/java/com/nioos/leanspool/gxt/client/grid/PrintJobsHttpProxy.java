@@ -5,7 +5,7 @@ package com.nioos.leanspool.gxt.client.grid;
 import com.google.gwt.http.client.RequestBuilder;
 import com.sencha.gxt.data.client.loader.HttpProxy;
 import com.sencha.gxt.data.client.writer.UrlEncodingWriter;
-import com.sencha.gxt.data.shared.loader.ListLoadConfig;
+import com.sencha.gxt.data.shared.loader.PagingLoadConfig;
 
 
 
@@ -15,7 +15,7 @@ import com.sencha.gxt.data.shared.loader.ListLoadConfig;
  * @author Hipolito Jimenez.
  *
  */
-public class PrintJobsHttpProxy extends HttpProxy<ListLoadConfig> {
+public class PrintJobsHttpProxy extends HttpProxy<PagingLoadConfig> {
 	
 	
 	/**
@@ -30,9 +30,9 @@ public class PrintJobsHttpProxy extends HttpProxy<ListLoadConfig> {
 	public PrintJobsHttpProxy() {
 		super(new RequestBuilder(RequestBuilder.GET, PRINTJOBS_URL));
 		//
-		final UrlEncodingWriter<ListLoadConfig> urlEncodingWriter =
-			new UrlEncodingWriter<ListLoadConfig>(
-				PrintJobsAutoBeanFactory.INSTANCE, ListLoadConfig.class);
+		final UrlEncodingWriter<PagingLoadConfig> urlEncodingWriter =
+			new UrlEncodingWriter<PagingLoadConfig>(
+				PrintJobsAutoBeanFactory.INSTANCE, PagingLoadConfig.class);
 		setWriter(urlEncodingWriter);
 	}
 	

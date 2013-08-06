@@ -35,7 +35,7 @@ public class PrintJobsGrid extends Grid<PrintJobModel> {
 			final List<ColumnConfig<PrintJobModel, ?>> columnConfigList) {
 		super(new PrintJobsGridStore(),
 			new ColumnModel<PrintJobModel>(columnConfigList));
-		setLoader(new PrintJobsListLoader(printJobsHttpProxy, getStore()));
+		setLoader(new PrintJobsPagingLoader(printJobsHttpProxy, getStore()));
 	}
 	
 	

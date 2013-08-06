@@ -23,4 +23,16 @@ public interface PrintJobsJsonRoot extends ErrorJsonRoot {
 	 */
 	List<PrintJobModel> getJobs();
 	
+	/**
+	 * Gets the total number of print jobs available.
+	 * @return the total number of print jobs available.
+	 */
+	int getTotalLen();
+	
+	/**
+	 * Gets the current offset.
+	 * @return the current offset.
+	 */
+	int getOffset();
+	
 }

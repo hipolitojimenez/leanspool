@@ -8,8 +8,8 @@ import com.nioos.leanspool.gxt.client.tree.ErrorDialog;
 import com.nioos.leanspool.gxt.shared.Errors;
 import com.nioos.leanspool.gxt.shared.PrintJobModel;
 import com.sencha.gxt.data.shared.loader.JsonReader;
-import com.sencha.gxt.data.shared.loader.ListLoadResult;
-import com.sencha.gxt.data.shared.loader.ListLoadResultBean;
+import com.sencha.gxt.data.shared.loader.PagingLoadResult;
+import com.sencha.gxt.data.shared.loader.PagingLoadResultBean;
 
 
 
@@ -20,7 +20,7 @@ import com.sencha.gxt.data.shared.loader.ListLoadResultBean;
  *
  */
 public class PrintJobsJsonReader extends
-		JsonReader<ListLoadResult<PrintJobModel>, PrintJobsJsonRoot> {
+		JsonReader<PagingLoadResult<PrintJobModel>, PrintJobsJsonRoot> {
 	
 	
 	/**
@@ -32,7 +32,7 @@ public class PrintJobsJsonReader extends
 	
 	
 	@Override
-	protected final ListLoadResult<PrintJobModel> createReturnData(
+	protected final PagingLoadResult<PrintJobModel> createReturnData(
 			final Object loadConfig,
 			final PrintJobsJsonRoot records) {
 		final Errors errorCode = records.getErrorCode();
@@ -40,7 +40,8 @@ public class PrintJobsJsonReader extends
 			new ErrorDialog(errorCode);
 		}
 		final List<PrintJobModel> jobList = records.getJobs();
-		return new ListLoadResultBean<PrintJobModel>(jobList);
+		return new PagingLoadResultBean<PrintJobModel>(jobList,
+			records.getTotalLen(), records.getOffset());
 	}
 	
 	

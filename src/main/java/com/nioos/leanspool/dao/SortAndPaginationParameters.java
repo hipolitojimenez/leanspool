@@ -16,11 +16,20 @@ public class SortAndPaginationParameters {
 	
 	
 	/**
+	 * Pagination parameters used to build the query.
+	 */
+	private final transient PaginationParameters pagParameters;
+	
+	
+	/**
 	 * Constrcutor.
 	 * @param theSortParameters the sort parameters.
+	 * @param thePagParameters the pagination parameters.
 	 */
-	public SortAndPaginationParameters(final SortParameters theSortParameters) {
+	public SortAndPaginationParameters(final SortParameters theSortParameters,
+		final PaginationParameters thePagParameters) {
 		sortParameters = theSortParameters;
+		pagParameters = thePagParameters;
 	}
 	
 	
@@ -30,6 +39,15 @@ public class SortAndPaginationParameters {
 	 */
 	public final SortParameters getSortParameters() {
 		return sortParameters;
+	}
+	
+	
+	/**
+	 * Gets the pagination parameters.
+	 * @return the pagination parameters.
+	 */
+	public final PaginationParameters getPaginationParameters() {
+		return pagParameters;
 	}
 	
 	

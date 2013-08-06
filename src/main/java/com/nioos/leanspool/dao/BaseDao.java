@@ -23,6 +23,20 @@ public class BaseDao {
 	
 	
 	/**
+	 * Cannot get sql prepared statement constant.
+	 */
+	private static final String CANNOT_GET_SQL_PREPARED_STATEMENT =
+		"Cannot get sql prepared statement";
+	
+	
+	/**
+	 * Cannot get sql statement constant.
+	 */
+	private static final String CANNOT_GET_SQL_STATEMENT =
+		"Cannot get sql statement";
+	
+	
+	/**
 	 * The logger.
 	 */
 	private static final Log LOG = LogFactory.getLog(BaseDao.class);
@@ -86,7 +100,8 @@ public class BaseDao {
 			}
 		}
 	}
-
+	
+	
 	/**
 	 * Gets and prepare a select jdbc statement from a jdbc connection.
 	 * @param connection the jdbc connection.
@@ -101,11 +116,34 @@ public class BaseDao {
 					ResultSet.CONCUR_READ_ONLY);
 			return statement;
 		} catch (SQLException sqle) {
-			LOG.fatal("Cannot get sql statement", sqle);
-			throw new DaoException("Cannot get sql statement", sqle);
+			LOG.fatal(CANNOT_GET_SQL_STATEMENT, sqle);
+			throw new DaoException(CANNOT_GET_SQL_STATEMENT, sqle);
 		}
 	}
-
+	
+	
+	/**
+	 * Gets and prepare a select jdbc statement from a jdbc connection.
+	 * @param connection the jdbc connection.
+	 * @param maxRows the maximum number of rows expected to be returned.
+	 * @return the jdbc statement.
+	 * @throws DaoException on error.
+	 */
+	public final Statement getSelectStatement(final Connection connection,
+				final int maxRows)
+			throws DaoException {
+		try {
+			final Statement statement = getSelectStatement(connection);// NOPMD
+			statement.setFetchSize(maxRows);
+			statement.setMaxRows(maxRows);
+			return statement;
+		} catch (SQLException sqle) {
+			LOG.fatal(CANNOT_GET_SQL_STATEMENT, sqle);
+			throw new DaoException(CANNOT_GET_SQL_STATEMENT, sqle);
+		}
+	}
+	
+	
 	/**
 	 * Gets and prepare a select jdbc connection.
 	 * @return the jdbc connection.
@@ -143,9 +181,67 @@ public class BaseDao {
 					ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
 			return preparedStatement;
 		} catch (SQLException sqle) {
-			LOG.fatal("Cannot get sql prepared statement", sqle);
-			throw new DaoException("Cannot get sql prepared statement",
-				sqle);
+			LOG.fatal(CANNOT_GET_SQL_PREPARED_STATEMENT, sqle);
+			throw new DaoException(CANNOT_GET_SQL_PREPARED_STATEMENT, sqle);
+		}
+	}
+	
+	
+	/**
+	 * Gets and prepare a select jdbc preparedstatement from a jdbc connection.
+	 * @param connection the jdbc connection.
+	 * @param sqlStatement the sql statement.
+	 * @param maxRows the maximum number of rows expected to be returned.
+	 * @return the jdbc prepared statement.
+	 * @throws DaoException on error.
+	 */
+	public final PreparedStatement getSelectPreparedStatement(
+				final Connection connection, final String sqlStatement,
+				final int maxRows)
+			throws DaoException {
+		try {
+			final PreparedStatement preparedStatement =
+				getSelectPreparedStatement(connection, sqlStatement);
+			preparedStatement.setFetchSize(maxRows);
+			preparedStatement.setMaxRows(maxRows);
+			return preparedStatement;
+		} catch (SQLException sqle) {
+			LOG.fatal(CANNOT_GET_SQL_PREPARED_STATEMENT, sqle);
+			throw new DaoException(CANNOT_GET_SQL_PREPARED_STATEMENT, sqle);
+		}
+	}
+	
+	
+	/**
+	 * Sets the result set offset.
+	 * @param resultSet the result set.
+	 * @param offset the offset.
+	 * @throws SQLException on error.
+	 */
+	public final void setResultSetOffset(final ResultSet resultSet,
+			final int offset) throws SQLException {
+		try {
+			resultSet.absolute(offset);
+		} catch (SQLException sqle) {
+			alternativeSetResultSetOffset(resultSet, offset);
+		}
+	}
+	
+	
+	/**
+	 * Slow method to sets the offset of a result set.
+	 * @param resultSet the result set.
+	 * @param offset the offset.
+	 * @throws SQLException on error.
+	 */
+	private void alternativeSetResultSetOffset(final ResultSet resultSet,
+			final int offset) throws SQLException {
+		int currentRow = 0;
+		while (currentRow < offset) {
+			currentRow++; // NOPMD
+			if (!resultSet.next()) {
+				break;
+			}
 		}
 	}
 	

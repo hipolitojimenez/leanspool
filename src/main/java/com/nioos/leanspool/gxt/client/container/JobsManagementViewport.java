@@ -2,13 +2,9 @@ package com.nioos.leanspool.gxt.client.container;
 
 
 
-import com.nioos.leanspool.gxt.client.HasRelatedGrid;
-import com.nioos.leanspool.gxt.client.grid.PrintJobsGrid;
 import com.nioos.leanspool.gxt.client.tree.AllJobsTree;
 import com.nioos.leanspool.gxt.client.tree.JobsByPrinterTree;
 import com.nioos.leanspool.gxt.client.tree.JobsByStatusTree;
-import com.nioos.leanspool.gxt.client.tree.TreeChangeEvent;
-import com.nioos.leanspool.gxt.client.tree.TreeChangeHandler;
 import com.sencha.gxt.core.client.util.Margins;
 import com.sencha.gxt.widget.core.client.ContentPanel;
 import com.sencha.gxt.widget.core.client.container.AccordionLayoutContainer;
@@ -29,46 +25,6 @@ public class JobsManagementViewport extends Viewport {
 	
 	
 	/**
-	 * Tree change handler.
-	 * @author Hipolito Jimenez.
-	 */
-	private static final class InternalTreeChangeHandler implements
-			TreeChangeHandler {
-		
-		/**
-		 * The target content panel.
-		 */
-		private final transient ContentPanel targetContentPanel;
-		
-		/**
-		 * Constructor.
-		 * @param contentPanel the target content panel.
-		 */
-		InternalTreeChangeHandler(final ContentPanel contentPanel) {
-			targetContentPanel = contentPanel;
-		}
-		
-		@Override
-		public void onTreeChange(final TreeChangeEvent event) {
-			targetContentPanel.clear();
-			final String currentNodeName = event.getCurrentNodeName();
-			targetContentPanel.setHeadingText(currentNodeName);
-			if (currentNodeName != null && event.isLeaf()) {
-				final HasRelatedGrid hasRelatedGrid =
-					(HasRelatedGrid) event.getSource();
-				final PrintJobsGrid grid = hasRelatedGrid.getRelatedGrid();
-				if (grid != null) {
-					grid.getStore().clear();
-					targetContentPanel.add(grid);
-					grid.getLoader().load();
-				}
-			}
-		}
-		
-	}
-	
-	
-	/**
 	 * Initial west panel size.
 	 */
 	private static final int INITIAL_WEST_SIZE = 200;
@@ -83,6 +39,7 @@ public class JobsManagementViewport extends Viewport {
 			new BorderLayoutContainer();
 		buildWestWidget(borderLayoutContainer);
 		buildCenterWidget(borderLayoutContainer);
+		//
 		add(borderLayoutContainer);
 	}
 	
@@ -93,13 +50,10 @@ public class JobsManagementViewport extends Viewport {
 	 */
 	private void buildCenterWidget(
 			final BorderLayoutContainer borderLayoutContainer) {
-		final ContentPanel centerWidget = new ContentPanel();
+		final GridContentPanel centerWidget = new GridContentPanel();
 		final MarginData centerWidgetLayoutData = new MarginData(1);
 		borderLayoutContainer.setCenterWidget(centerWidget,
 			centerWidgetLayoutData);
-		//
-		TreeChangeEvent.registerHandler(
-			new InternalTreeChangeHandler(centerWidget));
 	}
 	
 	
