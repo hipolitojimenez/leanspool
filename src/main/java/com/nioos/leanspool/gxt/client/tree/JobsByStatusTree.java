@@ -20,6 +20,8 @@ public class JobsByStatusTree extends AbstractBaseTree<String, String> {
 		super(new JobsByStatusTreeStore(), new StringTreeValueProvider());
 		getStyle().setLeafIcon(TreeImages.INSTANCE.status());
 		//
+		setId("jobsByStatusTree");
+		//
 		getRelatedGrid().hideStatusColumn();
 	}
 	

@@ -23,7 +23,7 @@ import de.codecentric.jbehave.junit.monitoring.JUnitReportingRunner;
  * @author Hipolito Jimenez.
  */
 @RunWith(JUnitReportingRunner.class)
-public class CommonBehaviorTest extends JUnitStories {
+public class CommonBehaviorTest extends JUnitStories { // NOPMD
 	
 	
 	/**

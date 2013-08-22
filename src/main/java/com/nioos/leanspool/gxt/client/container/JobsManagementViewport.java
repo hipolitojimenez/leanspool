@@ -79,17 +79,20 @@ public class JobsManagementViewport extends Viewport {
 		final TreeContentPanel allJobsPanel =
 			new TreeContentPanel(new AllJobsTree());
 		allJobsPanel.setHeadingText("View All Jobs");
+		allJobsPanel.getHeader().setId("allJobsPanel");
 		accordion.add(allJobsPanel);
 		accordion.setActiveWidget(allJobsPanel);
 		//
 		final TreeContentPanel jobsByPrinterPanel =
 			new TreeContentPanel(new JobsByPrinterTree());
 		jobsByPrinterPanel.setHeadingText("View Jobs By Printer");
+		jobsByPrinterPanel.getHeader().setId("jobsByPrinterPanel");
 		accordion.add(jobsByPrinterPanel);
 		//
 		final TreeContentPanel jobsByStatusPanel =
 			new TreeContentPanel(new JobsByStatusTree());
 		jobsByStatusPanel.setHeadingText("View Jobs By Status");
+		jobsByStatusPanel.getHeader().setId("jobsByStatusPanel");
 		accordion.add(jobsByStatusPanel);
 		//
 		westWidget.add(accordion);

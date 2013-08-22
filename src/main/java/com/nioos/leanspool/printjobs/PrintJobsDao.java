@@ -301,7 +301,8 @@ public class PrintJobsDao extends BaseDao {
 			throws PrintJobsException, DaoException {
 		final Connection connection = getSelectConnection(); // NOPMD
 		final PreparedStatement preparedStatement =
-			getSelectPreparedStatement(connection, NUMBEROFPRINTJOBSFORPRINTERSTMT);
+			getSelectPreparedStatement(connection,
+				NUMBEROFPRINTJOBSFORPRINTERSTMT);
 		try {
 			preparedStatement.setString(1, printer);
 			final ResultSet resultSet =  // NOPMD

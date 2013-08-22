@@ -133,7 +133,7 @@ public class BaseDao {
 				final int maxRows)
 			throws DaoException {
 		try {
-			final Statement statement = getSelectStatement(connection);// NOPMD
+			final Statement statement = getSelectStatement(connection); //NOPMD
 			statement.setFetchSize(maxRows);
 			statement.setMaxRows(maxRows);
 			return statement;
