@@ -5,7 +5,6 @@ package com.nioos.leanspool.gxt.client.grid;
 import com.google.gwt.http.client.RequestBuilder;
 import com.sencha.gxt.data.client.loader.HttpProxy;
 import com.sencha.gxt.data.client.writer.UrlEncodingWriter;
-import com.sencha.gxt.data.shared.loader.PagingLoadConfig;
 
 
 
@@ -15,7 +14,7 @@ import com.sencha.gxt.data.shared.loader.PagingLoadConfig;
  * @author Hipolito Jimenez.
  *
  */
-public class PrintJobsHttpProxy extends HttpProxy<PagingLoadConfig> {
+public class PrintJobsHttpProxy extends HttpProxy<PrintJobsLoadConfig> {
 	
 	
 	/**
@@ -30,46 +29,10 @@ public class PrintJobsHttpProxy extends HttpProxy<PagingLoadConfig> {
 	public PrintJobsHttpProxy() {
 		super(new RequestBuilder(RequestBuilder.GET, PRINTJOBS_URL));
 		//
-		final UrlEncodingWriter<PagingLoadConfig> urlEncodingWriter =
-			new UrlEncodingWriter<PagingLoadConfig>(
-				PrintJobsAutoBeanFactory.INSTANCE, PagingLoadConfig.class);
+		final UrlEncodingWriter<PrintJobsLoadConfig> urlEncodingWriter =
+			new UrlEncodingWriter<PrintJobsLoadConfig>(
+				PrintJobsAutoBeanFactory.INSTANCE, PrintJobsLoadConfig.class);
 		setWriter(urlEncodingWriter);
-	}
-	
-	
-	/**
-	 * Binds the proxy to the new url.
-	 * @param newUrl the new url.
-	 */
-	private void bindNewUrl(final String newUrl) {
-		initUrl = newUrl;
-		builder = new RequestBuilder(RequestBuilder.GET, newUrl);
-	}
-	
-	
-	/**
-	 * Sets the printer parameter.
-	 * @param printer the printer parameter.
-	 */
-	public final void setPrinter(final String printer) {
-		String newUrl = PRINTJOBS_URL; // NOPMD
-		if (printer != null) {
-			newUrl = PRINTJOBS_URL + "?printer=" + printer;
-		}
-		bindNewUrl(newUrl);
-	}
-	
-	
-	/**
-	 * Sets the status parameter.
-	 * @param status the status parameter.
-	 */
-	public final void setStatus(final String status) {
-		String newUrl = PRINTJOBS_URL; // NOPMD
-		if (status != null) {
-			newUrl = PRINTJOBS_URL + "?status=" + status;
-		}
-		bindNewUrl(newUrl);
 	}
 	
 	

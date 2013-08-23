@@ -5,10 +5,10 @@ package com.nioos.leanspool.gxt.client.container;
 import java.util.List;
 
 import com.nioos.leanspool.gxt.client.grid.PrintJobsGrid;
+import com.nioos.leanspool.gxt.client.grid.PrintJobsLoadConfigBean;
 import com.nioos.leanspool.gxt.client.grid.PrintJobsPagingLoader;
 import com.nioos.leanspool.gxt.client.tree.TreeChangeEvent;
 import com.sencha.gxt.data.shared.SortInfo;
-import com.sencha.gxt.data.shared.loader.PagingLoadConfigBean;
 import com.sencha.gxt.widget.core.client.ContentPanel;
 import com.sencha.gxt.widget.core.client.container.BoxLayoutContainer.BoxLayoutPack;
 import com.sencha.gxt.widget.core.client.toolbar.PagingToolBar;
@@ -91,10 +91,13 @@ public class GridContentPanel extends ContentPanel {
 		pagingToolBar.bind(pagingLoader);
 		//
 		final List<? extends SortInfo> info = pagingLoader.getSortInfo();
-		final PagingLoadConfigBean plcb =
-			new PagingLoadConfigBean(0, PAGESIZE);
-		plcb.setSortInfo(info);
-		pagingLoader.load(plcb);
+		//
+		final PrintJobsLoadConfigBean pjlcb =
+			new PrintJobsLoadConfigBean(0, PAGESIZE);
+		pjlcb.setSortInfo(info);
+		pjlcb.setPrinter(pagingLoader.getPrinter());
+		pjlcb.setStatus(pagingLoader.getStatus());
+		pagingLoader.load(pjlcb);
 	}
 	
 	

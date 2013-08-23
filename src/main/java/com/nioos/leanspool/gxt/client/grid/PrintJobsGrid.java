@@ -21,10 +21,9 @@ public class PrintJobsGrid extends Grid<PrintJobModel> {
 	
 	
 	/**
-	 * The print jobs HTTP proxy.
+	 * The print jobs paging loader.
 	 */
-	private final transient PrintJobsHttpProxy printJobsHttpProxy =
-		new PrintJobsHttpProxy();
+	private final transient PrintJobsPagingLoader printJobsPagingLoader;
 	
 	
 	/**
@@ -36,7 +35,9 @@ public class PrintJobsGrid extends Grid<PrintJobModel> {
 		super(new PrintJobsGridStore(),
 			new ColumnModel<PrintJobModel>(columnConfigList));
 		setId("printJobsGrid");
-		setLoader(new PrintJobsPagingLoader(printJobsHttpProxy, getStore()));
+		printJobsPagingLoader =
+			new PrintJobsPagingLoader(new PrintJobsHttpProxy(), getStore());
+		setLoader(printJobsPagingLoader);
 	}
 	
 	
@@ -53,7 +54,7 @@ public class PrintJobsGrid extends Grid<PrintJobModel> {
 	 * @param printer the printer.
 	 */
 	public final void setPrinter(final String printer) {
-		printJobsHttpProxy.setPrinter(printer);
+		printJobsPagingLoader.setPrinter(printer);
 	}
 	
 	
@@ -70,7 +71,7 @@ public class PrintJobsGrid extends Grid<PrintJobModel> {
 	 * @param status the status.
 	 */
 	public final void setStatus(final String status) {
-		printJobsHttpProxy.setStatus(status);
+		printJobsPagingLoader.setStatus(status);
 	}
 	
 	
