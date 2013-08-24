@@ -84,11 +84,11 @@ public class CommonBehaviorSteps { // NOPMD
 			new FlatXmlDataSetBuilder();
 		final IDataSet printersDataSet =
 			flatXmlDataSetBuilder.build(
-				new File("./src/test/resources/dbunit/PrintersTest.xml"));
+				new File("../leanspooldao/src/test/resources/dbunit/PrintersTest.xml"));
 		DatabaseOperation.CLEAN_INSERT.execute(dbConnection, printersDataSet);
 		final IDataSet printJobsDataSet =
 			flatXmlDataSetBuilder.build(
-				new File("./src/test/resources/dbunit/PrintJobsTest.xml"));
+				new File("../leanspooldao/src/test/resources/dbunit/PrintJobsTest.xml"));
 		DatabaseOperation.CLEAN_INSERT.execute(dbConnection, printJobsDataSet);
 		dbConnection.getConnection().commit();
 		dbConnection.close();

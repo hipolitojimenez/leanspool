@@ -3,7 +3,7 @@ package com.nioos.leanspool.gxt.client.tree;
 
 
 import com.google.gwt.http.client.RequestBuilder;
-import com.nioos.leanspool.gxt.shared.PrinterModel;
+import com.nioos.leanspool.gwt.shared.PrinterModel;
 import com.sencha.gxt.data.client.loader.HttpProxy;
 import com.sencha.gxt.data.client.writer.UrlEncodingWriter;
 

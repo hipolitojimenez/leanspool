@@ -14,8 +14,8 @@ import net.sf.json.JSONObject;
 
 import org.junit.Test;
 
-import com.nioos.leanspool.gxt.shared.PrintJobModel;
-import com.nioos.leanspool.gxt.shared.PrinterModel;
+import com.nioos.leanspool.gwt.shared.PrintJobModel;
+import com.nioos.leanspool.gwt.shared.PrinterModel;
 import com.nioos.leanspool.printer.PrinterModelImpl;
 import com.nioos.leanspool.printjobs.PrintJobModelImpl;
 

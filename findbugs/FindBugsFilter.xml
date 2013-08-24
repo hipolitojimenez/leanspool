@@ -13,16 +13,6 @@
 		<Bug pattern="SE_TRANSIENT_FIELD_NOT_RESTORED"/>
 	</Match>
 	<Match>
-		<Class name="com.nioos.leanspool.dao.BaseDao" />
-		<Method name="getSelectPreparedStatement"/>
-		<Bug pattern="SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING"/>
-	</Match>
-	<Match>
-		<Class name="com.nioos.leanspool.printjobs.PrintJobsDao" />
-		<Method name="getPrintJobs"/>
-		<Bug pattern="SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE"/>
-	</Match>
-	<Match>
 		<Class name="com.nioos.leanspool.gxt.client.container.GridContentPanel" />
 		<Method name="addGrid"/>
 		<Bug pattern="BC_UNCONFIRMED_CAST_OF_RETURN_VALUE"/>

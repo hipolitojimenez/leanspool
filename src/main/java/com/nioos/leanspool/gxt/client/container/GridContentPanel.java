@@ -4,6 +4,7 @@ package com.nioos.leanspool.gxt.client.container;
 
 import java.util.List;
 
+import com.nioos.leanspool.gwt.shared.PrintJobModel;
 import com.nioos.leanspool.gxt.client.grid.PrintJobsGrid;
 import com.nioos.leanspool.gxt.client.grid.PrintJobsLoadConfigBean;
 import com.nioos.leanspool.gxt.client.grid.PrintJobsPagingLoader;
@@ -29,16 +30,10 @@ public class GridContentPanel extends ContentPanel {
 	
 	
 	/**
-	 * Paging page size.
-	 */
-	public static final int PAGESIZE = 50;
-	
-	
-	/**
 	 * Paging tool bar widget.
 	 */
 	private final  transient PagingToolBar pagingToolBar =
-		new PagingToolBar(PAGESIZE);
+		new PagingToolBar(PrintJobModel.PAGESIZE);
 	
 	
 	/**
@@ -93,7 +88,7 @@ public class GridContentPanel extends ContentPanel {
 		final List<? extends SortInfo> info = pagingLoader.getSortInfo();
 		//
 		final PrintJobsLoadConfigBean pjlcb =
-			new PrintJobsLoadConfigBean(0, PAGESIZE);
+			new PrintJobsLoadConfigBean(0, PrintJobModel.PAGESIZE);
 		pjlcb.setSortInfo(info);
 		pjlcb.setPrinter(pagingLoader.getPrinter());
 		pjlcb.setStatus(pagingLoader.getStatus());

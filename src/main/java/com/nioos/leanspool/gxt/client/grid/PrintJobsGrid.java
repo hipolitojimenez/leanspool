@@ -4,7 +4,7 @@ package com.nioos.leanspool.gxt.client.grid;
 
 import java.util.List;
 
-import com.nioos.leanspool.gxt.shared.PrintJobModel;
+import com.nioos.leanspool.gwt.shared.PrintJobModel;
 import com.sencha.gxt.widget.core.client.grid.ColumnConfig;
 import com.sencha.gxt.widget.core.client.grid.ColumnModel;
 import com.sencha.gxt.widget.core.client.grid.Grid;

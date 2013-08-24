@@ -4,9 +4,9 @@ package com.nioos.leanspool.gxt.client.grid;
 
 import java.util.List;
 
-import com.nioos.leanspool.gxt.client.tree.ErrorDialog;
 import com.nioos.leanspool.gxt.shared.Errors;
-import com.nioos.leanspool.gxt.shared.PrintJobModel;
+import com.nioos.leanspool.gwt.shared.PrintJobModel;
+import com.nioos.leanspool.gxt.client.tree.ErrorDialog;
 import com.sencha.gxt.data.shared.loader.JsonReader;
 import com.sencha.gxt.data.shared.loader.PagingLoadResult;
 import com.sencha.gxt.data.shared.loader.PagingLoadResultBean;

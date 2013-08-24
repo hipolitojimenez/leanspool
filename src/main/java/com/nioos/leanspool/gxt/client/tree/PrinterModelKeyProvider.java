@@ -2,7 +2,7 @@ package com.nioos.leanspool.gxt.client.tree;
 
 
 
-import com.nioos.leanspool.gxt.shared.PrinterModel;
+import com.nioos.leanspool.gwt.shared.PrinterModel;
 import com.sencha.gxt.data.shared.ModelKeyProvider;
 
 

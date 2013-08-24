@@ -1,5 +1,7 @@
 package com.nioos.leanspool.servlets;
 
+
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import net.sf.json.JSONObject;
 
 import com.nioos.leanspool.gxt.shared.Errors;
-import com.nioos.leanspool.gxt.shared.PrinterModel;
+import com.nioos.leanspool.gwt.shared.PrinterModel;
 
 
 

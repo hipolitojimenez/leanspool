@@ -20,7 +20,7 @@ import com.nioos.leanspool.dao.PaginationParameters;
 import com.nioos.leanspool.dao.SortAndPaginationParameters;
 import com.nioos.leanspool.dao.SortParameters;
 import com.nioos.leanspool.gxt.shared.Errors;
-import com.nioos.leanspool.gxt.shared.PrintJobModel;
+import com.nioos.leanspool.gwt.shared.PrintJobModel;
 import com.nioos.leanspool.printjobs.PrintJobsDao;
 import com.nioos.leanspool.printjobs.PrintJobsException;
 

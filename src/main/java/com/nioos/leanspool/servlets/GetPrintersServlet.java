@@ -16,7 +16,7 @@ import net.sf.json.JSONObject;
 
 import com.nioos.leanspool.dao.DaoException;
 import com.nioos.leanspool.gxt.shared.Errors;
-import com.nioos.leanspool.gxt.shared.PrinterModel;
+import com.nioos.leanspool.gwt.shared.PrinterModel;
 import com.nioos.leanspool.printer.PrinterDao;
 import com.nioos.leanspool.printer.PrintersException;
 

@@ -2,8 +2,8 @@ package com.nioos.leanspool.gxt.client.grid;
 
 
 
+import com.nioos.leanspool.gwt.shared.PrintJobModel;
 import com.nioos.leanspool.gxt.client.MsgBoxLoaderHandler;
-import com.nioos.leanspool.gxt.shared.PrintJobModel;
 import com.sencha.gxt.data.shared.ListStore;
 import com.sencha.gxt.data.shared.loader.LoadHandler;
 import com.sencha.gxt.data.shared.loader.LoadResultListStoreBinding;

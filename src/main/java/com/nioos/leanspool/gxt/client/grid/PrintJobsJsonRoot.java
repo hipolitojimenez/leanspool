@@ -4,8 +4,8 @@ package com.nioos.leanspool.gxt.client.grid;
 
 import java.util.List;
 
+import com.nioos.leanspool.gwt.shared.PrintJobModel;
 import com.nioos.leanspool.gxt.client.ErrorJsonRoot;
-import com.nioos.leanspool.gxt.shared.PrintJobModel;
 
 
 
