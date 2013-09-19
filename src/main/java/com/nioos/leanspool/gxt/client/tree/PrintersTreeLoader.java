@@ -31,7 +31,9 @@ public class PrintersTreeLoader extends TreeLoader<PrinterModel> {
 		final ChildTreeStoreBinding<PrinterModel> handler =
 			new ChildTreeStoreBinding<PrinterModel>(treeStore);
 		addLoadHandler(handler);
-		final MsgBoxLoaderHandler<PrinterModel, List<PrinterModel>> msgBoxHandler = new MsgBoxLoaderHandler<PrinterModel, List<PrinterModel>>("Retrieving printers");
+		final MsgBoxLoaderHandler<PrinterModel, List<PrinterModel>>
+			msgBoxHandler = new MsgBoxLoaderHandler<PrinterModel,
+				List<PrinterModel>>("Retrieving printers");
 		addLoaderHandler(msgBoxHandler);
 	}
 	

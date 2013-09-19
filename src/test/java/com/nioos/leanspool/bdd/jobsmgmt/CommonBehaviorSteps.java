@@ -84,11 +84,13 @@ public class CommonBehaviorSteps { // NOPMD
 			new FlatXmlDataSetBuilder();
 		final IDataSet printersDataSet =
 			flatXmlDataSetBuilder.build(
-				new File("../leanspooldao/src/test/resources/dbunit/PrintersTest.xml"));
+				new File(
+				"../leanspooldao/src/test/resources/dbunit/PrintersTest.xml"));
 		DatabaseOperation.CLEAN_INSERT.execute(dbConnection, printersDataSet);
 		final IDataSet printJobsDataSet =
 			flatXmlDataSetBuilder.build(
-				new File("../leanspooldao/src/test/resources/dbunit/PrintJobsTest.xml"));
+				new File(
+			"../leanspooldao/src/test/resources/dbunit/PrintJobsTest.xml"));
 		DatabaseOperation.CLEAN_INSERT.execute(dbConnection, printJobsDataSet);
 		dbConnection.getConnection().commit();
 		dbConnection.close();
@@ -238,14 +240,16 @@ public class CommonBehaviorSteps { // NOPMD
 	
 	/**
 	 * Step.
-	 * Then the user views $text as the first grid row text
+	 * Then the user views $text as the first grid cell text
 	 * @param text the first grid row text.
+	 * @param celindex the cell index.
 	 */
-	@Then("the user views $text as the first grid row text")
-	public final void thenTheUserViewsTheFirstGridRowText(final String text) {
-		checksFirstGridRowText(chromeDriver, text);
-		checksFirstGridRowText(firefoxDriver, text);
-		checksFirstGridRowText(internetExplorerDriver, text);
+	@Then("the user views $text as the $celindex grid cell text")
+	public final void thenTheUserViewsTheFirstGridCellText(final String text,
+			final String celindex) {
+		checksFirstGridRowText(chromeDriver, text, celindex);
+		checksFirstGridRowText(firefoxDriver, text, celindex);
+		checksFirstGridRowText(internetExplorerDriver, text, celindex);
 	}
 	
 	
@@ -253,12 +257,14 @@ public class CommonBehaviorSteps { // NOPMD
 	 * Checks the first grid row text.
 	 * @param webDriver the web driver.
 	 * @param text the text.
+	 * @param celIndex the cell index.
 	 */
 	private void checksFirstGridRowText(final WebDriver webDriver,
-			final String text) {
+			final String text, final String celIndex) {
 		final By gridLocator = By.id("printJobsGrid");
 		final WebElement gridElement = webDriver.findElement(gridLocator);
-		final By locator = By.className("x-grid-cell-first");
+		//final By locator = By.className("x-grid-cell-last");
+		final By locator = By.xpath("//td[@cellindex='" + celIndex + "']");
 		final WebElement webElement = gridElement.findElement(locator);
 		final String rowText = webElement.getText();
 		Assert.assertEquals("Wrong grid row text", text, rowText);

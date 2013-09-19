@@ -33,7 +33,8 @@ public class JsonTest {
 	 * Expected result of the print job model to Json object test.
 	 */
 	private static final String EXPECTED_PJMTJO =
-		"{\"jobId\":\"JobId 01\",\"jobStatus\":\"Status 01\",\"printerName\":\"Printer 01\"}";
+		"{\"jobData\":[],\"jobId\":\"JobId 01\",\"jobStatus\":\"Status 01\","
+		+ "\"printerName\":\"Printer 01\"}";
 	
 	
 	/**
@@ -118,7 +119,10 @@ public class JsonTest {
 	@Test
 	public final void printJobModelListToJsonArrayTest() {
 		final String expected = // NOPMD
-			"[{\"jobId\":\"Job 01\",\"jobStatus\":\"Status 01\",\"printerName\":\"Printer 01\"},{\"jobId\":\"Job 02\",\"jobStatus\":\"Status 02\",\"printerName\":\"Printer 02\"}]";
+			"[{\"jobData\":[],\"jobId\":\"Job 01\",\"jobStatus\":\"Status 01\""
+			+ ",\"printerName\":\"Printer 01\"},{\"jobData\":[]"
+			+ ",\"jobId\":\"Job 02\",\"jobStatus\":\"Status 02\""
+			+ ",\"printerName\":\"Printer 02\"}]";
 		//
 		final List<PrintJobModel> printJobModelList =
 			new ArrayList<PrintJobModel>();
@@ -146,7 +150,10 @@ public class JsonTest {
 	@Test
 	public final void printJobModelMapToJsonArrayTest() {
 		final String expected = // NOPMD
-			"{\"jobs\":[{\"jobId\":\"Job 01\",\"jobStatus\":\"Status 01\",\"printerName\":\"Printer 01\"},{\"jobId\":\"Job 02\",\"jobStatus\":\"Status 02\",\"printerName\":\"Printer 02\"}]}";
+			"{\"jobs\":[{\"jobData\":[],\"jobId\":\"Job 01\""
+			+ ",\"jobStatus\":\"Status 01\",\"printerName\":\"Printer 01\"},"
+			+ "{\"jobData\":[],\"jobId\":\"Job 02\",\"jobStatus\":\"Status 02\""
+			+ ",\"printerName\":\"Printer 02\"}]}";
 		//
 		final List<PrintJobModel> printJobModelList =
 			new ArrayList<PrintJobModel>();

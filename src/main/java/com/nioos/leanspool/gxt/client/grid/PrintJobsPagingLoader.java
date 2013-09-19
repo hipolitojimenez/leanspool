@@ -42,9 +42,14 @@ public class PrintJobsPagingLoader extends
 			final ListStore<PrintJobModel> listStore) {
 		super(printJobsHttpProxy, new PrintJobsJsonReader());
 		//
-		final LoadHandler<PrintJobsLoadConfig, PagingLoadResult<PrintJobModel>> handler = new LoadResultListStoreBinding<PrintJobsLoadConfig, PrintJobModel, PagingLoadResult<PrintJobModel>>(listStore);
+		final LoadHandler<PrintJobsLoadConfig, PagingLoadResult<PrintJobModel>>
+			handler = new LoadResultListStoreBinding<PrintJobsLoadConfig,
+				PrintJobModel, PagingLoadResult<PrintJobModel>>(listStore);
 		addLoadHandler(handler);
-		final MsgBoxLoaderHandler<PrintJobsLoadConfig, PagingLoadResult<PrintJobModel>> msgBoxHandler = new MsgBoxLoaderHandler<PrintJobsLoadConfig, PagingLoadResult<PrintJobModel>>("Loading print jobs");
+		final MsgBoxLoaderHandler<PrintJobsLoadConfig,
+			PagingLoadResult<PrintJobModel>> msgBoxHandler =
+				new MsgBoxLoaderHandler<PrintJobsLoadConfig,
+					PagingLoadResult<PrintJobModel>>("Loading print jobs");
 		addLoaderHandler(msgBoxHandler);
 		setRemoteSort(true);
 	}
@@ -97,7 +102,7 @@ public class PrintJobsPagingLoader extends
 
 
 	@Override
-	protected PrintJobsLoadConfig newLoadConfig() {
+	protected final PrintJobsLoadConfig newLoadConfig() {
 		return new PrintJobsLoadConfigBean();
 	}
 	

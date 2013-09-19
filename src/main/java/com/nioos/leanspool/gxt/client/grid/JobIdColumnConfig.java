@@ -33,6 +33,7 @@ public class JobIdColumnConfig extends ColumnConfig<PrintJobModel, String> {
 	 */
 	public JobIdColumnConfig() {
 		super(new JobIdValueProvider(), JOB_ID_WIDTH, JOB_ID_HEADER);
+		setHidden(true);
 	}
 	
 	
