@@ -19,7 +19,7 @@ public class JobIdColumnConfig extends ColumnConfig<PrintJobModel, String> {
 	/**
 	 * Job Id column width.
 	 */
-	private static final int JOB_ID_WIDTH = 100;
+	private static final int JOB_ID_WIDTH = 220;
 	
 	
 	/**
